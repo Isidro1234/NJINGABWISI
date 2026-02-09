@@ -1,26 +1,148 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+}
+/*logo styles*/
+.logo{
+  display: flex;
+  gap:10px;
+  padding: 30px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.background-inner{
+  position: absolute;
+  width: 300px;
+  left: -70px;
+  top: -30px;
+  height: 110px;
+  z-index: 1;
+  border-right-width: 1.2px;
+  transform: skewX(30deg);
+}
+
+div .image{
+  z-index: 100;
+}
+div .logo-text-conteiner{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: fit-content;
+  z-index: 100;
+  gap: 0px;
+}
+/*logo text*/
+.logo-main-text{
+  text-align: start;
+  height: 100%;
+  width: 100%;
+}
+.logo-text-1{
+  padding: 0px;
+  color: rgb(255, 235, 13);
+}
+.logo-text-2{
+  padding: 0px;
+  color: rgb(255, 13, 13);
+}
+.logo-text-3{
+  padding: 0px;
+  color: rgb(0, 0, 0);
+}
+.logo-subtext{
+  font-size: 8px;
+  color: gray;
+  padding-left: 1.5px;
+  text-align: start;
+  width: 100%;
+}
+/*nav bar styles*/
+.nav-bar{
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Menu{
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-item{
+  color: #7f7f7f;
+  font-size: 12px;
+}
+.buttons-auth{
+  padding-right: 30px;
+}
+/*nav bar mobile*/
+.drawer-menu{
+  background-color: transparent;
+  padding: 0px;
+  margin: 0px;
+
+}
+.mobile-menu{
+    display: none;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.main-image-conteiner{
+  max-width: 900px;
+  width: 900px;
+  min-width: none;
+  aspect-ratio: 800/569;
+  padding: 5px;
+  background-color: #f6f6f6;
+  border-radius: 30px;
+  position: relative;
+}
+div .hero-image{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  padding: 5px;
+  border-radius: 30px;
+}
+@media  (max-width:988px) {
+  .Menu{
+    display: none;
+  }
+  div .buttons-auth{
+    display: none;
+  }
+  .mobile-menu{
+    display: flex;
+    padding: 0px 30px;
+  }
 }

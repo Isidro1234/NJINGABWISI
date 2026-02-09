@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
+import {Provider} from '../components/ui/provider'
+import Navbar from "@/components/custom/Navbar";
+import TopNavbar from "@/components/custom/TopNavbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-Inter",
+  weight:['100','200','300','400','500','600','700','800','900'],
   subsets: ["latin"],
 });
 
@@ -23,11 +27,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={inter.className}
       >
-        {children}
+      <Provider>
+        <TopNavbar/>
+        <Navbar name={null} image={null} islogged={false}/>
+         {children}
+      </Provider>
+       
       </body>
     </html>
   );
