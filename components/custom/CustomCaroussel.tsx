@@ -1,5 +1,6 @@
 'use client'
 import { Carousel, HStack, IconButton, Box } from "@chakra-ui/react"
+import Image from "next/image"
 import {
   LuChevronLeft,
   LuChevronRight,
@@ -20,10 +21,10 @@ export function CustomCaroussel<T>({items}:customCarousselType<T>) {
       width={'100%'}
     >
       <Carousel.ItemGroup>
-        {items?.map((_, index) => (
+        {items?.map((item:any, index:any) => (
           <Carousel.Item key={index} index={index}>
-            <Box w="100%" h="500px" background={'#f6f6f6'}>
-              {index + 1}
+            <Box position={'relative'} w="100%" h="500px" background={'#181818'}>
+              <Image style={{objectFit:'cover', objectPosition:'center', opacity:.7}} fill src={item?.image} alt={index}/>
             </Box>
           </Carousel.Item>
         ))}

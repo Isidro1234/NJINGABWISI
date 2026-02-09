@@ -145,4 +145,87 @@ div .hero-image{
     display: flex;
     padding: 0px 30px;
   }
+  .main-image-conteiner{
+  max-width: 900px;
+  width: 800px;
+  min-width: none;
+  aspect-ratio: 800/569;
+  padding: 5px;
+  background-color: #f6f6f6;
+  border-radius: 30px;
+  position: relative;
 }
+}
+
+@media  (max-width:826px) { 
+  .main-image-conteiner{
+  max-width: 900px;
+  width: 700px;
+  min-width: none;
+  aspect-ratio: 800/569;
+  padding: 5px;
+  background-color: #f6f6f6;
+  border-radius: 30px;
+  position: relative;
+}
+ }
+@media  (max-width:776px) { 
+  .main-image-conteiner{
+  max-width: 900px;
+  width: 600px;
+  min-width: none;
+  aspect-ratio: 800/569;
+  padding: 5px;
+  background-color: #f6f6f6;
+  border-radius: 30px;
+  position: relative;
+}
+ }
+ @media  (max-width:676px) { 
+  .main-image-conteiner{
+  max-width: 900px;
+  width: 500px;
+  min-width: none;
+  aspect-ratio: 800/569;
+  padding: 5px;
+  background-color: #f6f6f6;
+  border-radius: 30px;
+  position: relative;
+}
+ }
+  @media  (max-width:576px) { 
+  .main-image-conteiner{
+  max-width: 900px;
+  width: 400px;
+  min-width: none;
+  aspect-ratio: 800/569;
+  padding: 5px;
+  background-color: #f6f6f6;
+  border-radius: 30px;
+  position: relative;
+}
+ }
+   @media  (max-width:476px) { 
+  .main-image-conteiner{
+  max-width: 900px;
+  width: 370px;
+  min-width: none;
+  aspect-ratio: 800/569;
+  padding: 5px;
+  background-color: #f6f6f6;
+  border-radius: 30px;
+  position: relative;
+}
+ }
+   @media  (max-width:376px) { 
+  .main-image-conteiner{
+  max-width: 900px;
+  width: 200px;
+  min-width: none;
+  aspect-ratio: 800/569;
+  padding: 5px;
+  background-color: #f6f6f6;
+  border-radius: 30px;
+  position: relative;
+}
+ }

@@ -5,14 +5,14 @@ import Image from "next/image";
 export default function Home() {
   return (
     <VStack width={'100%'}>
-      <CustomCaroussel items={[{number:1}, {number:2}]}/>
+      <CustomCaroussel items={[{image:'/images/image-3.jpg'}, {image:'/images/image-4.jpg'}]}/>
       <VStack>
         <Heading fontWeight={500} color={'#151515'} padding={'4px 20px'} borderRadius={50} fontSize={10} 
         boxShadow={'1px 1px 2px #d5d5d5'}>Registro & Impostos</Heading>
         <Heading fontSize={27} textAlign={'center'} maxWidth={300}>Facilitando registro de imoveis e pagamentos de Impostos</Heading>
         <Text fontSize={12} color={'gray'} textAlign={'center'}>Saiba mais sobre nossos servicos</Text>
         <Box className="main-image-conteiner" >
-            <Image className="hero-image" fill alt="image" src={'/images/portal.png'}/>
+            <Image className="hero-image" fill={true} alt="image" src={'/images/portal.png'}/>
         </Box>    
       </VStack>
       <VStack>
