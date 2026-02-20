@@ -13,7 +13,7 @@ export default function Logo() {
           </Box>  
         </Box>
         <VStack className='logo-text-conteiner'>
-            <Text className='logo-main-text' fontSize={35} lineHeight={.9} fontWeight={700}><span className='logo-text-1'>N'</span><span className='logo-text-2'>J</span>
+            <Text className='logo-main-text' fontSize={35} lineHeight={.9} fontWeight={700}><span className='logo-text-1'>N</span><span className='logo-text-2'>J</span>
                 <span className='logo-text-3'>I</span>NGA</Text>
             <Text className='logo-subtext'>Portal de registo digital de casas</Text>  
         </VStack>            

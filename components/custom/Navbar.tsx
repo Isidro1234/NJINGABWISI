@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Logo from './Logo'
 import { CustomDrawer } from './CustomDrawer'
+import { useRouter } from 'next/navigation'
 type custom<T> = {
    islogged: boolean | null,
    name : string | null ,
@@ -13,8 +14,11 @@ type custom<T> = {
 }
 
 export default function Navbar<T>({islogged, image, name}:custom<T>) {
+
+  const router = useRouter()
   return (
-    <HStack className='nav-bar'>
+    <HStack className='nav-bar' >
+      
         <Logo/>
         <Box className='Menu'>
           <Link href={''}><Text className='menu-item'>Pagina Inicial</Text></Link>
@@ -43,8 +47,8 @@ export default function Navbar<T>({islogged, image, name}:custom<T>) {
           />
         </Box>
         <Box className='buttons-auth'  gap={4} display={!islogged ? 'flex' : 'none'}>
-            <Button borderRadius={50} color={'#171717'} bg={'#f6f6f6'}>Entrar</Button>
-            <Button  borderRadius={50} bg={'red'} color={'white'}>Registrar</Button>
+            <Button onClick={()=>{router.push('/auth/entrar')}} borderRadius={50} color={'#171717'} bg={'#f6f6f6'}>Entrar</Button>
+            <Button onClick={()=>{router.push('/auth/criarconta')}}  borderRadius={50} bg={'red'} color={'white'}>Registrar</Button>
         </Box>
         <Box className='buttons-auth'  display={islogged ? 'flex' : 'none'}>
             <AvatarCustom name={name || ''} image={image || ''}/>

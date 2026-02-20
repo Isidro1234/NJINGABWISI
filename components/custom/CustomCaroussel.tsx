@@ -24,7 +24,7 @@ export function CustomCaroussel<T>({items}:customCarousselType<T>) {
         {items?.map((item:any, index:any) => (
           <Carousel.Item key={index} index={index}>
             <Box position={'relative'} w="100%" h="500px" background={'#181818'}>
-              <Image style={{objectFit:'cover', objectPosition:'center', opacity:.7}} fill src={item?.image} alt={index}/>
+              <Image style={{objectFit:'cover', objectPosition:'center', opacity:.5}} fill src={item?.image} alt={index}/>
             </Box>
           </Carousel.Item>
         ))}

@@ -61,6 +61,12 @@ div .logo-text-conteiner{
   width: 100%;
 }
 /*nav bar styles*/
+div .conteiner-nav{
+  width: 100%;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
 .nav-bar{
   width: 100%;
   background-color: rgb(255, 255, 255);
@@ -68,11 +74,13 @@ div .logo-text-conteiner{
   justify-content: space-between;
   align-items: center;
 }
+
 .Menu{
   display: flex;
   gap: 15px;
   align-items: center;
   justify-content: center;
+  flex: 1;
 }
 
 .menu-item{
@@ -133,6 +141,16 @@ div .hero-image{
   object-position: center;
   padding: 5px;
   border-radius: 30px;
+}
+path{
+  transition: all ease-in-out 300ms;
+}
+path:hover{
+  fill: blue;
+}
+.mapa-angola svg{
+  width: fit-content;
+  height: auto;
 }
 @media  (max-width:988px) {
   .Menu{
@@ -228,4 +246,9 @@ div .hero-image{
   border-radius: 30px;
   position: relative;
 }
+ }
+
+ .link-terms{
+  color: #cbcbcb;
+  font-size: 12px;
  }
