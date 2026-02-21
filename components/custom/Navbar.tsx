@@ -34,8 +34,8 @@ export default function Navbar<T>({islogged, image, name}:custom<T>) {
           <Text className='menu-item' cursor={'pointer'} onClick={()=>{router.push('/quemsomos')}}>Quem somos</Text>
           <Text className='menu-item' cursor={'pointer'} onClick={()=>{router.push('/verifyuip')}}>Verificar PIU/UIP</Text>
           <Box className='buttons-auth-mobile'  gap={4} display={!islogged ? 'flex' : 'none'}>
-            <Button borderRadius={50} color={'#171717'} bg={'#f6f6f6'}>Entrar</Button>
-            <Button  borderRadius={50} bg={'red'} color={'white'}>Registrar</Button>
+            <Button onClick={()=>{router.push('/auth/entrar')}} borderRadius={50} color={'#171717'} bg={'#f6f6f6'}>Entrar</Button>
+            <Button onClick={()=>{router.push('/auth/criarconta')}}  borderRadius={50} bg={'red'} color={'white'}>Registrar</Button>
           </Box>
           <Box className='buttons-auth-mobile'  display={islogged ? 'flex' : 'none'}>
             <AvatarCustom name={name || ''} image={image || ''}/>

@@ -4,7 +4,7 @@ export default function AuthLayout({
   children,
 }: Readonly<{children: React.ReactNode;}>)
  { return (
-   <div>
+   <div style={{flex:1}}>
         {children}
    </div>
   )

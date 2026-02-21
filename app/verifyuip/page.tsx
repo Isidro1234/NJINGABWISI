@@ -7,7 +7,7 @@ import SelectCustomValue from '@/components/custom/SelectCustomValue'
 
 export default function VerifyUIP() {
   return (
-    <VStack alignItems={'center'} justifyContent={'center'} padding={10} height={'78.5vh'} width={'100%'} bg={'#f6f6f6'}>
+    <VStack alignItems={'center'} justifyContent={'center'} padding={10} height={'100%'} width={'100%'} bg={'#d33434'}>
        <Box bg={'white'} padding={10} borderRadius={20}>
           <HStack gap={3}>
             <Box position={'relative'} width={70} height={70} alignItems={'center'} 
