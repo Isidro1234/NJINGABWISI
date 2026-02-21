@@ -7,12 +7,14 @@ interface SelectItem {
   label: string
 }
 
-const SelectCustomValue = ({items , width}:{items:Array<SelectItem> , width:string}) => {
+const SelectCustomValue = ({items , width , borderRadius}:{items:Array<SelectItem> , width:string,
+    borderRadius:number,
+}) => {
   return (
     <Select.Root collection={createListCollection({items})} marginLeft={3} size="sm" width={width}>
       <Select.HiddenSelect />
       <Select.Control>
-        <Select.Trigger borderRadius={50}>
+        <Select.Trigger borderRadius={borderRadius}>
           <Select.ValueText placeholder={items[0]?.value} />
         </Select.Trigger>
         <Select.IndicatorGroup>

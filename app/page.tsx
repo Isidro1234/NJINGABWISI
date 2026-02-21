@@ -23,7 +23,7 @@ export default function Home() {
         </VStack>
       </VStack>
       
-      <VStack marginTop={7}>
+      <VStack marginTop={7} paddingBottom={10}>
         <Heading fontWeight={500} color={'#da3d3d'} padding={'4px 20px'} borderRadius={50} fontSize={10} 
         boxShadow={'1px 1px 2px #d5d5d5'}>Registro & Impostos</Heading>
         <Heading marginTop={4} fontSize={27} textAlign={'center'} maxWidth={300}>Facilitando registro de <span style={{color:'red'}}> imoveis</span> e pagamentos de <span style={{color:'red'}}>Impostos</span></Heading>
