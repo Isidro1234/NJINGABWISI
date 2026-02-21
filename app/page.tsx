@@ -14,9 +14,9 @@ export default function Home() {
       <VStack minW={100} minHeight={200} maxHeight={'500px'} gap={0} padding={0} background={'black'} position={'relative'} width={'100%'}>
         <CustomCaroussel items={[{image:'/images/image-3.jpg'}, {image:'/images/image-4.jpg'}]}/>
         <VStack gap={5} justifyContent={'center'} left={0} top={0} height={'100%'} width={'100%'} position={'absolute'}>
-          <Box padding={4} alignItems={'center'} gap={2} display={'flex'} flexDirection={'column'}>
-            <Heading minWidth={100} fontSize={35} color={'white'}>Bem-vindo a NJINGA</Heading>
-          <Text marginTop={2} width={300} textAlign={'center'} fontSize={15} fontWeight={200} color={'#f6f6f6'}>Plataform Angolana State of the Art, Para registo digital de Propriedades</Text>
+          <Box padding={4} alignItems={'center'} gap={0} display={'flex'} flexDirection={'column'}>
+            <Heading lineHeight={1.2} minWidth={100} fontSize={28} color={'white'}>Bem-vindo a NJINGA</Heading>
+          <Text  marginBottom={4} marginTop={1} width={300} textAlign={'center'} fontSize={15} fontWeight={200} color={'#f6f6f6'}>Plataform Angolana State of the Art, Para registo digital de Propriedades</Text>
           <Button bg={'red'} borderRadius={20}>crie sua conta</Button>
           </Box>
           
@@ -50,8 +50,7 @@ export default function Home() {
           </Box>
           <Box minWidth={300} flex={1} paddingTop={10}>
             <video src={'/videos/video.mp4'} style={{width:440, objectFit:'cover', height:300, 
-              minWidth:200}} playsInline  autoPlay loop muted>
-
+              minWidth:200, borderRadius:20}} playsInline  autoPlay loop muted>
             </video>
           </Box>
         </HStack>
@@ -60,7 +59,7 @@ export default function Home() {
       </VStack>
       <VStack justifyContent={'center'} height={'70vh'} bg={'#d33434'} width={'100%'} padding={10}>
         <VStack gap={2} padding={5}>
-          <Heading color={'#ffffff'} fontSize={35}>Contacte-nos</Heading>
+          <Heading color={'#ffffff'} fontSize={30}>Contacte-nos</Heading>
           <Text  width={220} color={'#f6f6f6'} fontSize={10} textAlign={'center'}>Receba notificacoes sobre novos servicos adicionados a NJINGA</Text>
          
           <Box display={'flex'} bg={'white'} borderRadius={50} padding={2}>

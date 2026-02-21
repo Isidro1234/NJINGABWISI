@@ -1,11 +1,13 @@
 'use client'
 import { Box, HStack, Text, VStack } from '@chakra-ui/react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
 export default function Logo() {
+  const router = useRouter()
   return (
-    <HStack className='logo'>
+    <HStack className='logo' onClick={()=>{router.push('/')}}>
         <Box position={'relative'}>
           <Image className='image' style={{zIndex:500}} width={50} height={50}
            src={'/icons/angola-flag.svg'} alt='angola-flag'/>

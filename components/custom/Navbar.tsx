@@ -2,7 +2,6 @@
 import { Box, Button, HStack, Input, Text, VStack } from '@chakra-ui/react'
 import React from 'react'
 import AvatarCustom from './AvatarCustom'
-import Link from 'next/link'
 import Image from 'next/image'
 import Logo from './Logo'
 import { CustomDrawer } from './CustomDrawer'
@@ -18,24 +17,22 @@ export default function Navbar<T>({islogged, image, name}:custom<T>) {
   const router = useRouter()
   return (
     <HStack className='nav-bar' >
-      
         <Logo/>
         <Box className='Menu'>
-          <Link href={''}><Text className='menu-item'>Pagina Inicial</Text></Link>
-          <Link href={''}><Text className='menu-item'>Servicos</Text></Link>
-          <Link href={''}><Text className='menu-item'>Quem somos</Text></Link>
-          <Link href={''}><Text className='menu-item'>Verificar PIU/UIP</Text></Link>
-
+          <Text className='menu-item' cursor={'pointer'} onClick={()=>{router.push('/')}}>Pagina Inicial</Text>
+          <Text className='menu-item' cursor={'pointer'} onClick={()=>{router.push('/servicos')}}>Servicos</Text>
+          <Text className='menu-item' cursor={'pointer'} onClick={()=>{router.push('/quemsomos')}}>Quem somos</Text>
+          <Text className='menu-item' cursor={'pointer'} onClick={()=>{router.push('/verifyuip')}}>Verificar PIU/UIP</Text>
         </Box>
         <Box className='mobile-menu'>
           <CustomDrawer
           title={'Menu'}
           icon={<Image width={30} height={30} alt='menu-mobile' src={'/icons/menu-mobile.svg'}/>}
           content={<VStack>
-            <Link href={''}><Text className='menu-item'>Pagina Inicial</Text></Link>
-          <Link href={''}><Text className='menu-item'>Servicos</Text></Link>
-          <Link href={''}><Text className='menu-item'>Quem somos</Text></Link>
-          <Link href={''}><Text className='menu-item'>Verificar PIU/UIP</Text></Link>
+          <Text className='menu-item' cursor={'pointer'} onClick={()=>{router.push('/')}}>Pagina Inicial</Text>
+          <Text className='menu-item' cursor={'pointer'} onClick={()=>{router.push('/servicos')}}>Servicos</Text>
+          <Text className='menu-item' cursor={'pointer'} onClick={()=>{router.push('/quemsomos')}}>Quem somos</Text>
+          <Text className='menu-item' cursor={'pointer'} onClick={()=>{router.push('/verifyuip')}}>Verificar PIU/UIP</Text>
           <Box className='buttons-auth-mobile'  gap={4} display={!islogged ? 'flex' : 'none'}>
             <Button borderRadius={50} color={'#171717'} bg={'#f6f6f6'}>Entrar</Button>
             <Button  borderRadius={50} bg={'red'} color={'white'}>Registrar</Button>
