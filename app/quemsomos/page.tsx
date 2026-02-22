@@ -14,8 +14,8 @@ export default function Quemsomos() {
         <Image fill style={{objectFit:'cover', width:'100%', height:'100%'}} src={'/images/image-1.jpg'} alt='image' />
       </Box>
       
-      <VStack  position={'absolute'} minWidth={200} bg={'#490c0c'} padding={10} alignItems={'flex-start'} height={300} 
-       width={300}>
+      <VStack  position={'absolute'} minWidth={10} bg={'#490c0c'} padding={5} alignItems={'flex-start'} height={300} 
+       maxWidth={300} width={'100%'}>
           <Heading fontSize={25} color={'white'}>NJINGA</Heading>
           <Text fontSize={12} color={'white'}>
             Somos uma plataforma de registo e pagamento de imposto criado pela
