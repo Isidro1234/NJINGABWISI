@@ -16,7 +16,7 @@ export default function VerifyUIP() {
             </Box>
           <VStack flex={1} gap={0} alignItems={'flex-start'}>
             <Heading lineHeight={1.2}>Verificar UIP</Heading>
-            <Text paddingLeft={1} fontSize={10} color={'gray'}>bwisi corporation</Text>
+            <Text paddingLeft={1} fontSize={10} color={'gray'}>by bwisi corporation</Text>
           </VStack>
           <Box marginRight={2} position={'relative'} width={50} height={50} alignItems={'center'} justifyContent={'center'} display={'flex'} borderRadius={50} bg={'#f6f6f6'}>
               <Image alt='uip' src={'/icons/angola-flag.svg'} width={45} height={45}/>

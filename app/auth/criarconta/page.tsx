@@ -25,7 +25,9 @@ export default function Criarconta() {
             <InputLabel type='number' onchange={(e:any)=>setId(e)} label='Identificacao' 
           placeholder='Id, numero do bilhete ou passaporte'/>
              <Box marginTop={5}>
-                <SelectCustomValue borderRadius={2} width='170px' items={[{label:'Passaporte', value:'passport'},{label:'Bilhete', value:'bilhete'}]}/>          
+                <SelectCustomValue borderRadius={2} width='170px' items={[{label:'Passaporte', value:'passport'},{label:'Bilhete', value:'bilhete'},
+                   {label:'NIF', value:'NIF'}
+                ]}/>          
              </Box>
             
           </HStack>
@@ -35,7 +37,7 @@ export default function Criarconta() {
           placeholder='digite sua senha'/>
           <InputLabel type='phone' onchange={(e:any)=>setId(e)} label='Numero de Telefone' 
           placeholder='digite seu numero de telefone'/>
-          <Button bg={'#d33434'} width={'100%'}>criar conta</Button>
+          <Button bg={'#d33434'} width={'100%'}>Criar conta</Button>
           <Link href={'/auth/entrar'}><Text fontSize={10} color={'gray'}>Ja tem conta na NJINGA clique <span style={{color:'red'}}>aqui</span></Text> </Link>
         </VStack>
     </VStack>

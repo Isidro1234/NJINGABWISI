@@ -27,7 +27,7 @@ export default function Entrar() {
           placeholder='digite sua senha'/>
           <InputLabel type='number' onchange={(e:any)=>setId(e)} label='Codigo de seguranca ' 
           placeholder='digite seu codigo'/>
-          <Button bg={'#d33434'} width={'100%'}>criar conta</Button>
+          <Button bg={'#d33434'} width={'100%'}>Entrar</Button>
           <Link href={'/auth/criarconta'}><Text fontSize={10} color={'gray'}>Ainda nao tem conta na NJINGA? clique <span style={{color:'red'}}>aqui</span></Text> </Link>
         </VStack>
     </VStack>

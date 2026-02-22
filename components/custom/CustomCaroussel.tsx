@@ -10,9 +10,10 @@ import {
 } from "react-icons/lu"
 
 type customCarousselType<T> = {
-    items : Array<object> | null
+    items : Array<object> | null,
+    width:string
 }
-export function CustomCaroussel<T>({items}:customCarousselType<T>) {
+export function CustomCaroussel<T>({items, width}:customCarousselType<T>) {
   return (
     <Carousel.Root
       autoplay={true}
@@ -23,7 +24,7 @@ export function CustomCaroussel<T>({items}:customCarousselType<T>) {
       <Carousel.ItemGroup>
         {items?.map((item:any, index:any) => (
           <Carousel.Item key={index} index={index}>
-            <Box position={'relative'} w="100%" h="500px" background={'#181818'}>
+            <Box position={'relative'} w="100%" h={width || '500px'} background={'#181818'}>
               <Image style={{objectFit:'cover', objectPosition:'center', opacity:.5}} fill src={item?.image} alt={index}/>
             </Box>
           </Carousel.Item>

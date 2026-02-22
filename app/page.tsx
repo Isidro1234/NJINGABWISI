@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <VStack width={'100%'} gap={0}>
       <VStack minW={100} minHeight={200} maxHeight={'500px'} gap={0} padding={0} background={'black'} position={'relative'} width={'100%'}>
-        <CustomCaroussel items={[{image:'/images/image-3.jpg'}, {image:'/images/image-4.jpg'}]}/>
+        <CustomCaroussel width="500px" items={[{image:'/images/image-3.jpg'}, {image:'/images/image-4.jpg'}]}/>
         <VStack gap={5} justifyContent={'center'} left={0} top={0} height={'100%'} width={'100%'} position={'absolute'}>
           <Box padding={4} alignItems={'center'} gap={0} display={'flex'} flexDirection={'column'}>
             <Heading lineHeight={1.2} minWidth={100} fontSize={28} color={'white'}>Bem-vindo a NJINGA</Heading>
