@@ -13,7 +13,7 @@ export default function Servicos() {
       <VStack width={'100%'}>
           <CustomCaroussel width={'100px'} items={[{image:"/images/bicycle.jpg"},{image:'/images/service1.jpg'}]}/>
       </VStack>
-      <HStack alignItems={'flex-start'} padding={5} gap={5} flexWrap={'wrap'} width={'100%'}>
+      <HStack flex={1} alignItems={'flex-start'} padding={5} gap={5} flexWrap={'wrap'} width={'100%'}>
         <VStack padding={5} paddingBottom={10} width={'100%'} flex={1} gap={5}>
           <Heading color={'white'}>Servicos</Heading>
           <VStack gap={4} maxWidth={1000} width={'100%'} display={'grid'} gridTemplateColumns={`repeat(auto-fit, minmax(300px, 1fr))`}>
