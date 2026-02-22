@@ -8,8 +8,8 @@ import SelectCustomValue from '@/components/custom/SelectCustomValue'
 export default function VerifyUIP() {
   return (
     <VStack alignItems={'center'} justifyContent={'center'} padding={10} height={'100%'} width={'100%'} bg={'#d33434'}>
-       <Box bg={'white'} padding={10} borderRadius={20}>
-          <HStack gap={3}>
+       <Box bg={'white'} padding={5} borderRadius={20}>
+          <HStack width={'100%'} gap={3}>
             <Box position={'relative'} width={70} height={70} alignItems={'center'} 
             justifyContent={'center'} display={'flex'} borderRadius={50} bg={'#E3FAF5'}>
               <Image alt='uip' src={'/icons/uip.svg'} width={30} height={30}/>
@@ -24,10 +24,10 @@ export default function VerifyUIP() {
           </HStack>
           <VStack alignItems={'flex-start'} padding={2} paddingTop={4}>
             <Text fontSize={12} color={'gray'}>Verifique uip/piu</Text>
-            <HStack width={'100%'} flexWrap={'wrap'}>
+            <HStack  flexWrap={'wrap'}>
               <HStack gap={0} padding={2} paddingLeft={4} borderRadius={10} borderWidth={1}>
                 <Box minW={10} position={'relative'}><Image width={20} height={20} src={'/icons/uip.svg'} alt='qrcode'/></Box>
-                <Input outline={'none'} border={'none'} placeholder='Digite o nome, id  do intermediario...'/>
+                <Input marginLeft={-5} outline={'none'} border={'none'} placeholder='Digite o nome, id  do intermediario...'/>
                 <Box minW={10} position={'relative'} paddingLeft={2}><Image width={20} height={20} src={'/icons/qrcode.svg'} alt='qrcode'/></Box>
                 <SelectCustomValue borderRadius={50} width='150px' items={[{label:'Agente', value:'agente'}, {label:'Cidadao', value:'cidadao'}]}/>
               </HStack>
