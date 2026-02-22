@@ -13,10 +13,10 @@ export default function Servicos() {
       <VStack width={'100%'}>
           <CustomCaroussel width={'100px'} items={[{image:"/images/bicycle.jpg"},{image:'/images/service1.jpg'}]}/>
       </VStack>
-      <HStack flex={1} alignItems={'flex-start'} padding={5} gap={5} flexWrap={'wrap'} width={'100%'}>
-        <VStack padding={5} paddingBottom={10} width={'100%'} flex={1} gap={5}>
+      <HStack height={'100%'} alignItems={'flex-start'} padding={5} gap={5} flexWrap={'wrap'} width={'100%'}>
+        <VStack height={'100%'} padding={5} paddingBottom={10} width={'100%'}  gap={5}>
           <Heading color={'white'}>Servicos</Heading>
-          <VStack gap={4} maxWidth={1000} width={'100%'} display={'grid'} gridTemplateColumns={`repeat(auto-fit, minmax(300px, 1fr))`}>
+          <VStack flex={1} gap={4} maxWidth={1000} width={'100%'} display={'grid'} gridTemplateColumns={`repeat(auto-fit, minmax(300px, 1fr))`}>
               {servicos.map((item:any, index)=>{
                 return(
                   <Box gap={2}  bg={'white'} alignItems={'center'} display={'flex'} flexDirection={'column'} key={index} padding={5} borderRadius={10} borderWidth={1}>

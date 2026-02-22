@@ -5,6 +5,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname  } from 'next/navigation'
 
+import Facebook from '../../public/icons/facebook.svg'
+import Gmail from '../../public/icons/gmail.svg'
+import Instagram from '../../public/icons/instagram.svg'
+import Whatsapp from '../../public/icons/whatsapp.svg'
 
 
 
@@ -17,16 +21,12 @@ export default  function Footer() {
                 <Heading fontSize={20} color={"white"}>Contactos</Heading>
                 <a href="mailto:info@bwisi.tech"><Text fontSize={12} color={"#CECECE"}>info@bwisi.tech</Text></a>
                 <a href="mailto:info@bwisi.tech"><Text fontSize={12} color={"#CECECE"}>+244 934590992</Text></a>
-                <HStack gap={2} justifyContent={"flex-start"}>
-                    <a  href="https://youtube.com/@bwisi-answer1?si=xC-HvOan9iBHFWw0" 
-                    style={{padding:5, background:"white", borderRadius:50, height:"fit-content"}}>
-                       
-                    </a>
-                    <a href="https://www.instagram.com/bwisi_corporation/" 
-                    style={{padding:5, background:"white", borderRadius:50,height:"fit-content"}}>
-                      
-                    </a>
-                </HStack>
+                <HStack gap={2} marginTop={2} flexWrap={'wrap'}>
+                      <Button  margin={0} padding={0} width={10} height={10} borderRadius={50}><Facebook width={'20px'} height={'20px'}/></Button>
+                      <Button  margin={0} padding={0} width={10} height={10} borderRadius={50}><Instagram width={40} height={40}/></Button>
+                      <Button margin={0} padding={0} width={10} height={10} borderRadius={50}><Whatsapp width={40} height={40}/></Button>
+                      <Button  margin={0} padding={0} width={10} height={10} borderRadius={50}><Gmail width={40} height={40}/></Button>
+                    </HStack>
             </VStack>
             <VStack alignItems={"flex-start"}>
                 <Heading color={"white"} fontSize={20}>
