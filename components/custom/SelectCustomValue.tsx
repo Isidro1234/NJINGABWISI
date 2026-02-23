@@ -7,11 +7,11 @@ interface SelectItem {
   label: string
 }
 
-const SelectCustomValue = ({items , width , borderRadius}:{items:Array<SelectItem> , width:string,
-    borderRadius:number,
+const SelectCustomValue = ({items , width , borderRadius , setChange}:{items:Array<SelectItem> , width:string,
+    borderRadius:number, setChange:Function
 }) => {
   return (
-    <Select.Root collection={createListCollection({items})} marginLeft={3} size="sm" width={width}>
+    <Select.Root onValueChange={(e)=>setChange(e.value)} collection={createListCollection({items})} marginLeft={3} size="sm" width={width}>
       <Select.HiddenSelect />
       <Select.Control>
         <Select.Trigger borderRadius={borderRadius}>

@@ -277,3 +277,145 @@ path:hover{
  ::-webkit-scrollbar-thumb{
   background: #de4848;
  }
+
+ /*navbar logged*/
+ /* nav bar logged styles  */
+.bwisi-layout-conteiner{
+  width: 100%;
+  height: 100vh;
+}
+.navbar-logged{
+  width:100%;
+}
+.navbar-logged-conteiner-top{
+  width: 100%;
+  max-width: 1300px;
+  display: flex;
+  padding: 10px;
+  padding-top: 20px;
+}
+
+.navbar-logged-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  width: 50px;
+  height: 50px;
+  background-color: #f6f6f6;
+  transition: all ease-in-out 200ms;
+}
+.navbar-logged-button:hover{
+  background-color: #f4f4f4;
+}
+.navbar-logged-menu-conteiner{
+  flex: 1;
+  justify-content: center;
+  padding-left: 40px;
+}
+.navbar-logged-menu-items{
+  display: flex;
+  padding: 12px 25px;
+  background-color: #FAFAFA;
+  border-radius: 50px;  
+  gap: 5px;
+  max-width: 551.94px;
+  overflow-x: auto;
+}
+.navbar-logged-menu-items::-webkit-scrollbar{
+  display: none;
+}
+
+.navbar-logged-menu-items p{
+  font-size: 12px;
+  margin: 0px 10px;
+}
+.navbar-logged-menu-item{
+  cursor: pointer;
+  padding: 10px 17px;
+  transition: all ease-in-out 200ms;
+  color: #4a4a4a;
+}
+.navbar-logged-menu-item-active , .navbar-logged-menu-item:hover{
+  cursor: pointer;
+  padding: 10px 17px;
+  background-color: white;
+  border-radius: 50px;
+  box-shadow: 1px 1px 2px rgba(188, 188, 188, 0.669);
+  color: #4a4a4a;
+}
+
+div .navbar-logged-user-conteiner{
+  display: flex;
+  gap: 10px;
+}
+.space{
+  width: 10px;
+}
+/* navbar bottom part*/
+.navbar-logged-conteiner-bottom{
+  width: 100%;
+  justify-content: start;
+  align-items: start;
+  max-width: 1300px;
+  padding: 10px;
+}
+
+.navbar-logged-other{
+  flex:1;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.navbar-logged-welcome-subtext{
+  font-size: 14px;
+  font-weight: 400;
+  color: #999999;
+  line-height: 1.2;
+}
+.navbar-logged-welcome-subtext , .navbar-logged-welcome-text{
+  text-align: start;
+  display: flex;
+  align-self: flex-start;
+}
+.navbar-logged-welcome-text{
+  font-size: 25px;
+  line-height: 1.0;
+  color: #595959;
+}
+.navbar-logged-welcome{
+  flex: 1;
+  gap: 1px;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+}
+
+.navbar-logged-other-text{
+  color: #777676;
+  font-size: 12px;
+  width: fit-content;
+}
+.navbar-logged-other-data-conteiner{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.navbar-logged-data-input{
+  background-color: #F9F9F9;
+  border-radius: 50px;
+  padding: 30px 15px;
+  width: fit-content;
+  color: #424242;
+}
+/*loading animation*/
+
+.animate{
+  animation: loading 2s ease-in-out infinite forwards;
+}
+
+@keyframes loading {
+  
+  
+}

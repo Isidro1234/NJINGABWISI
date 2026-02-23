@@ -5,7 +5,7 @@ import AvatarCustom from './AvatarCustom'
 import Image from 'next/image'
 import Logo from './Logo'
 import { CustomDrawer } from './CustomDrawer'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 type custom<T> = {
    islogged: boolean | null,
    name : string | null ,
@@ -15,8 +15,9 @@ type custom<T> = {
 export default function Navbar<T>({islogged, image, name}:custom<T>) {
 
   const router = useRouter()
+  const pathname = usePathname()
   return (
-    <HStack className='nav-bar' >
+    <HStack className='nav-bar'  display={pathname.includes('portal') ? 'none' : 'flex'}>
         <Logo/>
         <Box className='Menu'>
           <Text className='menu-item' cursor={'pointer'} onClick={()=>{router.push('/')}}>Pagina Inicial</Text>
