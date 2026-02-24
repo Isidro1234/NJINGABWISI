@@ -1,3 +1,4 @@
+"use client"
 import { CustomCaroussel } from '@/components/custom/CustomCaroussel'
 import Footer from '@/components/structures/Footer'
 import { Box, Button, Heading, HStack, Text, VStack } from '@chakra-ui/react'

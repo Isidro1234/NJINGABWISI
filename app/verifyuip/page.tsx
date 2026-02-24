@@ -1,3 +1,4 @@
+"use client"
 import { Box, Button, Heading, HStack, Input, Text, VStack } from '@chakra-ui/react'
 import React from 'react'
 import UIP from '../../public/icons/uip.svg'
