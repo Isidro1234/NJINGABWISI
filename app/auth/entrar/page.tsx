@@ -18,7 +18,7 @@ export default function Entrar() {
   const {setUserLogged, setUserdata, setLoading,} :any  = useAuthContext()
   const router = useRouter()
   async function submeter(){
-    if(!Identificacao || !password || !tipoIdentificacao) {
+    if(!Identificacao || !password) {
       alert('this is an error')
     }
     const res = await enviardados(Identificacao, tipoIdentificacao, password)
@@ -37,10 +37,6 @@ export default function Entrar() {
           <HStack alignSelf={'flex-start'} justifyContent={'flex-start'} alignItems={'center'}>
             <InputLabel type='text' onchange={(e:any)=>setIdentificacao(e)} label='Identificacao' 
           placeholder='Id, numero do bilhete ou passaporte'/>
-             <Box marginTop={5}>
-                <SelectCustomValue setChange={(e:any)=>{setTipoIdentificacao(e)}} borderRadius={2} width='170px' items={[{label:'Passaporte', value:'passport'},{label:'Bilhete', value:'bilhete'}]}/>          
-             </Box>
-            
           </HStack>
           <InputLabel type='password' onchange={(e:any)=>setPassword(e)} label='Senha' 
           placeholder='digite sua senha'/>

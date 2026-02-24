@@ -161,6 +161,16 @@ path:hover{
   height: auto;
 }
 @media  (max-width:988px) {
+  .navbar-logged-logo-conteiner{
+    flex: 1;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-self: flex-start;
+    justify-self: flex-start;
+  }
+  div .navbar-logged-menu-conteiner{
+   display: none;
+  }
   .Menu{
     display: none;
   }

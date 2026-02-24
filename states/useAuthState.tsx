@@ -8,6 +8,7 @@ import { codeemail } from '@/logic/codeemail';
 
 
 export const useStateAuth = create((set, get)=>({
+    code:null,
     login:async(Identificacao:string, tipoIdentificacao:string, password:string)=>{
         try {
             const docref = collection(db, "Perfil")
@@ -20,7 +21,9 @@ export const useStateAuth = create((set, get)=>({
             const email = res[0].email;
             console.log(email, res)
             const credentials = await signInWithEmailAndPassword(auth,email,password);
-            await codeemail(email)
+            const code = await codeemail(email)
+            if(!code) return;
+            set({code})
             if(!credentials.user.email) return;
             return true 
         } catch (error:any) {
