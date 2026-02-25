@@ -25,7 +25,7 @@ const nextConfig: NextConfig = {
 
     return config;
   },
-  allowedDevOrigins: ['http://localhost:3000']
+  allowedDevOrigins: ['https://n-jinga.vercel.app']
 };
 
 export default nextConfig;
