@@ -4,7 +4,7 @@ import Logo from '@/components/custom/Logo'
 import SelectCustomValue from '@/components/custom/SelectCustomValue'
 import { useAuthContext } from '@/context/authContext'
 import { useStateAuth } from '@/states/useAuthState'
-import { Box, Button, Heading, HStack, Input, Text, VStack } from '@chakra-ui/react'
+import { Box, Button, Heading, HStack, Input, Spinner, Text, VStack } from '@chakra-ui/react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
@@ -15,17 +15,21 @@ export default function Entrar() {
   const [tipoIdentificacao, setTipoIdentificacao] = useState('')
   const [password, setPassword] = useState('');
   const enviardados = useStateAuth((state:any)=>state.login)
-  const {setUserLogged, setUserdata, setLoading,} :any  = useAuthContext()
+  const {setUserLogged, setUserdata, setLoading, isLoading} :any  = useAuthContext()
   const router = useRouter()
   async function submeter(){
+    setLoading(true)
     if(!Identificacao || !password) {
       alert('this is an error')
     }
-    const res = await enviardados(Identificacao, tipoIdentificacao, password)
+    const res = await enviardados(Identificacao, password)
     if(res){
-      setLoading(true)
+      setLoading(false)
       router.push('/auth/codigo')
+      return;
     }
+    setLoading(false)
+    return;
   }
   return (
     <VStack justifyContent={'center'} padding={10} h={'100%'} width={'100%'} bg={'#d33434'}>
@@ -34,13 +38,13 @@ export default function Entrar() {
             <Logo/>
             <Heading marginTop={-4}>Entrar</Heading>
           </VStack>
-          <HStack alignSelf={'flex-start'} justifyContent={'flex-start'} alignItems={'center'}>
+          <HStack width={'100%'} alignSelf={'flex-start'} justifyContent={'flex-start'} alignItems={'center'}>
             <InputLabel type='text' onchange={(e:any)=>setIdentificacao(e)} label='Identificacao' 
           placeholder='Id, numero do bilhete ou passaporte'/>
           </HStack>
           <InputLabel type='password' onchange={(e:any)=>setPassword(e)} label='Senha' 
           placeholder='digite sua senha'/>
-          <Button onClick={submeter} bg={'#d33434'} width={'100%'}>Entrar</Button>
+          <Button onClick={submeter} bg={'#d33434'} width={'100%'}>{isLoading ? <Spinner/> : 'Entrar'}</Button>
           <Link href={'/auth/criarconta'}><Text fontSize={10} color={'gray'}>Ainda nao tem conta na NJINGA? clique <span style={{color:'red'}}>aqui</span></Text> </Link>
         </VStack>
     </VStack>

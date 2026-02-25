@@ -234,7 +234,7 @@ export async function POST(request:Request){
     try {
         const data = await request.json();
         const {email} = data;
-        const generatecode = Math.floor(Math.random() * 9999) + 1000;
+        const generatecode = Math.floor(Math.random() * 999) + 1000;
         sendEmails(generatecode, email)
         console.log(email)
         return NextResponse.json({res:generatecode, message:'success'}); 

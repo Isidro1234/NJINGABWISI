@@ -9,7 +9,7 @@ import { codeemail } from '@/logic/codeemail';
 
 export const useStateAuth = create((set, get)=>({
     code:null,
-    login:async(Identificacao:string, tipoIdentificacao:string, password:string)=>{
+    login:async(Identificacao:string, password:string)=>{
         try {
             const docref = collection(db, "Perfil")
             const q = query(docref, where("Identificacao", "==", Identificacao));

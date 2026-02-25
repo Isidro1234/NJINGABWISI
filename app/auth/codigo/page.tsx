@@ -13,7 +13,7 @@ export default function Code() {
   const [currentCode, setCode] = useState(0);
   const [userCode, setUserCode] = useState(0);
   const [loading, setLoadings] = useState(false)
-  const {setLoading, setUserdata, setUserLogged}:any = useAuthContext()
+  const {setLoading, setUserdata, setUserLogged, isLoading}:any = useAuthContext()
   useEffect(()=>{
     async function getting(){
         const res = await code
@@ -40,7 +40,7 @@ export default function Code() {
        <Box display={'flex'} flexDirection={'column'} gap={4} bg={'white'} padding={10} borderRadius={20}>
         <Heading>Codigo de Seguranca</Heading>
           <CustomOTP onchange={(e:any)=>{setUserCode(e)}}/>
-          <Button onClick={checkCode}>{loading ?  <Spinner/> : "Enviar"} </Button>
+          <Button onClick={checkCode}>{isLoading ?  <Spinner/> : "Enviar"} </Button>
        </Box>
     </VStack>
   )
