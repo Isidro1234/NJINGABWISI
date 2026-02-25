@@ -24,7 +24,8 @@ const nextConfig: NextConfig = {
     });
 
     return config;
-  }
+  },
+  allowedDevOrigins: ['http://localhost:3000']
 };
 
 export default nextConfig;
