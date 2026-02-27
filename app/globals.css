@@ -160,6 +160,9 @@ path:hover{
   width: fit-content;
   height: auto;
 }
+div .mobile-menu{
+    display: none;
+  }
  div .logos{
     align-self: flex-start;
     justify-self: flex-start;
@@ -171,7 +174,12 @@ path:hover{
   div .navbar-logged-menu-conteiner{
    display: none;
   }
- 
+ div .mobile-menu{
+    display: flex;
+  }
+  .mobile-item{
+    padding: 0px;
+  }
   div .logos{
     align-self: flex-start;
     justify-self: flex-start;
