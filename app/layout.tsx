@@ -31,14 +31,15 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={inter.className}
-      >
-      <Provider>
-        <AuthContextProvider>
-          <TopNavbar/>
-        <Navbar name={null} image={null} islogged={false}/>
-         {children}
-        </AuthContextProvider>
-      </Provider>
+      ><AuthContextProvider>
+        <Provider>
+          
+            <TopNavbar/>
+          <Navbar name={null} image={null} islogged={false}/>
+          {children}
+        
+        </Provider> 
+      </AuthContextProvider>
       </body>
     </html>
   );

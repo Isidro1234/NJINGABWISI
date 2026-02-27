@@ -50,7 +50,7 @@ export default function NavBarLogged() {
             </Stack>
             
             <HStack className='navbar-logged-user-conteiner' >
-                 <Button className='navbar-logged-button' ><Image  width={20} height={20} src={'/icons/message-icon.svg'} alt='icon-search'/></Button>
+                <Button className='navbar-logged-button' ><Image  width={20} height={20} src={'/icons/message-icon.svg'} alt='icon-search'/></Button>
                 <Button className='navbar-logged-button' ><Image  width={20} height={20} src={'/icons/bell-icon.svg'} alt='icon-search'/></Button>
                 <span className='space'></span>
                 <CustomMenu menuitems={[{label:'Perfil', value:'/portal/perfil'}, 

@@ -23,8 +23,10 @@ export default function Entrar() {
       alert('this is an error')
     }
     const res = await enviardados(Identificacao, password)
-    if(res){
+    if(res?.uip?.email){
       setLoading(false)
+      console.log(res.uip)
+      setUserdata(res.uip)
       router.push('/auth/codigo')
       return;
     }

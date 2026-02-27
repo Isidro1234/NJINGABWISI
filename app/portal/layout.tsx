@@ -15,9 +15,12 @@ export default function PortalLayout({
 }>) {
   const router = useRouter()
   const [isLogged, setIsLogged] = useState(false);
+  const {setUserdata}:any = useAuthContext();
   useEffect(()=>{
     onAuthStateChanged(auth, (user)=>{
        if(user){
+          const userdata = localStorage.getItem('uip');
+          setUserdata(JSON.parse(userdata || '{}'))
           setIsLogged(true)
        }else{
           router.push('/auth/entrar')

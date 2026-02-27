@@ -21,7 +21,9 @@ const CustomMenu = ({icon, menuitems}:CustomMenuProps) => {
         <Menu.Positioner>
           <Menu.Content>
             {menuitems.map((item:any, index:number)=>(
-              <Menu.Item onClick={()=>router.push(item.value)} key={index} value={item.value}>{item.label}</Menu.Item>
+              <Menu.Item onClick={()=>router.push(item.value)} key={index} value={item.value}>
+                {item.label}
+              </Menu.Item>
             ))}
           </Menu.Content>
         </Menu.Positioner>

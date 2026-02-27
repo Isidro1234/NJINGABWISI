@@ -1,7 +1,7 @@
 
 
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
-import { collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore';
 import {create} from 'zustand'
 import {auth , db} from '../config/firebse'
 import { codeemail } from '@/logic/codeemail';
@@ -9,8 +9,10 @@ import { codeemail } from '@/logic/codeemail';
 
 export const useStateAuth = create((set, get)=>({
     code:null,
+    uip:[],
     login:async(Identificacao:string, password:string)=>{
         try {
+            localStorage.removeItem('uip');
             const docref = collection(db, "Perfil")
             const q = query(docref, where("Identificacao", "==", Identificacao));
             const getting = await getDocs(q);
@@ -18,6 +20,11 @@ export const useStateAuth = create((set, get)=>({
             const res = getting.docs.map((item)=>{
                     return item.data()
             })
+            const uip:any = doc(db, 'MeuUIP', res[0].Identificacao)
+            const getuip = await getDoc(uip);
+            if(!getuip.exists()) return;
+            const uipdata = getuip.data()
+            localStorage.setItem('uip', JSON.stringify(uipdata))
             const email = res[0].email;
             console.log(email, res)
             const credentials = await signInWithEmailAndPassword(auth,email,password);
@@ -25,7 +32,7 @@ export const useStateAuth = create((set, get)=>({
             if(!code) return;
             set({code})
             if(!credentials.user.email) return;
-            return true 
+            return {uip:uipdata}
         } catch (error:any) {
             console.log(error.message)
             return false
@@ -80,5 +87,9 @@ export const useStateAuth = create((set, get)=>({
             console.log(error.message)
             return false
         }
+    },
+    logout:async()=>{
+        auth.signOut();
+        localStorage.removeItem('uip');
     }
 }))

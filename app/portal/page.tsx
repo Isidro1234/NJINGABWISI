@@ -1,7 +1,7 @@
 "use client"
 import CustomCard from '@/components/custom/CustomCard'
 import { Box, Button, HStack, Input, Text, VStack } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Property from '../../public/icons/imovel.svg'
 import Coin from  '../../public/icons/coin.svg'
 import CustomPCard from '@/components/custom/CustomPCard'
@@ -12,8 +12,15 @@ import CustomUipCard from '@/components/custom/CustomUipCard'
 import CustomGovCard from '@/components/custom/CustomGovCard'
 import CustomReCard from '@/components/custom/CustomReCard'
 import CustomMeuUIP from '@/components/custom/CustomMeuUIP'
+import { useAuthContext } from '@/context/authContext'
 
 export default function Portal() {
+  
+  const {userdata}:any = useAuthContext();
+  useEffect(()=>{
+    console.log(userdata)
+  }, [userdata])
+  console.log(userdata)
   return (
     <HStack className='portal-conteiner' display={'grid'} gridTemplateColumns={'repeat(auto-fit, minmax(350px,1fr))'} 
     alignItems={'flex-start'} width={'100%'}  bg={'#f6f6f6'} padding={10}>
@@ -60,7 +67,7 @@ export default function Portal() {
       icon={<Image src={'/icons/stats.svg'} alt='uip' width={25} height={25}/>}
        bg={'#ebdffc'}>
         <VStack   alignItems={'flex-start'} width={'100%'} height={'100%'} paddingTop={5} gap={4}>
-            <CustomMeuUIP/>
+            <CustomMeuUIP userdata={userdata}/>
         </VStack>
       </CustomCard>
     </HStack>
