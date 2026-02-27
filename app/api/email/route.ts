@@ -6,7 +6,6 @@ configDotenv()
 const transporter = nodemailer.createTransport({
   host:'smtp.hostinger.com',
   port:465,
-  secure: true,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
@@ -224,7 +223,7 @@ const htmlTemplate = (code:number)=>{
 }
 async function sendEmails(code:number,email:string){
     await transporter.sendMail({
-        from:process.env.EMAIL_USER,
+        from:'info@bwisi.tech',
         to:email,
         subject:'Codigo de Verificacao da NJINGA',
         html:`${htmlTemplate(code)}`,
@@ -236,7 +235,6 @@ export async function POST(request:Request){
         const {email} = data;
         const generatecode = Math.floor(Math.random() * 999) + 1000;
         sendEmails(generatecode, email)
-        console.log(email)
         return NextResponse.json({res:generatecode, message:'success'}); 
     } catch (error) {
          return NextResponse.json({res:false, message:false}); 
