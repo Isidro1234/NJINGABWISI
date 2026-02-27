@@ -4,8 +4,9 @@ import NavBarLogged from '@/components/custom/NavBarLogged';
 import { auth } from '@/config/firebse';
 import { useAuthContext } from '@/context/authContext';
 import { VStack } from '@chakra-ui/react';
+import { onAuthStateChanged } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function PortalLayout({
   children,
@@ -13,20 +14,22 @@ export default function PortalLayout({
   children: React.ReactNode;
 }>) {
   const router = useRouter()
-  const {isUserLogged, isLoading,}:any = useAuthContext();
+  const [isLogged, setIsLogged] = useState(false);
   useEffect(()=>{
-    if( !isLoading && !isUserLogged && auth.currentUser?.displayName){
-        router.push('/auth/entrar')
-    }
-  }, [isUserLogged])
-  if(!isUserLogged){
+    onAuthStateChanged(auth, (user)=>{
+       if(user){
+          setIsLogged(true)
+       }else{
+          router.push('/auth/entrar')
+       }
+    })
+  }, [isLogged])
+  if(!isLogged){
     return(<LoadingAnim/>)
   }
-  if(!isUserLogged || !auth.currentUser?.displayName){
-    router.back()
-  }
+ 
   return (
-    <VStack width={'100%'} height={'100%'}>
+    <VStack className='portal' width={'100%'} height={'100%'}>
       <NavBarLogged/>
       {children}
     </VStack>

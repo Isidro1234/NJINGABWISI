@@ -17,14 +17,20 @@ export default function Criarconta() {
   const [Identificacao, setIdentificacao] = useState('')
   const [tipoIdentificacao, setTipoIdentificacao] = useState('')
   const [password, setPassword] = useState('');
+  const [profissao, setProfissao] = useState('')
+  const [profissaoOutro, setProfissaoOutro] = useState('')
+  const [moradia, setMoradia] = useState('')
   const [confirmPassword, setCorfimPassworf] = useState('');
   const enviardados = useStateAuth((state:any)=>state.createAccount)
   const {setUserLogged, setUserdata, setLoading,} :any  = useAuthContext()
   const router = useRouter()
   async function submeter(){
      setLoading(true)
+     if(profissao === 'outro' && profissaoOutro){
+        setProfissao(profissaoOutro)
+     }
      if(!nome || !email || !Phonenumber || !Identificacao || !tipoIdentificacao || !password ||
-       !confirmPassword){
+       !confirmPassword || !moradia || !profissao) {
         alert('fill all the blanks')
         return;
       }
@@ -32,7 +38,7 @@ export default function Criarconta() {
         alert('password does not mutch confirm password')
         return;
       }
-      const res = await enviardados(nome, Identificacao, tipoIdentificacao, Phonenumber, email, password);
+      const res = await enviardados(nome, Identificacao, tipoIdentificacao, Phonenumber, email, password, moradia, profissao);
       if(res){
         setLoading(false)
         setUserdata(auth.currentUser?.displayName)
@@ -41,7 +47,7 @@ export default function Criarconta() {
       }
   }
   return (
-    <VStack justifyContent={'center'} padding={10} h={'100%'} width={'100%'} bg={'#d33434'}>
+    <VStack justifyContent={'center'} padding={10}  width={'100%'} bg={'#d33434'}>
         <VStack flexWrap={'wrap'}  borderRadius={20} padding={10} gap={2} bg={'white'}>
           <VStack gap={0} marginTop={-10} marginLeft={-5}>
             <Logo/>
@@ -53,7 +59,9 @@ export default function Criarconta() {
           <InputLabel type='email' onchange={(e:any)=>setEmail(e)} label='Email' 
           placeholder='digite email'/>
           </HStack>
-          <HStack alignSelf={'flex-start'} justifyContent={'flex-start'} alignItems={'center'}>
+          <InputLabel type='location' onchange={(e:any)=>setMoradia(e)} label='Onde voce mora?' 
+          placeholder='digite sua moradia'/>
+          <HStack gap={1} width={'100%'} alignSelf={'flex-start'} justifyContent={'flex-start'} alignItems={'center'}>
             <InputLabel type='text' onchange={(e:any)=>setIdentificacao(e)} label='Identificacao' 
           placeholder='Id, numero do bilhete ou passaporte'/>
              <Box marginTop={5}>
@@ -63,6 +71,22 @@ export default function Criarconta() {
              </Box>
             
           </HStack>
+          <VStack width={'100%'} alignItems={'flex-start'}>
+            <Text fontSize={12} color={'gray'}>Profissao</Text>
+            <SelectCustomValue setChange={(e:any)=>{setProfissao(e[0])}} borderRadius={2} 
+            width='100%' items={[{label:'Agente Imobiliario', value:'agente'},
+                   {label:'Funcionario Publico', value:'funcionario publico'},
+                   {label:'Desempregado', value:'desempregado'},
+                   {label:'Comerciante', value:'comerciante'},
+                   {label:'Empreendedor', value:'empreendedor'},
+                   {label:'Ramo petrolifero', value:'ramo petrolifero'},
+                   {label:'Outro', value:'outro'}
+                ]}/>
+            <Box width={'100%'} display={profissao[0] === 'outro' ? 'block' : 'none'}>
+              <InputLabel placeholder='Descreva sua profissao' type='text' onchange={(e:any)=>setProfissaoOutro(e)} label='Profissao'/>
+            </Box>
+            
+          </VStack>
           <InputLabel type='password' onchange={(e:any)=>setPassword(e)} label='Senha' 
           placeholder='digite sua senha'/>
           <InputLabel type='password' onchange={(e:any)=>setCorfimPassworf(e)} label='Confirmar Senha' 

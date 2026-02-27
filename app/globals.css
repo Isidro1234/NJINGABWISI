@@ -160,6 +160,10 @@ path:hover{
   width: fit-content;
   height: auto;
 }
+ div .logos{
+    align-self: flex-start;
+    justify-self: flex-start;
+  }
 @media  (max-width:988px) {
   .navbar-logged-logo-conteiner{
     flex: 1;
@@ -167,9 +171,10 @@ path:hover{
   div .navbar-logged-menu-conteiner{
    display: none;
   }
-
-  .logo{
+ 
+  div .logos{
     align-self: flex-start;
+    justify-self: flex-start;
   }
   .Menu{
     display: none;
@@ -191,6 +196,9 @@ path:hover{
   border-radius: 30px;
   position: relative;
 }
+ .navbar-logged{
+  padding: 10px;
+ }
 }
 
 @media  (max-width:826px) { 
@@ -236,6 +244,22 @@ path:hover{
   border-radius: 30px;
   position: relative;
 }
+div .portal-conteiner{
+  padding: 10px;
+}
+div .navbar-logged-welcome-text{
+  font-size: 17px;
+  line-height: .5;
+}
+div .navbar-logged-welcome-subtext{
+  font-size: 10px;
+}
+div .navbar-logged-other
+ {   display: none;
+ }
+ .navbar-logged{
+  padding: 10px;
+ }
  }
   @media  (max-width:576px) { 
   .main-image-conteiner{
@@ -287,7 +311,6 @@ path:hover{
  ::-webkit-scrollbar-thumb{
   background: #de4848;
  }
-
  /*navbar logged*/
  /* nav bar logged styles  */
 .bwisi-layout-conteiner{
@@ -422,10 +445,16 @@ div .navbar-logged-user-conteiner{
 /*loading animation*/
 
 .animate{
-  animation: loading 2s ease-in-out infinite forwards;
+  animation: loading 2s ease-in-out infinite alternate;
 }
 
 @keyframes loading {
-  
-  
+  0%{
+    opacity: 0;
+    scale: .2;
+  }
+  100%{
+    opacity: 1;
+    scale: 1;
+  }
 }

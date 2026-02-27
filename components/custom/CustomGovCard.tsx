@@ -1,0 +1,26 @@
+import { Box, Button, Heading, HStack, Text, VStack } from '@chakra-ui/react'
+import React from 'react'
+import AvatarCustom from './AvatarCustom'
+import { auth } from '@/config/firebse'
+import Image from 'next/image'
+
+export default function CustomGovCard() {
+  return (
+    <HStack width={'100%'} alignItems={'center'}>
+        <AvatarCustom  name={auth.currentUser?.displayName || 'Usuário'} image={''}/>
+        <VStack flex={1} gap={0} alignItems={'flex-start'}>
+            <Heading fontWeight={400} lineHeight={1.2} fontSize={15}>Pessoa</Heading>
+            <HStack justifyContent={'flex-start'} alignItems={'center'}>
+               <Text lineHeight={1.2} color={'gray'} fontSize={10}>banco</Text> 
+            </HStack>
+        </VStack>
+        <VStack gap={0}>
+            <Heading marginTop={3} fontWeight={300} lineHeight={1.4} fontSize={10} color={'gray'}>Contactar</Heading>
+            <Box padding={1} display={'flex'} gap={2}>
+                <Image alt='uip' src={'/icons/message-icon.svg'} width={15} height={15}/>
+                <Text fontWeight={400} color={'#747474'} fontSize={10}>Menssagem</Text>
+            </Box>
+        </VStack>
+    </HStack>
+  )
+}

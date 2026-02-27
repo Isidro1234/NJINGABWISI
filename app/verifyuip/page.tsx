@@ -5,6 +5,7 @@ import UIP from '../../public/icons/uip.svg'
 import Image from 'next/image'
 import SelectCustom from '@/components/custom/SelectCustom'
 import SelectCustomValue from '@/components/custom/SelectCustomValue'
+import CustomUIPElement from '@/components/custom/CustomUIPElement'
 
 export default function VerifyUIP() {
   return (
@@ -25,20 +26,8 @@ export default function VerifyUIP() {
           </HStack>
           <VStack alignItems={'flex-start'} padding={2} paddingTop={4}>
             <Text fontSize={12} color={'gray'}>Verifique uip/piu</Text>
-            <HStack  flexWrap={'wrap'}>
-              <HStack gap={0} padding={2} paddingLeft={4} borderRadius={10} borderWidth={1}>
-                <Box minW={10} position={'relative'}><Image width={20} height={20} src={'/icons/uip.svg'} alt='qrcode'/></Box>
-                <Input marginLeft={-5} outline={'none'} border={'none'} placeholder='Digite o nome, id  do intermediario...'/>
-                <Box minW={10} position={'relative'} paddingLeft={2}><Image width={20} height={20} src={'/icons/qrcode.svg'} alt='qrcode'/></Box>
-                <SelectCustomValue setChange={(e:any)=>{console.log(e)}} borderRadius={50} width='150px' items={[{label:'Agente', value:'agente'}, {label:'Cidadao', value:'cidadao'}]}/>
-              </HStack>
-            <Box className='button-mb'>
-              <Box className='button-mb' minWidth={50} cursor={'pointer'} borderRadius={10} position={'relative'} padding={4} bg={'#41AA9B'}><Image width={20} height={20} src={'/icons/send.svg'} alt='qrcode'/></Box>
-            </Box>
-            </HStack>
-            
+            <CustomUIPElement showselect={true}/>
           </VStack>
-          
        </Box>
     </VStack>
   )

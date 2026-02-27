@@ -11,7 +11,7 @@ const SelectCustomValue = ({items , width , borderRadius , setChange}:{items:Arr
     borderRadius:number, setChange:Function
 }) => {
   return (
-    <Select.Root onValueChange={(e)=>setChange(e.value)} collection={createListCollection({items})} marginLeft={3} size="sm" width={width}>
+    <Select.Root  onValueChange={(e)=>setChange(e.value)} collection={createListCollection({items})} marginLeft={0} size="sm" width={width}>
       <Select.HiddenSelect />
       <Select.Control>
         <Select.Trigger borderRadius={borderRadius}>

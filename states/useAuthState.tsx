@@ -32,19 +32,45 @@ export const useStateAuth = create((set, get)=>({
         }
         
     },
-    createAccount:async(nome:string, Identificacao:string, tipoIdentificacao:string, Phonenumber:string, email:string, password:string)=>{
+    createAccount:async(nome:string, Identificacao:string, tipoIdentificacao:Array<string>, Phonenumber:string, email:string, 
+        password:string, moradia:string, profissao:string)=>{
         try {
             console.log(nome)
+            const check = await getDocs(query(collection(db, 'Perfil'), where('Identificacao', '==', Identificacao)))
+            if(!check.empty){
+                alert('Identificacao ja existe')
+                return;
+            }
            const credentials = await createUserWithEmailAndPassword(auth, email , password);
            if(!credentials.user.email) return;
            const userid = credentials.user.uid
            const docref : any = doc(db, 'Perfil', userid)
+           const docrefUip:any = doc(db, 'MeuUIP', Identificacao);
+           const shortuip_id = tipoIdentificacao[0][0].toUpperCase() + Identificacao.slice(Identificacao.length - 4, Identificacao.length - 1);
+           
            await setDoc(docref, {
+              id:userid,
               nome, 
               Identificacao, 
               tipoIdentificacao, 
               Phonenumber, 
               email,
+              createdAt:new Date(),
+              photo:null
+           })
+           await setDoc(docrefUip, {
+              id:Identificacao,
+              shortuip_id,
+              nome, 
+              Identificacao, 
+              tipoIdentificacao, 
+              Phonenumber, 
+              email,
+              moradia,
+              profissao,
+              createdAt:new Date(),
+              estado:'activo',
+              photo:null
            })
            await updateProfile(credentials.user,{
              displayName:nome,

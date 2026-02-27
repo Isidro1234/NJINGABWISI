@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import AvatarCustom from './AvatarCustom'
 import { auth } from '@/config/firebse'
+import CustomMenu from './CustomMenu'
 
 export default function NavBarLogged() {
     const pathname = usePathname();
@@ -29,18 +30,18 @@ export default function NavBarLogged() {
     <VStack className='navbar-logged'>
         <HStack className='navbar-logged-conteiner-top' >
             <VStack className='navbar-logged-logo-conteiner' >
-                <Image width={40} height={40} src={'/icons/angola-flag.svg'} alt='logo'/>
+                <Image className='logos' width={40} height={40} src={'/icons/angola-flag.svg'} alt='logo'/>
             </VStack>
             <HStack className='navbar-logged-menu-conteiner' >
                 <HStack className='navbar-logged-menu-items' >
-                    <Text className='navbar-logged-menu-item' onClick={()=>{router.push('/bwisi')}}>Dashboard</Text> 
-                    <Text className='navbar-logged-menu-item' onClick={()=>{router.push('/bwisi/propriedades')}}>propriedades</Text> 
-                    <Text className='navbar-logged-menu-item'  onClick={()=>{router.push('/bwisi/pagamentos')}}>Pagamentos</Text> 
-                    <Text className='navbar-logged-menu-item'  onClick={()=>{router.push('/bwisi/inquilinos')}}>Inquilinos</Text> 
-                    <Text className='navbar-logged-menu-item'  onClick={()=>{router.push('/bwisi/inquilinos')}}>Analise</Text>
-                    <Text className='navbar-logged-menu-item'  onClick={()=>{router.push('/bwisi/inquilinos')}}>BwisiCorp</Text>
-                    <Text className='navbar-logged-menu-item'  onClick={()=>{router.push('/bwisi/inquilinos')}}>Videos</Text>
-                    <Text className='navbar-logged-menu-item'  onClick={()=>{router.push('/bwisi/inquilinos')}}>Agentes</Text> 
+                    <Text className='navbar-logged-menu-item' onClick={()=>{router.push('/portal')}}>Dashboard</Text> 
+                    <Text className='navbar-logged-menu-item' onClick={()=>{router.push('/portal/propriedades')}}>propriedades</Text> 
+                    <Text className='navbar-logged-menu-item'  onClick={()=>{router.push('/portal/pagamentos')}}>pagamentos</Text> 
+                    <Text className='navbar-logged-menu-item'  onClick={()=>{router.push('/portal/Impostos')}}>Impostos</Text> 
+                    <Text className='navbar-logged-menu-item'  onClick={()=>{router.push('/portal/Registrar')}}>Registrar</Text>
+                    <Text className='navbar-logged-menu-item'  onClick={()=>{router.push('/portal/ValidaUIP')}}>Validar UIP</Text>
+                    <Text className='navbar-logged-menu-item'  onClick={()=>{router.push('/portal/VenderPropriedade')}}>Vender Propriedade</Text>
+                    <Text className='navbar-logged-menu-item'  onClick={()=>{router.push('/portal/FuncionariosGov')}}>Funcionarios Gov</Text> 
                 </HStack>
                 <Button className='navbar-logged-button' ><Image  width={20} height={20} src={'/icons/search.svg'} alt='icon-search'/></Button>
             </HStack>
@@ -52,12 +53,16 @@ export default function NavBarLogged() {
                  <Button className='navbar-logged-button' ><Image  width={20} height={20} src={'/icons/message-icon.svg'} alt='icon-search'/></Button>
                 <Button className='navbar-logged-button' ><Image  width={20} height={20} src={'/icons/bell-icon.svg'} alt='icon-search'/></Button>
                 <span className='space'></span>
-                <AvatarCustom name={auth.currentUser?.displayName || ''} image={''}/>
+                <CustomMenu menuitems={[{label:'Perfil', value:'/portal/perfil'}, 
+                {label:'Sair', value:'/portal/sair'}]} icon={
+                   <AvatarCustom name={auth.currentUser?.displayName || ''} image={''}/> 
+                }  />
+                
             </HStack>
         </HStack>
         <HStack className='navbar-logged-conteiner-bottom' >
             <VStack className='navbar-logged-welcome' >
-                <Heading className='navbar-logged-welcome-text' >Ola, {auth.currentUser?.displayName || ''}!</Heading>
+                <Heading className='navbar-logged-welcome-text' >Ola, {auth.currentUser?.displayName?.split(' ')[0] || ''}!</Heading>
                 <Text className='navbar-logged-welcome-subtext' >Bem-vindo de volta ao portal Njinga</Text>
             </VStack>
             <HStack className='navbar-logged-other' >
