@@ -1,5 +1,6 @@
 "use client"
 import { useLogicState } from '@/states/useLogicState';
+import { Box, Text, VStack } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react'
 
 export default  function Qrcode({params}:{params:Promise<{qrcode:string}>}) {
@@ -9,13 +10,17 @@ export default  function Qrcode({params}:{params:Promise<{qrcode:string}>}) {
         async function fetchData(){
             const {qrcode} = await params;
             const data = await getqrcodedata(qrcode)   
-            setQrcodedata(data)
+            setQrcodedata([data])
         }
         fetchData()
     }, [qrcodedata])
   return (
-    <div>
-      <h1>Verifying UIP: {qrcodedata?.[0]?.id || "Not Found"}</h1>
-    </div>
+    <VStack width={'100%'} height={'100%'} bg={'#f6f6f6'} padding={10}>
+        <Box bg={'white'} borderRadius={20}>
+            <Text fontSize={12} color={'gray'}>{qrcodedata?.[0]?.nome || "Not Found"}</Text>
+            <Text fontSize={12} color={'gray'}>{qrcodedata?.[0]?.estado || "Not Found"}</Text>
+            <Text fontSize={12} color={'gray'}>{qrcodedata?.[0]?.shortuip_id || "Not Found"}</Text>
+        </Box>
+    </VStack>
   )
 }
