@@ -1,13 +1,25 @@
 "use client"
 import { Box, Button, Heading, HStack, Input, Text, VStack } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import UIP from '../../public/icons/uip.svg'
 import Image from 'next/image'
 import SelectCustom from '@/components/custom/SelectCustom'
 import SelectCustomValue from '@/components/custom/SelectCustomValue'
 import CustomUIPElement from '@/components/custom/CustomUIPElement'
+import { useLogicState } from '@/states/useLogicState'
 
 export default function VerifyUIP() {
+  const [selectedOption, setSelectedOption] = useState('uip');
+  const [inputValue, setInputValue] = useState('');
+  const getqrcodedata = useLogicState((state:any)=>state.getUIPprofile)
+  const [qrcodedata, setQrcodedata] = useState<Array<any>| null>(null);
+      useEffect(()=>{
+          async function fetchData(){
+              const data = await getqrcodedata(inputValue)   
+              setQrcodedata([data])
+          }
+          fetchData()
+      }, [inputValue])
   return (
     <VStack alignItems={'center'} justifyContent={'center'} padding={10} height={'100%'} width={'100%'} bg={'#d33434'}>
        <Box bg={'white'} padding={5} borderRadius={20}>
@@ -26,7 +38,8 @@ export default function VerifyUIP() {
           </HStack>
           <VStack alignItems={'flex-start'} padding={2} paddingTop={4}>
             <Text fontSize={12} color={'gray'}>Verifique uip/piu</Text>
-            <CustomUIPElement showselect={true}/>
+            <CustomUIPElement value={selectedOption} onchange={(e:any)=>{setInputValue(e)}} onchangeselect={(value) => setSelectedOption(value)} showselect={true}/>
+
           </VStack>
        </Box>
     </VStack>

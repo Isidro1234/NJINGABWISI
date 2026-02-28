@@ -4,7 +4,7 @@ import { Button, CloseButton, Dialog, Portal } from "@chakra-ui/react"
 import { useEffect, useRef, useState } from "react"
 import { Html5QrcodeScanner } from "html5-qrcode"
 
-const CustomQrCodeScanner = ({ icon , onresult}: { icon: any, onresult: (result: string) => void }) => {
+const CustomQrCodeScanner = ({ icon , onresult}: { icon: any, onresult: Function }) => {
   const [open, setOpen] = useState(false)
   const readerRef = useRef<HTMLDivElement>(null)
   const scannerRef = useRef<Html5QrcodeScanner | null>(null)
@@ -31,9 +31,8 @@ const CustomQrCodeScanner = ({ icon , onresult}: { icon: any, onresult: (result:
 
       scanner.render(success, error)
       function success(result: any) {
-        console.log("QR Result:", result)
         onresult(result)
-        scanner.clear().catch((er) => { console.warn("Failed to clear scanner:", er) })
+        scanner.clear()
         scannerRef.current = null
         setOpen(false)
       }
