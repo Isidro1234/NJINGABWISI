@@ -39,9 +39,9 @@ export default function Criarconta() {
         return;
       }
       const res = await enviardados(nome, Identificacao, tipoIdentificacao, Phonenumber, email, password, moradia, profissao);
-      if(res){
+      if(res?.nome){
         setLoading(false)
-        setUserdata(auth.currentUser?.displayName)
+        setUserdata(res)
         setUserLogged(true)
         router.push('/portal')
       }

@@ -55,7 +55,8 @@ export default function NavBarLogged() {
                 <span className='space'></span>
                 <CustomMenu menuitems={[{label:'Perfil', value:'/portal/perfil'}, 
                 {label:'Sair', value:'/portal/sair'}]} icon={
-                   <AvatarCustom name={auth.currentUser?.displayName || ''} image={''}/> 
+                   <AvatarCustom name={auth.currentUser?.displayName || ''} 
+                   image={auth.currentUser?.photoURL || '/icons/avatar.svg'}/> 
                 }  />
                 
             </HStack>

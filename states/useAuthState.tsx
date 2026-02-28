@@ -82,7 +82,24 @@ export const useStateAuth = create((set, get)=>({
            await updateProfile(credentials.user,{
              displayName:nome,
            })
-           return true
+            const getuip = await getDoc(docrefUip);
+            if(!getuip.exists()) return;
+            const uipdata = getuip.data()
+            localStorage.setItem('uip', JSON.stringify(uipdata))
+           return  {
+              id:Identificacao,
+              shortuip_id,
+              nome, 
+              Identificacao, 
+              tipoIdentificacao, 
+              Phonenumber, 
+              email,
+              moradia,
+              profissao,
+              createdAt:new Date(),
+              estado:'activo',
+              photo:null
+           }
         } catch (error:any) {
             console.log(error.message)
             return false

@@ -7,6 +7,8 @@ export async function codeemail(email:string){
         body:JSON.stringify({email})
      })
      const res = await getCode.json();
-     if(!res.message) return false
-     return res?.res
+     if(res.message) {
+        return res.res
+    }
+     return false
 }

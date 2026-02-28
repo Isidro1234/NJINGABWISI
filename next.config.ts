@@ -25,6 +25,11 @@ const nextConfig: NextConfig = {
 
     return config;
   },
+  images:{
+    remotePatterns:[{
+      protocol:"https", hostname:"njinga-worker.njinga.workers.dev/**" , 
+      pathname:"/**"}]
+  },
 };
 
 export default nextConfig;
