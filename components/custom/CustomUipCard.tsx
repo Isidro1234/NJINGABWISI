@@ -21,7 +21,7 @@ export default function CustomUipCard() {
          <VStack alignItems={'flex-start'} width={'100%'} display={!userdata ? "none" : 'flex'}>
           <Text fontSize={14} fontWeight={300} color={'gray'}>Encontrado "{userdata?.nome || "Não encontrado"}"</Text>
          <HStack width={'100%'} alignItems={'center'}>
-        <AvatarCustom  name={auth.currentUser?.displayName || 'Usuário'} image={''}/>
+        <AvatarCustom  name={auth.currentUser?.displayName || 'Usuário'} image={userdata?.photo || ''}/>
         <VStack flex={1} gap={0} alignItems={'flex-start'}>
             <Heading color={'gray'} fontWeight={400} lineHeight={1.2} fontSize={14}>{userdata?.nome.slice(0,10) + "..." || "Não encontrado"}</Heading>
             <HStack justifyContent={'flex-start'} alignItems={'center'}>

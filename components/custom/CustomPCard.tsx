@@ -8,7 +8,7 @@ export default function CustomPCard() {
     <HStack width={'100%'} alignItems={'center'}>
         <AvatarCustom  name={auth.currentUser?.displayName || 'Usuário'} image={''}/>
         <VStack flex={1} gap={0} alignItems={'flex-start'}>
-            <Heading fontWeight={400} lineHeight={1.2} fontSize={15}>Condominio</Heading>
+            <Heading fontWeight={400} lineHeight={1.2} fontSize={12}>Condominio</Heading>
             <HStack justifyContent={'flex-start'} alignItems={'center'}>
                <Text lineHeight={1.2} color={'gray'} fontSize={10}>localizacao</Text> 
             </HStack>

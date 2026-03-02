@@ -18,7 +18,7 @@ export default function NavBarLogged() {
             console.log('pathname:' , pathname,  "este e: " , item.textContent)
             if(pathname.includes(item.textContent)){
                 item.classList.add('navbar-logged-menu-item-active');
-            }else if(item.textContent.includes('Dashboard') && pathname === '/portal'){
+            }else if(item.textContent.includes('Dashboard') && pathname === '/portal' || pathname =='/portaladministrador' || pathname =='/portalcolaborador'){
                 item.classList.add('navbar-logged-menu-item-active');
             }else{
                 item.classList.remove('navbar-logged-menu-item-active');
@@ -33,7 +33,7 @@ export default function NavBarLogged() {
                 <Image className='logos' width={40} height={40} src={'/icons/angola-flag.svg'} alt='logo'/>
             </VStack>
             <HStack className='navbar-logged-menu-conteiner' >
-                <HStack className='navbar-logged-menu-items' >
+                <HStack className='navbar-logged-menu-items'  gap={0}>
                     <Text className='navbar-logged-menu-item' onClick={()=>{router.push('/portal')}}>Dashboard</Text> 
                     <Text className='navbar-logged-menu-item' onClick={()=>{router.push('/portal/propriedades')}}>propriedades</Text> 
                     <Text className='navbar-logged-menu-item'  onClick={()=>{router.push('/portal/pagamentos')}}>pagamentos</Text> 

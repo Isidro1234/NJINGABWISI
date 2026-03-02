@@ -13,6 +13,8 @@ import CustomGovCard from '@/components/custom/CustomGovCard'
 import CustomReCard from '@/components/custom/CustomReCard'
 import CustomMeuUIP from '@/components/custom/CustomMeuUIP'
 import { useAuthContext } from '@/context/authContext'
+import CheckoutForm from '@/components/custom/CheckoutForm'
+import { EmbeddedCheckout } from '@stripe/react-stripe-js'
 
 export default function Portal() {
   
@@ -27,24 +29,24 @@ export default function Portal() {
       <CustomCard link='portal/propriedades' description='bwisi proprieties' title='Meus Imóveis' 
       icon={<Image src={'/icons/imovel.svg'} alt='imovel' width={30} height={30}/>}
        bg={'#E3EAFA'}>
-        <VStack   alignItems={'flex-start'} width={'100%'} height={'100%'} paddingTop={5} gap={4}>
-            <Text fontSize={14} color={'gray'}>Lista de propriedades</Text>
+        <VStack   alignItems={'flex-start'} width={'100%'} height={'100%'} paddingTop={2} gap={4}>
+            <Text fontSize={12} color={'gray'}>Lista de propriedades</Text>
             <CustomPCard/>
         </VStack>
       </CustomCard>
       <CustomCard link='portal/pagamentos' description='bwisi proprieties' title='Emolumentos' 
       icon={<Image src={'/icons/coin.svg'} alt='coin' width={50} height={50}/>}
        bg={'#f6f6f6'}>
-        <VStack   alignItems={'flex-start'} width={'100%'} height={'100%'} paddingTop={5} gap={4}>
-            <Text fontSize={14} color={'gray'}>Pagamentos Recentes</Text>
+        <VStack   alignItems={'flex-start'} width={'100%'} height={'100%'} paddingTop={2} gap={4}>
+            <Text fontSize={12} color={'gray'}>Pagamentos Recentes</Text>
             <CustomECard/>
         </VStack>
       </CustomCard>
       <CustomCard link='portal/ValidaUIP' description='bwisi proprieties' title='Validar PIU' 
       icon={<Image src={'/icons/uip.svg'} alt='uip' width={25} height={25}/>}
        bg={'#E3FAF5'}>
-        <VStack   alignItems={'flex-start'} width={'100%'} height={'100%'} paddingTop={5} gap={4}>
-            <Text fontSize={14} color={'gray'}>Validar PIU</Text>
+        <VStack   alignItems={'flex-start'} width={'100%'} height={'100%'} paddingTop={2} gap={4}>
+            <Text fontSize={12} color={'gray'}>Validar PIU</Text>
             <CustomUipCard/>
         </VStack>
       </CustomCard>
@@ -55,11 +57,13 @@ export default function Portal() {
             <CustomReCard/>
         </VStack>
       </CustomCard>
+      <CheckoutForm/>
+      
       <CustomCard link='portal/FuncionariosGov' description='bwisi proprieties' title='Funcionarios Gov' 
       icon={<Image src={'/icons/gov.svg'} alt='uip' width={25} height={25}/>}
        bg={'#DFFCE7'}>
-        <VStack   alignItems={'flex-start'} width={'100%'} height={'100%'} paddingTop={5} gap={4}>
-            <Text fontSize={14} color={'gray'}>Actuais Funcioarios Gov</Text>
+        <VStack   alignItems={'flex-start'} width={'100%'} height={'100%'} paddingTop={2} gap={4}>
+            <Text fontSize={12} color={'gray'}>Actuais Funcioarios Gov</Text>
             <CustomGovCard/>
         </VStack>
       </CustomCard>

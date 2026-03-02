@@ -12,10 +12,10 @@ export default function CustomUIPElement({ showselect , onchange, onclick, value
         onchange?.(e)
     }
     return (
-    <HStack  flexWrap={'wrap'}>
+    <HStack  width={'100%'} display={'grid'} gridTemplateColumns={'repeat(auto-fit,  minmax(200px, 1fr))'}>
               <HStack gap={0} padding={2} paddingLeft={4} borderRadius={10} borderWidth={1}>
                 <Box minW={10} position={'relative'}><Image width={20} height={20} src={'/icons/uip.svg'} alt='qrcode'/></Box>
-                <Input value={inputValue} marginLeft={-5} outline={'none'} border={'none'} 
+                <Input fontSize={12} value={inputValue} marginLeft={-5} outline={'none'} border={'none'} 
                 placeholder='Digite o nome, id  do intermediario...' 
                 onChange={(e)=>{handleInputChange(e.target.value)}}/>
                 <CustomQrCodeScanner onresult={(e:any)=>{handleInputChange(e)}}
@@ -28,7 +28,7 @@ export default function CustomUIPElement({ showselect , onchange, onclick, value
                 
               </HStack>
             <Box className='button-mb'>
-              <Box className='button-mb'  onClick={onclick} minWidth={50} cursor={'pointer'} borderRadius={10} position={'relative'} padding={4} bg={'#41AA9B'}><Image width={20} height={20} src={'/icons/send.svg'} alt='qrcode'/></Box>
+              <Box className='button-mb' display={'flex'} alignItems={'center'} justifyContent={'center'} onClick={onclick} minWidth={50} cursor={'pointer'} borderRadius={10} position={'relative'} padding={4} bg={'#41AA9B'}><Image width={20} height={20} src={'/icons/send.svg'} alt='qrcode'/></Box>
             </Box>
             </HStack>
   )

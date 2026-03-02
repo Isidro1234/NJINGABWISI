@@ -167,6 +167,7 @@ div .mobile-menu{
     align-self: flex-start;
     justify-self: flex-start;
   }
+
 @media  (max-width:988px) {
   .navbar-logged-logo-conteiner{
     flex: 1;
@@ -220,6 +221,7 @@ div .mobile-menu{
   border-radius: 30px;
   position: relative;
 }
+ 
  }
 @media  (max-width:776px) { 
   .main-image-conteiner{
@@ -238,7 +240,7 @@ div .mobile-menu{
     div .button-mb{
       display: flex;
       justify-content: center;
-  width: 100%;
+      width: 100%;
 }
   }
  @media  (max-width:676px) { 
@@ -327,6 +329,7 @@ div .navbar-logged-other
 }
 .navbar-logged{
   width:100%;
+  padding: 4px 30px;
 }
 .navbar-logged-conteiner-top{
   width: 100%;
@@ -356,10 +359,10 @@ div .navbar-logged-other
 }
 .navbar-logged-menu-items{
   display: flex;
-  padding: 12px 25px;
+  padding: 4px 20px;
   background-color: #FAFAFA;
   border-radius: 50px;  
-  gap: 5px;
+  gap: 2px;
   max-width: 551.94px;
   overflow-x: auto;
 }
@@ -368,12 +371,12 @@ div .navbar-logged-other
 }
 
 .navbar-logged-menu-items p{
-  font-size: 12px;
+  font-size: 10px;
   margin: 0px 10px;
 }
 .navbar-logged-menu-item{
   cursor: pointer;
-  padding: 10px 17px;
+  padding: 10px 15px;
   transition: all ease-in-out 200ms;
   color: #4a4a4a;
 }
@@ -446,7 +449,7 @@ div .navbar-logged-user-conteiner{
 .navbar-logged-data-input{
   background-color: #F9F9F9;
   border-radius: 50px;
-  padding: 30px 15px;
+  padding: 20px 10px;
   width: fit-content;
   color: #424242;
 }

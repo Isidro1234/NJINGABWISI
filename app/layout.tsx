@@ -2,10 +2,20 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import {Provider} from '../components/ui/provider'
-import Navbar from "@/components/custom/Navbar";
-import TopNavbar from "@/components/custom/TopNavbar";
-import AuthContextProvider from "@/context/authContext";
+import dynamic from "next/dynamic";
 
+
+const  AuthContextProvider= dynamic(
+  () => import("../context/authContext"),
+);
+const  Navbar = dynamic(
+  () => import("../components/custom/Navbar"),
+ 
+);
+const   TopNavbar = dynamic(
+  () => import("../components/custom/TopNavbar"),
+
+);
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -32,14 +42,12 @@ export default function RootLayout({
       <body
         className={inter.className}
       ><AuthContextProvider>
-        <Provider>
-          
-            <TopNavbar/>
-          <Navbar name={null} image={null} islogged={false}/>
-          {children}
-        
-        </Provider> 
-      </AuthContextProvider>
+            <Provider>
+                <TopNavbar/>
+                <Navbar name={null} image={null} islogged={false}/>
+                {children}
+              </Provider>
+        </AuthContextProvider>
       </body>
     </html>
   );

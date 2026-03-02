@@ -7,6 +7,7 @@ import Facebook from '../public/icons/facebook.svg'
 import Gmail from '../public/icons/gmail.svg'
 import Instagram from '../public/icons/instagram.svg'
 import Whatsapp from '../public/icons/whatsapp.svg'
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -17,7 +18,7 @@ export default function Home() {
           <Box padding={4} alignItems={'center'} gap={0} display={'flex'} flexDirection={'column'}>
             <Heading lineHeight={1.2} minWidth={100} fontSize={28} color={'white'}>Bem-vindo a NJINGA</Heading>
           <Text  marginBottom={4} marginTop={1} width={300} textAlign={'center'} fontSize={15} fontWeight={200} color={'#f6f6f6'}>Plataform Angolana State of the Art, Para registo digital de Propriedades</Text>
-          <Button bg={'red'} borderRadius={20}>crie sua conta</Button>
+          <Link href="/auth/criarconta"><Button bg={'red'} borderRadius={20}>crie sua conta</Button></Link>
           </Box>
           
         </VStack>

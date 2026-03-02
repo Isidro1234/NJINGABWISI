@@ -8,7 +8,7 @@ export default function CustomECard() {
     <HStack width={'100%'} alignItems={'center'}>
         <AvatarCustom  name={auth.currentUser?.displayName || 'Usuário'} image={''}/>
         <VStack flex={1} gap={0} alignItems={'flex-start'}>
-            <Heading fontWeight={400} lineHeight={1.2} fontSize={15}>Pessoa</Heading>
+            <Heading fontWeight={400} lineHeight={1.2} fontSize={12}>Pessoa</Heading>
             <HStack justifyContent={'flex-start'} alignItems={'center'}>
                <Text lineHeight={1.2} color={'gray'} fontSize={10}>banco</Text> 
             </HStack>
