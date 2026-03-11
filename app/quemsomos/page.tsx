@@ -2,11 +2,6 @@ import Footer from '@/components/structures/Footer'
 import { Box, Button, Heading, HStack, Text, VStack } from '@chakra-ui/react'
 import Image from 'next/image'
 import React from 'react'
-
-import Facebook from '../../public/icons/facebook.svg'
-import Gmail from '../../public/icons/gmail.svg'
-import Instagram from '../../public/icons/instagram.svg'
-import Whatsapp from '../../public/icons/whatsapp.svg'
 export default function Quemsomos() {
   return (
     <HStack position={'relative'} gap={0} height={'100%'} flexWrap={'wrap'}>

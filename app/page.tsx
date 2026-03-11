@@ -1,5 +1,4 @@
 import { CustomCaroussel } from "@/components/custom/CustomCaroussel";
-import { MapaAngola_SVG } from "@/components/custom/MapaAngola";
 import Footer from "@/components/structures/Footer";
 import { Box, Button, Heading, HStack, Input, Text, VStack } from "@chakra-ui/react";
 import Image from "next/image";

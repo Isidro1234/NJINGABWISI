@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Agentes() {
+export default function Agentescollaborators() {
   return (
     <div>
       

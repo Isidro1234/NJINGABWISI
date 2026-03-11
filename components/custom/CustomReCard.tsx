@@ -1,10 +1,6 @@
 "use client"
-import { Box, Button, Heading, HStack, Input, Text, VStack } from '@chakra-ui/react'
+import {  Button,  Text, VStack } from '@chakra-ui/react'
 import React from 'react'
-import AvatarCustom from './AvatarCustom'
-import { auth } from '@/config/firebse'
-import SelectCustom from './SelectCustom'
-import SelectCustomValue from './SelectCustomValue'
 import { useRouter } from 'next/navigation'
 
 export default function CustomReCard() {

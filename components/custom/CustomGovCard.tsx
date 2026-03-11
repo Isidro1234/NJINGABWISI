@@ -2,7 +2,6 @@
 import { Box, Button, Heading, HStack, Text, VStack } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import AvatarCustom from './AvatarCustom'
-import { auth } from '@/config/firebse'
 import Image from 'next/image'
 import { useLogicState } from '@/states/useLogicState'
 

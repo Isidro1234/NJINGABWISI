@@ -2,7 +2,6 @@
 import { Box, Heading, HStack, Text, VStack } from '@chakra-ui/react'
 import React from 'react'
 import Arrow from '../../public/icons/arrow-right-icon.svg'
-import { Router } from 'next/router'
 import { useRouter } from 'next/navigation'
 
 export default function CustomCard({children , icon , bg , title, description, link}:{children:React.ReactNode, 

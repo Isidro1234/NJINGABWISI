@@ -1,5 +1,4 @@
 import { Tabs } from "@chakra-ui/react"
-import { useRef } from "react"
 
 
 const TabsCustom = ({form1, form2, preview , buttonref, change}:{form1:React.ReactElement,

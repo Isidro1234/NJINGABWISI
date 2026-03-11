@@ -6,7 +6,8 @@ import { useAuthContext } from '@/context/authContext';
 import { decryptdata } from '@/logic/encryptdata';
 import { VStack } from '@chakra-ui/react';
 import { onAuthStateChanged } from 'firebase/auth';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
+
 import React, { useEffect, useState } from 'react'
 
 export default function LayoutAdminColaborador({
