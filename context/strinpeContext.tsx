@@ -18,7 +18,7 @@ export default function StripeContextProvider({ children }: { children: React.Re
     getToken()
   }, [])
 
-  // Don't render Elements until client secret is ready
+  
   if (!client) return <>{children}</>
 
   return (
