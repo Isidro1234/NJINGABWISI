@@ -1,67 +1,80 @@
 'use client'
-import { auth } from '@/config/firebse';
-import { useAuthContext } from '@/context/authContext';
-import { decryptdata } from '@/logic/encryptdata';
-import { VStack } from '@chakra-ui/react';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
-import dynamic from 'next/dynamic';
-import { useRouter } from 'next/navigation';
+import { auth } from '@/config/firebse'
+import { useAuthContext } from '@/context/authContext'
+import { decryptdata } from '@/logic/encryptdata'
+import { VStack } from '@chakra-ui/react'
+import { onAuthStateChanged } from 'firebase/auth'
+import dynamic from 'next/dynamic'
+import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
+const StripeContextProvider = dynamic(() => import("../../context/strinpeContext"))
+const LoadingAnim = dynamic(() => import("../../components/custom/LoadingAnim"))
+const NavBarLogged = dynamic(() => import("../../components/custom/NavBarLogged"))
 
-const StripeContextProvider = dynamic(
-  () => import("../../context/strinpeContext"),
-);
-const LoadingAnim = dynamic(
-  () => import("../../components/custom/LoadingAnim"),
-);
-const NavBarLogged = dynamic(
-  () => import("../../components/custom/NavBarLogged"),
-);
 export default function PortalLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode
 }>) {
-  const router = useRouter()
-  const [isLogged, setIsLogged] = useState(false);
-  const {setUserdata}:any = useAuthContext();
-  useEffect(()=>{
-    onAuthStateChanged(auth, (user)=>{
-       if(user){
-          const userdata:string = localStorage.getItem('uip') || '';
-          const userdataadmin:string = localStorage.getItem('uipadmin') || '';
-          if(!userdata){
-             auth.signOut()
-             router.push('/auth/entrar')
-             return;
-          }
-          if(userdataadmin){
-             const decrypt = decryptdata(userdata)
-              if(decrypt?.role === "admin"){
-                    return  router.push('/admin/portaladministrador');
-                }else if (decrypt?.role === "collaborator"){
-                   return router.push('/admin/portalcolaborador')
-                  }
-          }
-          const decrypt = decryptdata(userdata)
-          setUserdata(decrypt || {})
-          setIsLogged(true)
-       }else{
-          router.push('/auth/entrar')
-       }
-    })
-  }, [])
-  if(!isLogged){
-    return(<LoadingAnim/>)
-  }
- 
-  return (
-    <StripeContextProvider> 
-      <VStack className='portal' width={'100%'} height={'100%'} >
-        <NavBarLogged/>
-        {children}
-      </VStack>
-    </StripeContextProvider>
-  )
+    const router = useRouter()
+    const [isLogged, setIsLogged] = useState(false)
+    const { setUserdata }: any = useAuthContext()
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                router.push('/auth/entrar')
+                return
+            }
+
+            const userdata: string = localStorage.getItem('uip') || ''
+            const userdataadmin: string = localStorage.getItem('uipadmin') || ''
+
+            // No user data — sign out
+            if (!userdata) {
+                auth.signOut()
+                router.push('/auth/entrar')
+                return
+            }
+
+            // Admin/collaborator logged in — redirect away from user portal
+            if (userdataadmin) {
+                const decryptAdmin = decryptdata(userdataadmin)
+                if (decryptAdmin?.role === 'admin') {
+                    router.push('/admin/portaladministrador')
+                    return
+                } else if (decryptAdmin?.role === 'collaborator') {
+                    router.push('/admin/portalcolaborador')
+                    return
+                }
+            }
+
+            // Normal user — allow access
+            const decrypt = decryptdata(userdata)
+            if (!decrypt) {
+                auth.signOut()
+                router.push('/auth/entrar')
+                return
+            }
+
+            setUserdata(decrypt)
+            setIsLogged(true)
+        })
+
+        return () => unsubscribe()  // ✅ cleanup
+    }, [])
+
+    if (!isLogged) {
+        return <LoadingAnim />
+    }
+
+    return (
+        <StripeContextProvider>
+            <VStack className='portal' width={'100%'} height={'100%'}>
+                <NavBarLogged />
+                {children}
+            </VStack>
+        </StripeContextProvider>
+    )
 }

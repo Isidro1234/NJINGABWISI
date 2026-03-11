@@ -1,45 +1,53 @@
 "use client"
-import { auth } from '@/config/firebse';
-import { useAuthContext } from '@/context/authContext';
-import { decryptdata } from '@/logic/encryptdata';
-import { VStack } from '@chakra-ui/react';
-import { onAuthStateChanged } from 'firebase/auth';
-import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react'
+import { auth } from '@/config/firebse'
+import { useAuthContext } from '@/context/authContext'
+import { decryptdata } from '@/logic/encryptdata'
+import { VStack } from '@chakra-ui/react'
+import { onAuthStateChanged } from 'firebase/auth'
+import { useRouter } from 'next/navigation'
+import React, { useEffect } from 'react'
 
 export default function LayoutAdmins({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
-}>){
-  const router = useRouter()
-  const {setUserdata}:any = useAuthContext();
-  useEffect(()=>{
-     onAuthStateChanged(auth, (user)=>{
-          if(user){
-             const userdata:string = localStorage.getItem('uipadmin') || '';
-             const uip:string = localStorage.getItem('uip') || ''
-             if(!userdata && !uip){
+    children: React.ReactNode
+}>) {
+    const router = useRouter()
+    const { setUserdata }: any = useAuthContext()
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (!user) return  // not logged in — stay on login page
+
+            const userdata: string = localStorage.getItem('uipadmin') || ''
+            const uip: string = localStorage.getItem('uip') || ''
+
+            if (uip && !userdata) {
                 auth.signOut()
-                return;
-             }
-             if(uip){
                 router.push('/portal')
                 return
-             }
-             const decrypt = decryptdata(userdata)
-             setUserdata(decrypt || {})
-             if(decrypt?.role === "admin"){
-              router.push('/admin/portaladministrador')
-             }else if (decrypt?.role === "collaborator"){
-              router.push('/admin/portalcolaborador')
-             }
-          }
-       })
-  }, [])
-   
+            }
 
-    
+            if (!userdata) {
+                auth.signOut()
+                return
+            }
+
+            const decrypt = decryptdata(userdata)
+            if (!decrypt) return
+
+            setUserdata(decrypt)
+
+            if (decrypt?.role === 'admin') {
+                router.push('/admin/portaladministrador')
+            } else if (decrypt?.role === 'collaborator') {
+                router.push('/admin/portalcolaborador')
+            }
+        })
+
+        return () => unsubscribe()  // ✅ cleanup
+    }, [])
+
     return (
         <VStack width={'100%'} height={'100%'} bg={'#d33434'}>
             {children}
