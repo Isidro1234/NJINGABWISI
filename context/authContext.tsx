@@ -1,6 +1,7 @@
 'use client'
-import { createContext, useContext, useState } from "react";
-
+import { useStateAuth } from "@/states/useAuthState";
+import { createContext, useContext, useEffect, useState } from "react";
+import {Chat} from 'stream-chat-react'
 
 
 interface AuthContextType {
@@ -20,7 +21,7 @@ export default function AuthContextProvider({children}:{children:React.ReactNode
     return(
         <AuthContext.Provider value={{userdata, isLoading, setLoading, setUserdata, isUserLogged, 
         setUserLogged}}>
-            {children}
+               {children} 
         </AuthContext.Provider>
     )
 }  

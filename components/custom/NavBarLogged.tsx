@@ -20,7 +20,7 @@ export default function NavBarLogged() {
             console.log('pathname:' , pathname,  "este e: " , item.textContent)
             if(pathname.includes(item.textContent)){
                 item.classList.add('navbar-logged-menu-item-active');
-            }else if(item.textContent.includes('Dashboard') && pathname === '/portal' || pathname =='/portaladministrador' || pathname =='/portalcolaborador'){
+            }else if(item.textContent.includes('Dashboard') && pathname === '/portal' || pathname === "/messages" || pathname =='/portaladministrador' || pathname =='/portalcolaborador'){
                 item.classList.add('navbar-logged-menu-item-active');
             }else{
                 item.classList.remove('navbar-logged-menu-item-active');

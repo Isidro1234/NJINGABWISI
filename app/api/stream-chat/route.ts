@@ -15,13 +15,15 @@ function createToken(id:any){
 
 export async function POST(request:Request){
     const data = await  request.json();
-    const {name, id , image} = await data;
+    const {name, id , image , isregistration} = await data;
     const token = createToken(id);
-    const res = await serverClient.upsertUser({
+    if(isregistration){
+        const res = await serverClient.upsertUser({
         id,
         name,
         role:"user",
         image
     })
+    }
     return NextResponse.json({token})
 }

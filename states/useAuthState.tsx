@@ -7,10 +7,13 @@ import {auth , db} from '../config/firebse'
 import { codeemail } from '@/logic/codeemail';
 import { registeruserstripe } from '@/logic/registeruserStripe';
 import { decryptdata, encryptdata } from '@/logic/encryptdata';
+import { StreamChat } from 'stream-chat';
+import { streamchat_client_frontend } from '@/logic/streamchatregistering';
 
-
+const client = StreamChat.getInstance(`${process.env.NEXT_PUBLIC_STREAM_KEY}`)
 export const useStateAuth = create((set, get)=>({
     code:null,
+    client:null,
     uip:[],
     login:async(Identificacao:string, password:string)=>{
         try {
@@ -31,8 +34,20 @@ export const useStateAuth = create((set, get)=>({
             const encrypt = encryptdata(uipdata)
             localStorage.setItem('uip', encrypt)
             const email = res[0].email;
+            const username = res[0].nome;
+            const id = res[0].id;
             console.log('workin', email, res)
             const credentials = await signInWithEmailAndPassword(auth,email,password);
+            const token = await streamchat_client_frontend(username, id, "", false)
+            await client.connectUser({
+                        id,
+                        name:username,
+                        username,
+                    },
+                    token
+            )
+            set({client:token})
+            console.log(token)
             console.log('entrou e fez o login,', credentials)
             const code = await codeemail(email)
             console.log('resoleveu o code', code)
@@ -133,6 +148,17 @@ export const useStateAuth = create((set, get)=>({
             console.log(encryot)
             localStorage.setItem('uipadmin', encryot)
             const login = await signInWithEmailAndPassword(auth, email , password);
+            const username = data.nome;
+            const id = data.id.slice(0,5)
+            const token = await streamchat_client_frontend(username, id, "", false)
+            await client.connectUser({
+                        id,
+                        name:username,
+                        username,
+                    },
+                    token
+            )
+            console.log(token)
             if(gettting.docs[0].data()?.role == "admin"){
                 const phot = gettting.docs[0].data()?.photo || "https://njinga-worker.njinga.workers.dev/angola-flag-png.png" 
                 await updateProfile(login.user,{

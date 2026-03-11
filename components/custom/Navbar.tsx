@@ -17,7 +17,7 @@ export default function Navbar<T>({islogged, image, name}:custom<T>) {
   const router = useRouter()
   const pathname = usePathname()
   return (
-    <HStack className='nav-bar'  display={pathname.includes('portal') ? 'none' : 'flex'}>
+    <HStack className='nav-bar'  display={(pathname.includes('portal') || pathname.includes('messages')) ? 'none' : 'flex'}>
         <Logo/>
         <Box className='Menu'>
           <Text className='menu-item' cursor={'pointer'} onClick={()=>{router.push('/')}}>Pagina Inicial</Text>

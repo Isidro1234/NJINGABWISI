@@ -122,7 +122,7 @@ export const useLogicState = create((set, get)=>({
             const docrefperfil = doc(db, 'Perfil', create_funcionario_account.user.uid)
             const docrefUIP = doc(db, 'MeuUIP', formulario?.numero_do_bilhete )
             const stripe_token = await registeruserstripe(created_email , docrefperfil.id)
-            const stream_chat_token = await streamchat_client_frontend(nome, uid , "");
+            const stream_chat_token = await streamchat_client_frontend(nome, uid , "", true);
             await setDoc(docrefperfil, {
                 id:docrefperfil.id,
                 ...formulario,
