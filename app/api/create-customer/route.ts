@@ -1,6 +1,6 @@
 import Stripe from "stripe";
-import { stripeinstance } from "../create-checkout-session/route";
 import { NextResponse } from "next/server";
+import { stripeinstance } from "../../lib/stripe";
 
 
 
