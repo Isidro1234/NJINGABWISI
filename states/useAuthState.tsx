@@ -6,7 +6,7 @@ import {create} from 'zustand'
 import {auth , db} from '../config/firebse'
 import { codeemail } from '@/logic/codeemail';
 import { registeruserstripe } from '@/logic/registeruserStripe';
-import { encryptdata } from '@/logic/encryptdata';
+import { decryptdata, encryptdata } from '@/logic/encryptdata';
 
 
 export const useStateAuth = create((set, get)=>({
@@ -117,8 +117,39 @@ export const useStateAuth = create((set, get)=>({
             return false
         }
     },
+    loginAdmin: async(identificacao:any , password:any , codigo:any)=>{
+        console.log(identificacao, password , codigo)
+        try {
+           const check =  localStorage.removeItem('uipadmin')
+            const docref = collection(db,"MeuUIP");
+            const q = query(docref, where("Identificacao","==",identificacao));
+            const gettting = await getDocs(q);
+            if(gettting.empty) return;
+            const email = gettting.docs[0].data()?.email;
+            if(gettting.docs[0].data()?.role == "user") return;
+           
+            const data:any = gettting.docs[0].data()
+            const encryot = encryptdata(data)
+            console.log(encryot)
+            localStorage.setItem('uipadmin', encryot)
+            const login = await signInWithEmailAndPassword(auth, email , password);
+            if(gettting.docs[0].data()?.role == "admin"){
+                const phot = gettting.docs[0].data()?.photo || "https://njinga-worker.njinga.workers.dev/angola-flag-png.png" 
+                await updateProfile(login.user,{
+                    displayName:gettting.docs[0].data()?.nome,
+                    photoURL:phot
+                }) 
+            }
+            console.log(gettting.docs[0].data())
+            return gettting.docs[0].data() 
+        } catch (error) {
+            console.log(error)
+        }
+            
+    },
     logout:async()=>{
-        auth.signOut();
         localStorage.removeItem('uip');
+        localStorage.removeItem('uipadmin')
+        auth.signOut();
     }
 }))

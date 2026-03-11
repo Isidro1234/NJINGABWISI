@@ -12,7 +12,7 @@ export const encryptdata = (data:object)=>{
 export const decryptdata = (data:string)=>{
     const key:string = process.env.NEXT_PUBLIC_SECRECT_ENCRYPTION || ''
     const decrypt = CryptoJS.AES.decrypt(data, key )
-    const decryptstring = decrypt.toString(CryptoJS.enc.Utf8);
+    const decryptstring =  decrypt.toString(CryptoJS.enc.Utf8);
     const originalObject = JSON.parse(decryptstring);
     return originalObject 
 }

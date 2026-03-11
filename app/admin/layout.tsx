@@ -1,37 +1,45 @@
 "use client"
-import LoadingAnim from '@/components/custom/LoadingAnim';
 import { auth } from '@/config/firebse';
 import { useAuthContext } from '@/context/authContext';
 import { decryptdata } from '@/logic/encryptdata';
 import { VStack } from '@chakra-ui/react';
 import { onAuthStateChanged } from 'firebase/auth';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
-export default function LayoutAdmin({
+export default function LayoutAdmins({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>){
-      const router = useRouter()
-      const [isLogged, setIsLogged] = useState(false);
-      const {setUserdata}:any = useAuthContext();
-      useEffect(()=>{
-        onAuthStateChanged(auth, (user)=>{
-            try {
-                        if(user){
-                    const userdata:string = localStorage.getItem('admin') || '';
-                    const decrypt = decryptdata(userdata)
-                    setUserdata(decrypt || {})
-                    setIsLogged(true)
-                    redirect('/admin/portaladministrador')
-                }
-            } catch (error) {
-                 router.push('/admin/auth')
-            }
-          
-        })
-      }, [isLogged])
+  const router = useRouter()
+  const {setUserdata}:any = useAuthContext();
+  useEffect(()=>{
+     onAuthStateChanged(auth, (user)=>{
+          if(user){
+             const userdata:string = localStorage.getItem('uipadmin') || '';
+             const uip:string = localStorage.getItem('uip') || ''
+             if(!userdata && !uip){
+                auth.signOut()
+                return;
+             }
+             if(uip){
+                router.push('/portal')
+                return
+             }
+             const decrypt = decryptdata(userdata)
+             setUserdata(decrypt || {})
+             if(decrypt?.role === "admin"){
+              router.push('/admin/portaladministrador')
+             }else if (decrypt?.role === "collaborator"){
+              router.push('/admin/portalcolaborador')
+             }
+          }
+       })
+  }, [])
+   
+
+    
     return (
         <VStack width={'100%'} height={'100%'} bg={'#d33434'}>
             {children}

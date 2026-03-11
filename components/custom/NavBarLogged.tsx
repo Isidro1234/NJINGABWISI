@@ -5,6 +5,8 @@ import React, { useEffect } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import AvatarCustom from './AvatarCustom'
+import Message from "../../public/icons/message-1.svg"
+import Notification from "../../public/icons/notification-1.svg"
 import { auth } from '@/config/firebse'
 import CustomMenu from './CustomMenu'
 
@@ -27,7 +29,7 @@ export default function NavBarLogged() {
     }, [pathname])
    
   return (
-    <VStack className='navbar-logged'>
+    <VStack className='navbar-logged' bg={'white'}>
         <HStack className='navbar-logged-conteiner-top' >
             <VStack className='navbar-logged-logo-conteiner' >
                 <Image className='logos' width={40} height={40} src={'/icons/angola-flag.svg'} alt='logo'/>
@@ -50,8 +52,8 @@ export default function NavBarLogged() {
             </Stack>
             
             <HStack className='navbar-logged-user-conteiner' >
-                <Button className='navbar-logged-button' ><Image  width={20} height={20} src={'/icons/message-icon.svg'} alt='icon-search'/></Button>
-                <Button className='navbar-logged-button' ><Image  width={20} height={20} src={'/icons/bell-icon.svg'} alt='icon-search'/></Button>
+                <Button className='navbar-logged-button notification' ><Notification fill={'#f7f7f7'} color={'blue'} width={40} height={40} /></Button>
+                <Button className='navbar-logged-button' ><Message  width={40} height={40} fill={'blue'} /></Button>
                 <span className='space'></span>
                 <CustomMenu menuitems={[{label:'Perfil', value:'/portal/perfil'}, 
                 {label:'Sair', value:'/portal/sair'}]} icon={

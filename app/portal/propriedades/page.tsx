@@ -1,5 +1,6 @@
 import CustomCard from '@/components/custom/CustomCard'
 import CustomPCard from '@/components/custom/CustomPCard'
+import UIPprint from '@/components/custom/UIPprint'
 import { VStack } from '@chakra-ui/react'
 import Image from 'next/image'
 import React from 'react'
@@ -13,6 +14,7 @@ export default function Propriedades() {
             <CustomPCard/>
         </VStack>
       </CustomCard>
+      <UIPprint ref={null}/>
     </VStack>
   )
 }

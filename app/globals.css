@@ -357,6 +357,7 @@ div .navbar-logged-other
   justify-content: center;
   padding-left: 40px;
 }
+
 .navbar-logged-menu-items{
   display: flex;
   padding: 4px 20px;
@@ -468,4 +469,13 @@ div .navbar-logged-user-conteiner{
     opacity: 1;
     scale: 1;
   }
+}
+.formulariopreviewtext{
+ font-size: 12px;
+ color: gray;
+
+}
+.formulariopreviewtitle{
+  font-size: 12px;
+  color: rgb(33, 33, 33);
 }

@@ -3,6 +3,7 @@ import InputLabel from '@/components/custom/InputLabel'
 import Logo from '@/components/custom/Logo'
 import SelectCustomValue from '@/components/custom/SelectCustomValue'
 import { useAuthContext } from '@/context/authContext'
+import { decryptdata } from '@/logic/encryptdata'
 import { useStateAuth } from '@/states/useAuthState'
 import { Box, Button, Heading, HStack, Input, Spinner, Text, VStack } from '@chakra-ui/react'
 import Link from 'next/link'
@@ -25,8 +26,9 @@ export default function Entrar() {
     const res = await enviardados(Identificacao, password)
     if(res?.uip?.email){
       setLoading(false)
-      console.log(res.uip)
-      setUserdata(res.uip)
+      const userdata:string = localStorage.getItem('uip') || '';
+      const decrypt = decryptdata(userdata)
+      setUserdata(decrypt)
       router.push('/auth/codigo')
       return;
     }

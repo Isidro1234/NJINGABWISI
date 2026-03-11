@@ -4,6 +4,7 @@ import Logo from '@/components/custom/Logo'
 import SelectCustomValue from '@/components/custom/SelectCustomValue'
 import { auth } from '@/config/firebse'
 import { useAuthContext } from '@/context/authContext'
+import { decryptdata } from '@/logic/encryptdata'
 import { useStateAuth } from '@/states/useAuthState'
 import { Box, Button, Heading, HStack, Input, Text, VStack } from '@chakra-ui/react'
 import Link from 'next/link'
@@ -41,7 +42,9 @@ export default function Criarconta() {
       const res = await enviardados(nome, Identificacao, tipoIdentificacao, Phonenumber, email, password, moradia, profissao);
       if(res?.nome){
         setLoading(false)
-        setUserdata(res)
+        const userdata:string = localStorage.getItem('uip') || '';
+        const decrypt = decryptdata(userdata)
+        setUserdata(decrypt)
         setUserLogged(true)
         router.push('/portal')
       }
@@ -80,7 +83,7 @@ export default function Criarconta() {
                    {label:'Comerciante', value:'comerciante'},
                    {label:'Empreendedor', value:'empreendedor'},
                    {label:'Ramo petrolifero', value:'ramo petrolifero'},
-                   {label:'Outro', value:'outro'}
+                   {label:'Outro', value:'outro',}
                 ]}/>
             <Box width={'100%'} display={profissao[0] === 'outro' ? 'block' : 'none'}>
               <InputLabel placeholder='Descreva sua profissao' type='text' onchange={(e:any)=>setProfissaoOutro(e)} label='Profissao'/>

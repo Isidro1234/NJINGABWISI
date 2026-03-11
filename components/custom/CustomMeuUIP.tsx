@@ -56,7 +56,7 @@ export default function CustomMeuUIP({userdata}:any) {
             <Text color={'gray.500'} fontSize={10}>{userdata?.shortuip_id}</Text>
         </VStack>
         <Box >
-           <CustomQrcode value={`https://n-jinga.vercel.app/verifyuip/${userdata?.id}` || 'N/A'}/>
+           <CustomQrcode size={null} value={`https://n-jinga.vercel.app/verifyuip/${userdata?.id}` || 'N/A'}/>
         </Box>
     </HStack>
   )

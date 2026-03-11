@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import {Provider} from '../components/ui/provider'
 import dynamic from "next/dynamic";
+import "stream-chat-react/dist/css/v2/index.css";
 
 
 const  AuthContextProvider= dynamic(
