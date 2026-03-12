@@ -26,23 +26,25 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
     const [activarNotificacoes, setActivarNotif] = useState(false)
 
     useEffect(() => {
-        if (typeof window !== 'undefined' && 'Notification' in window) {
-            setPermission(Notification.permission)
-        }
+    // ✅ Always register SW and check permission — regardless of login state
+    if (typeof window !== 'undefined' && 'Notification' in window) {
+        setPermission(Notification.permission)
+    }
 
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker
-                .register('/firebase-messaging-sw.js')
-                .then((reg) => console.log('SW registered:', reg))
-                .catch((err) => console.error('SW error:', err))
-        }
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+            .register('/firebase-messaging-sw.js')
+            .then((reg) => console.log('SW registered:', reg))
+            .catch((err) => console.error('SW error:', err))
+    }
 
+    let unsubscribe: any
+
+    async function init() {
         const uip = localStorage.getItem('uip')
         const uipadmin = localStorage.getItem('uipadmin')
 
-        // ✅ No user logged in — don't proceed
-        if (!uip && !uipadmin) return
-
+        // ✅ Decrypt user
         let decryptedUser = null
         if (uip) {
             decryptedUser = decryptdata(uip)
@@ -50,35 +52,37 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
             decryptedUser = decryptdata(uipadmin)
         }
 
-        if (decryptedUser) setuserdata(decryptedUser)
+        // ✅ Always set userdata — even if null
+        setuserdata(decryptedUser)
 
-        async function gt(user: any) {
-            if (!user?.id) return
-            const docref = doc(db, 'fcm_tokens', user.id)
+        // ✅ Check if token already exists
+        if (decryptedUser?.id) {
+            const docref = doc(db, 'fcm_tokens', decryptedUser.id)
             const getting = await getDoc(docref)
             if (getting.exists()) {
                 setActivarNotif(true)
             }
         }
 
-        let unsubscribe: any
-        async function listenForMessages() {
-            const messaging = await getFirebaseMessaging()
-            if (!messaging) return
-            unsubscribe = onMessage(messaging, (payload) => {
-                console.log('Foreground notification:', payload)
-                new Notification(payload.notification?.title || '', {
-                    body: payload.notification?.body,
-                    icon: payload.notification?.image || '/icons/notification.png',
-                })
+        // ✅ Listen for messages
+        const messaging = await getFirebaseMessaging()
+        if (!messaging) return
+
+        unsubscribe = onMessage(messaging, (payload) => {
+            console.log('Foreground notification:', payload)
+            new Notification(payload.notification?.title || '', {
+                body: payload.notification?.body,
+                icon: payload.notification?.image || '/icons/notification.png',
             })
-        }
+        })
+    }
 
-        listenForMessages()
-        gt(decryptedUser)
+    init()
 
-        return () => { if (unsubscribe) unsubscribe() }
-    }, [])
+    return () => { if (unsubscribe) unsubscribe() }
+}, [])
+
+// ✅ Fixed condition
 
     async function requestPermission(userId: string) {
         const result = await grantPermission()
@@ -99,7 +103,7 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
     // 1. User is logged in
     // 2. Notifications not yet activated
     // 3. Permission not yet granted
-    const showButton = userdata && (!activarNotificacoes || permission) !== 'granted'
+    const showButton = userdata && (!activarNotificacoes || permission !== 'granted')
 
     return (
         <NotificationContext.Provider value={{ permission, token, requestPermission }}>
