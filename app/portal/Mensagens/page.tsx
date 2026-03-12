@@ -1,3 +1,4 @@
+"use client"
 import LoadingAnim from '@/components/custom/LoadingAnim';
 import { useStreamChatContext } from '@/context/streamChatContext';
 import { VStack } from '@chakra-ui/react';
