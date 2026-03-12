@@ -40,7 +40,7 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
         // ✅ Get user data synchronously and pass directly — don't rely on state
         const uip = localStorage.getItem('uip')
         const uipadmin = localStorage.getItem('uipadmin')
-        
+        if(!uip && !uipadmin) return;
         let decryptedUser = null
         if (uip) {
             decryptedUser = decryptdata(uip)
@@ -97,7 +97,7 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
 
     return (
         <NotificationContext.Provider value={{ permission, token, requestPermission }}>
-            {(!activarNotificacoes || permission !== 'granted') && (
+            {(!activarNotificacoes || permission !== 'granted' && !userdata) && (
                 <Button
                     fontSize={12}
                     size='sm'
