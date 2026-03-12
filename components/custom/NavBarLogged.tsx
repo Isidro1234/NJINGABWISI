@@ -56,7 +56,7 @@ export default function NavBarLogged() {
                 <Button className='navbar-logged-button' ><Message  width={40} height={40} fill={'blue'} /></Button>
                 <span className='space'></span>
                 <CustomMenu menuitems={[{label:'Perfil', value:'/portal/perfil'}, 
-                {label:'Sair', value:'/portal/sair'}]} icon={
+                ]} icon={
                    <AvatarCustom name={auth.currentUser?.displayName || ''} 
                    image={auth.currentUser?.photoURL || '/icons/avatar.svg'}/> 
                 }  />

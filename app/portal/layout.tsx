@@ -1,6 +1,7 @@
 'use client'
 import { auth } from '@/config/firebse'
 import { useAuthContext } from '@/context/authContext'
+import { StreamChatContextProvider } from '@/context/streamChatContext'
 import { decryptdata } from '@/logic/encryptdata'
 import { VStack } from '@chakra-ui/react'
 import { onAuthStateChanged } from 'firebase/auth'
@@ -20,6 +21,7 @@ export default function PortalLayout({
     const router = useRouter()
     const [isLogged, setIsLogged] = useState(false)
     const { setUserdata }: any = useAuthContext()
+    const [userdatauip, setuipdata] = useState<any>([])
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -57,7 +59,7 @@ export default function PortalLayout({
                 router.push('/auth/entrar')
                 return
             }
-
+            setuipdata(decrypt)
             setUserdata(decrypt)
             setIsLogged(true)
         })
@@ -71,10 +73,17 @@ export default function PortalLayout({
 
     return (
         <StripeContextProvider>
+          <StreamChatContextProvider
+            userID={userdatauip?.id?.slice(0,5)}
+            name={userdatauip?.nome}
+            image={userdatauip?.photo || ''}
+          >
             <VStack className='portal' width={'100%'} height={'100%'}>
                 <NavBarLogged />
                 {children}
             </VStack>
+          </StreamChatContextProvider>
+            
         </StripeContextProvider>
     )
 }

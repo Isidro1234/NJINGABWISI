@@ -53,10 +53,10 @@ export default function NavBarAdminLogged() {
             
             <HStack className='navbar-logged-user-conteiner' >
                 <Button className='navbar-logged-button notification' ><Notification fill={'#f7f7f7'} color={'blue'} width={40} height={40} /></Button>
-                <Button className='navbar-logged-button' onClick={()=>{router.push('/messages')}}><Message  width={40} height={40} fill={'blue'} /></Button>
+                <Button className='navbar-logged-button' onClick={()=>{router.push('/admin/portaladministrador/mensagem')}}><Message  width={40} height={40} fill={'blue'} /></Button>
                 <span className='space'></span>
                 <CustomMenu menuitems={[{label:'Perfil', value:'/admin/portaladministrador/perfil'}, 
-                {label:'Sair', value:'/admin/portaladministrador/sair'}]} icon={
+                ]} icon={
                    <AvatarCustom name={auth.currentUser?.displayName || ''} 
                    image={auth.currentUser?.photoURL || '/icons/avatar.svg'}/> 
                 }  />

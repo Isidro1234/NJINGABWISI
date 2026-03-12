@@ -4,6 +4,7 @@ import "./globals.css";
 import {Provider} from '../components/ui/provider'
 import dynamic from "next/dynamic";
 import "stream-chat-react/dist/css/v2/index.css";
+import { NotificationProvider } from "@/context/notificationContext";
 
 
 const  AuthContextProvider= dynamic(
@@ -43,11 +44,17 @@ export default function RootLayout({
       <body
         className={inter.className}
       ><AuthContextProvider>
-            <Provider>
+       
+          <Provider>
+            <NotificationProvider>     
                 <TopNavbar/>
                 <Navbar name={null} image={null} islogged={false}/>
                 {children}
-              </Provider>
+          
+            </NotificationProvider>
+          </Provider>
+        
+            
         </AuthContextProvider>
       </body>
     </html>

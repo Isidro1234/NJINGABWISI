@@ -144,6 +144,11 @@ export default function Portal() {
             <Button bg={'#419f5b'} fontWeight={400} fontSize={10} size={'2xs'} onClick={downloadUIP}  borderRadius={5}>baixar em pdf</Button>
         </VStack>
       </CustomCard>
+       <CustomCard link='portal/MeuUIP' description='inta inc' title='Transferir UIP' 
+      icon={<Image src={'/icons/stats.svg'} alt='uip' width={25} height={25}/>}
+       bg={'#ebdffc'}>
+          <Text>dfd</Text>
+       </CustomCard>
       <Toaster/>
     </HStack>
   )

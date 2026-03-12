@@ -479,3 +479,10 @@ div .navbar-logged-user-conteiner{
   font-size: 12px;
   color: rgb(33, 33, 33);
 }
+.uipstyle{
+        -webkit-print-color-adjust: 'exact';
+        print-color-adjust: 'exact';
+        overflow: 'visible';
+        position: 'relative';     
+        transform: 'none';  
+}
