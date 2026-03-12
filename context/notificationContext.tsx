@@ -99,7 +99,7 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
     // 1. User is logged in
     // 2. Notifications not yet activated
     // 3. Permission not yet granted
-    const showButton = userdata && !activarNotificacoes && permission !== 'granted'
+    const showButton = userdata && (!activarNotificacoes || permission) !== 'granted'
 
     return (
         <NotificationContext.Provider value={{ permission, token, requestPermission }}>
