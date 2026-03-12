@@ -9,13 +9,13 @@ import {getMessaging, getToken, isSupported} from 'firebase/messaging'
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDsAIEVV-24AJ44D1OojJ42mNJYFQXWkfg",
-  authDomain: "njinga-angola.firebaseapp.com",
-  projectId: "njinga-angola",
-  storageBucket: "njinga-angola.firebasestorage.app",
-  messagingSenderId: "248477237286",
-  appId: "1:248477237286:web:7533b53df05af0dd5f66e7",
-  measurementId: "G-RP42QZJJ6R"
+  apiKey: process.env.apiKey,
+  authDomain: process.env.authDomain,
+  projectId: process.env.projectId,
+  storageBucket: process.env.storageBucket,
+  messagingSenderId: process.env.messagingSenderId,
+  appId: process.env.appId,
+  measurementId: process.env.measurementId
 };
 
 // Initialize Firebase

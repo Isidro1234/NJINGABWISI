@@ -1,13 +1,18 @@
-// lib/firebaseAdmin.ts
-import { initializeApp, getApps, cert, ServiceAccount } from 'firebase-admin/app'
+import { cert, getApps, initializeApp } from 'firebase-admin/app'
 import { getFirestore } from 'firebase-admin/firestore'
 import { getAuth } from 'firebase-admin/auth'
 import { getMessaging } from 'firebase-admin/messaging'
-import serviceAccount from '../app/lib/service.json' with { type : "json"} 
 
-const admin = initializeApp({
-    credential: cert(serviceAccount as ServiceAccount)
-})
-export const adminDb = getFirestore(admin)
-export const adminAuth = getAuth(admin)
-export const adminMessaging = getMessaging(admin) 
+const adminApp = getApps().length === 0
+    ? initializeApp({
+        credential: cert({
+            projectId: process.env.FIREBASE_PROJECT_ID,
+            clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+            privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n')
+        })
+    })
+    : getApps()[0]
+
+export const adminDb = getFirestore(adminApp)
+export const adminAuth = getAuth(adminApp)
+export const adminMessaging = getMessaging(adminApp)
