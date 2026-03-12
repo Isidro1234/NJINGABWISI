@@ -37,10 +37,12 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
                 .catch((err) => console.error('SW error:', err))
         }
 
-        // ✅ Get user data synchronously and pass directly — don't rely on state
         const uip = localStorage.getItem('uip')
         const uipadmin = localStorage.getItem('uipadmin')
-        if(!uip && !uipadmin) return;
+
+        // ✅ No user logged in — don't proceed
+        if (!uip && !uipadmin) return
+
         let decryptedUser = null
         if (uip) {
             decryptedUser = decryptdata(uip)
@@ -48,12 +50,10 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
             decryptedUser = decryptdata(uipadmin)
         }
 
-        // ✅ Set state for UI
         if (decryptedUser) setuserdata(decryptedUser)
 
-        // ✅ Pass directly to gt() — don't use state here
         async function gt(user: any) {
-            if (!user?.id) return  // ✅ guard against null
+            if (!user?.id) return
             const docref = doc(db, 'fcm_tokens', user.id)
             const getting = await getDoc(docref)
             if (getting.exists()) {
@@ -75,7 +75,7 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
         }
 
         listenForMessages()
-        gt(decryptedUser)  // ✅ pass directly
+        gt(decryptedUser)
 
         return () => { if (unsubscribe) unsubscribe() }
     }, [])
@@ -95,9 +95,15 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
         }
     }
 
+    // ✅ Clear condition — show button only when:
+    // 1. User is logged in
+    // 2. Notifications not yet activated
+    // 3. Permission not yet granted
+    const showButton = userdata && !activarNotificacoes && permission !== 'granted'
+
     return (
         <NotificationContext.Provider value={{ permission, token, requestPermission }}>
-            {(!activarNotificacoes || permission !== 'granted' && !userdata) && (
+            {showButton && (
                 <Button
                     fontSize={12}
                     size='sm'
