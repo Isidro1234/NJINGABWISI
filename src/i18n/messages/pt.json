@@ -1,0 +1,583 @@
+{
+  "auth": {
+    "entrar": {
+      "title": "Entrar",
+      "subtitle": "Introduza os seus dados para aceder à sua conta",
+      "identificacao_label": "Identificação",
+      "identificacao_placeholder": "Número do BI ou passaporte",
+      "password_label": "Senha",
+      "password_placeholder": "Mínimo 6 caracteres",
+      "submit": "Entrar",
+      "no_account": "Não tem conta?",
+      "click_here": "clique aqui",
+      "errors": {
+        "identificacao_required": "Número de identificação é obrigatório",
+        "identificacao_invalid": "Número de identificação inválido",
+        "password_required": "Senha é obrigatória",
+        "password_short": "A senha deve ter pelo menos 6 caracteres",
+        "wrong_credentials": "Identificação ou senha incorrecta. Tente novamente.",
+        "connection_error": "Erro de ligação. Verifique a sua internet."
+      }
+    },
+    "codigo": {
+      "title": "Código de Segurança",
+      "subtitle": "Introduza o código enviado para o seu email",
+      "submit": "Verificar",
+      "errors": {
+        "wrong_code": "Código incorrecto. Tente novamente.",
+        "connection_error": "Erro de ligação. Verifique a sua internet."
+      }
+    },
+    "criarconta": {
+      "title": "Criar conta",
+      "nome_label": "Nome completo",
+      "nome_placeholder": "Nome e apelido",
+      "email_label": "Email",
+      "email_placeholder": "exemplo@email.com",
+      "moradia_label": "Onde mora?",
+      "moradia_placeholder": "Bairro, município ou cidade",
+      "identificacao_label": "Identificação",
+      "identificacao_placeholder": "Número do BI ou passaporte",
+      "passport": "Passaporte",
+      "bilhete": "Bilhete de Identidade",
+      "nif": "NIF",
+      "profissao_label": "Profissão",
+      "profissao_agente": "Agente Imobiliário",
+      "profissao_funcionario": "Funcionário Público",
+      "profissao_desempregado": "Desempregado",
+      "profissao_comerciante": "Comerciante",
+      "profissao_empreendedor": "Empreendedor",
+      "profissao_petrolifero": "Ramo Petrolífero",
+      "profissao_outro": "Outro",
+      "profissao_outro_label": "Profissão (outro)",
+      "profissao_outro_placeholder": "Descreva a sua profissão",
+      "password_label": "Senha",
+      "password_placeholder": "Mínimo 6 caracteres",
+      "confirm_password_label": "Confirmar senha",
+      "confirm_password_placeholder": "Repita a senha",
+      "telefone_label": "Número de telefone",
+      "telefone_placeholder": "+244 9XX XXX XXX",
+      "submit": "Criar conta",
+      "already_have_account": "Já tem conta?",
+      "click_here": "clique aqui",
+      "success": "Conta criada com sucesso!",
+      "errors": {
+        "nome_required": "Nome completo é obrigatório",
+        "nome_incomplete": "Por favor introduza o nome completo",
+        "email_required": "Email é obrigatório",
+        "email_invalid": "Email inválido",
+        "moradia_required": "Moradia é obrigatória",
+        "identificacao_required": "Número de identificação é obrigatório",
+        "tipo_identificacao_required": "Tipo de identificação é obrigatório",
+        "profissao_required": "Profissão é obrigatória",
+        "profissao_outro_required": "Por favor descreva a sua profissão",
+        "telefone_required": "Número de telefone é obrigatório",
+        "telefone_invalid": "Número de telefone inválido",
+        "password_required": "Senha é obrigatória",
+        "password_short": "A senha deve ter pelo menos 6 caracteres",
+        "confirm_password_required": "Por favor confirme a sua senha",
+        "passwords_mismatch": "As senhas não coincidem",
+        "create_failed": "Não foi possível criar a conta. Tente novamente.",
+        "connection_error": "Erro de ligação. Verifique a sua internet."
+      }
+    }
+  },
+  "home": {
+    "hero_title": "Bem-vindo à NJINGA",
+    "hero_subtitle": "Plataforma Angolana de vanguarda para Registo Digital de Propriedades",
+    "hero_cta": "Crie a sua conta",
+    "section1_badge": "Registo & Impostos",
+    "section1_title_1": "Facilitando o",
+    "section1_title_property": "registo",
+    "section1_title_2": "de imóveis e o pagamento de",
+    "section1_title_tax": "Impostos",
+    "section1_title_3": "",
+    "section1_subtitle": "Saiba mais sobre os nossos serviços",
+    "section2_badge": "De Cabinda ao Cunene — Registe o Seu Imóvel",
+    "section2_title_1": "Registe o seu imóvel em qualquer província de",
+    "section2_title_angola": "Angola",
+    "section2_body": "Com a Njinga pode simplesmente registar o seu imóvel online, enviar todos os documentos em conformidade e beneficiar de ter o seu imóvel em conformidade com a lei Angolana",
+    "contact_title": "Contacte-nos",
+    "contact_subtitle": "Receba notificações sobre novos serviços adicionados à NJINGA",
+    "contact_placeholder": "Introduza o seu email",
+    "contact_submit": "Enviar"
+  },
+  "verifyuip": {
+    "title": "Verificar UIP",
+    "by": "por bwisi corporation",
+    "subtitle": "Verificar UIP/PIU"
+  },
+  "servicos": {
+    "title": "Serviços",
+    "cta": "Começar agora",
+    "items": {
+      "impostos_title": "Impostos",
+      "impostos_text": "Com a NJINGA pode pagar os seus impostos online de forma fácil e segura",
+      "registo_title": "Registo",
+      "registo_text": "A NJINGA ajuda-o a registar os seus imóveis de forma simples e prática",
+      "uip_title": "PIU/UIP",
+      "uip_text": "A NJINGA possui tecnologia própria de identificação digital de utilizadores online"
+    }
+  },
+  "quemsomos": {
+    "title": "NJINGA",
+    "body": "Somos uma plataforma de registo de propriedades e pagamento de impostos criada pela INTA (Instituto Nacional de Tecnologia Avançada) com o objectivo de ajudar o governo Angolano a facilitar o registo de imóveis e o fácil pagamento de impostos. A INTA foi fundada por Isidoro Zau e Afonso Teba."
+  },
+  "portal": {
+    "index": {
+      "properties_list": "Lista de imóveis",
+      "apply_agent": "Candidatar-se a Agente",
+      "apply_agent_sub": "Clique abaixo para candidatar-se a uma conta de agente",
+      "apply_agent_btn": "Candidatar a Agente Imobiliário",
+      "my_agent_profile": "O meu perfil de Agente",
+      "recent_payments": "Pagamentos Recentes",
+      "validate_piu": "Validar PIU",
+      "gov_employees": "Funcionários Gov Actuais",
+      "download_pdf": "baixar em pdf",
+      "card_properties_title": "Meus Imóveis",
+      "card_agents_title": "Agentes",
+      "card_payments_title": "Emolumentos",
+      "card_validate_title": "Validar PIU",
+      "card_register_title": "Registar Imóvel",
+      "card_gov_title": "Func. Gov",
+      "card_uip_title": "Meu PIU/UIP",
+      "card_transfer_title": "Transferir UIP",
+      "description": "inta inc",
+      "errors": {
+        "no_photo": "Por favor adicione uma foto ao seu UIP",
+        "no_photo_desc": "Só é possível baixar o UIP com foto, por favor insira uma foto"
+      }
+    },
+    "registar": {
+      "card_title": "Registar Imóvel",
+      "card_description": "inta registo",
+      "form_title": "Governo de Angola",
+      "form_subtitle": "Ministério da Urbanização e Transportes",
+      "form_type": "Formulário de Posse de Imóvel",
+      "btn_previous": "Anterior",
+      "btn_next": "Próximo",
+      "btn_submit": "Submeter",
+      "preview_form1_title": "Formulário 1",
+      "preview_form2_title": "Formulário 2",
+      "preview_id_photos": "Fotos de identificação",
+      "preview_additional_rooms": "Quartos / Áreas Adicionais",
+      "f1_primeiro_nome": "Primeiro Nome",
+      "f1_nome_do_meio": "Nome do Meio",
+      "f1_sobrenome": "Sobrenome",
+      "f1_pais": "País",
+      "f1_estado": "Estado",
+      "f1_municipio": "Município",
+      "f1_comuna": "Comuna",
+      "f1_distrito": "Distrito",
+      "f1_rua": "Rua",
+      "f1_tipo_identificacao": "Tipo de Identificação",
+      "f1_identificacao": "Identificação",
+      "f2_pais": "País",
+      "f2_estado": "Estado / Província",
+      "f2_municipio": "Município",
+      "f2_comuna": "Comuna",
+      "f2_distrito": "Distrito",
+      "f2_rua": "Rua",
+      "f2_dono": "É proprietário",
+      "f2_agente": "É agente imobiliário",
+      "f2_doc_completo": "Tem documentação completa",
+      "f2_tem_docs": "Tem alguns documentos",
+      "f2_categoria": "Categoria do imóvel",
+      "f2_uip": "UIP",
+      "f2_data_compra": "Data de compra",
+      "f2_dono_antigo": "Dono anterior",
+      "f2_novo_dono": "Novo dono",
+      "f2_vendedor": "Nome do vendedor / agente",
+      "f2_tipo_id_dono_antigo": "Tipo de ID do dono anterior",
+      "f2_bilhete_dono_antigo": "BI / UIP do dono anterior",
+      "f2_tipo_imovel": "Tipo de imóvel",
+      "f2_aprovacao": "Nº aprovação do projecto",
+      "f2_area": "Área total",
+      "f2_comprimento": "Comprimento",
+      "f2_largura": "Largura",
+      "f2_quartos": "Nº de Quartos",
+      "f2_cozinhas": "Nº de Cozinhas",
+      "f2_salas": "Nº de Salas",
+      "f2_casas_banho": "Nº de WC",
+      "f2_mais_quartos": "Tem mais quartos/áreas",
+      "yes": "Sim",
+      "no": "Não",
+      "errors": {
+        "incomplete_form": "Formulário incompleto",
+        "primeiro_nome": "Primeiro nome é obrigatório",
+        "sobrenome": "Sobrenome é obrigatório",
+        "pais": "País é obrigatório",
+        "estado": "Estado / Província é obrigatório",
+        "municipio": "Município é obrigatório",
+        "distrito": "Distrito é obrigatório",
+        "rua": "Rua é obrigatória",
+        "tipo_identificacao": "Tipo de identificação é obrigatório",
+        "numero_identificacao": "Número de identificação é obrigatório",
+        "fotos_identificacao": "Envie pelo menos uma foto de identificação",
+        "pais_imovel": "País do imóvel é obrigatório",
+        "estado_imovel": "Estado / Província do imóvel é obrigatório",
+        "municipio_imovel": "Município do imóvel é obrigatório",
+        "distrito_imovel": "Distrito do imóvel é obrigatório",
+        "rua_imovel": "Rua do imóvel é obrigatória",
+        "categoria": "Categoria do imóvel é obrigatória",
+        "tipo_imovel": "Tipo de imóvel é obrigatório",
+        "area": "Área total é obrigatória",
+        "comprimento": "Comprimento é obrigatório",
+        "largura": "Largura é obrigatória",
+        "fotos_imovel": "Envie pelo menos uma foto do imóvel",
+        "docs_posse": "Envie os documentos de posse do imóvel",
+        "data_compra": "Data de compra é obrigatória",
+        "dono_antigo": "Nome do dono anterior é obrigatório",
+        "vendedor": "Nome do vendedor / agente é obrigatório",
+        "tipo_id_antigo": "Tipo de identificação do dono anterior é obrigatório",
+        "bilhete_antigo": "Nº BI / UIP do dono anterior é obrigatório",
+        "aprovacao": "Nº de aprovação do projecto é obrigatório",
+        "quartos": "Número de quartos é obrigatório",
+        "cozinhas": "Número de cozinhas é obrigatório",
+        "salas": "Número de salas é obrigatório",
+        "casas_banho": "Número de WC é obrigatório",
+        "session_expired": "Sessão expirada",
+        "session_expired_desc": "Por favor faça login novamente",
+        "registered": "Imóvel registado",
+        "registered_desc": "O seu pedido foi enviado com sucesso"
+      }
+    },
+    "propriedades": {
+      "title": "Meus Imóveis",
+      "description": "bwisi propriedades"
+    },
+    "perfil": {
+      "profession_label": "Profissão",
+      "profession_placeholder": "Profissão",
+      "agent_question": "Quer ser Agente Imobiliário?",
+      "apply": "Candidatar",
+      "logout": "Sair",
+      "errors": {
+        "image_update_failed": "Erro ao actualizar imagem do perfil",
+        "image_store_failed": "Erro ao guardar imagem"
+      }
+    },
+    "pagamentos": {
+      "title": "Emolumentos",
+      "description": "bwisi propriedades",
+      "recent_payments": "Pagamentos Recentes"
+    },
+    "agentes": {
+      "form_title": "Governo de Angola",
+      "form_subtitle": "Ministério da Urbanização e Transportes",
+      "form_type": "Formulário de Registo de Agente Imobiliário & Intermediário",
+      "country_label": "País de Nascimento",
+      "state_label": "Estado / Província",
+      "municipality_label": "Município",
+      "municipality_placeholder": "Município",
+      "comuna_label": "Comuna",
+      "comuna_placeholder": "Comuna",
+      "distrito_placeholder": "Distrito",
+      "rua_placeholder": "Rua",
+      "terms_title": "Termos e Responsabilidades do Agente Imobiliário ou Intermediário",
+      "terms": {
+        "t1": "O agente deverá portar e utilizar o seu cartão UIP sempre que estiver em exercício das suas funções profissionais.",
+        "t2": "O agente compromete-se a fornecer informações correctas, claras e verificáveis aos clientes.",
+        "t3": "O agente deverá apresentar tabelas de preços transparentes e previamente definidas aos clientes.",
+        "t4": "O agente deverá informar previamente o cliente sobre qualquer informação relevante ou necessária para a realização da operação imobiliária.",
+        "t5": "É estritamente proibido ao agente aceitar ou solicitar gasosa, suborno ou qualquer forma de benefício ilícito no exercício das suas funções.",
+        "t6": "Qualquer fraude ou tentativa de fraude será imediatamente comunicada às autoridades competentes e poderá resultar na suspensão ou cancelamento do UIP do agente por tempo indeterminado.",
+        "t7": "O agente ou intermediário deverá cumprir integralmente as normas, regulamentos e diretrizes estabelecidas no Livro-Guia para Agentes e Intermediários da plataforma.",
+        "t8": "O agente ou intermediário detém o direito de recusar o atendimento de qualquer cidadão, desde que existam motivos justificáveis e que tal recusa não seja baseada em discriminação racial, de género, religião, nacionalidade ou orientação sexual.",
+        "t9": "As comissões relativas à venda ou intermediação de imóveis deverão ser previamente acordadas entre as partes envolvidas na transação.",
+        "t10": "Qualquer situação não prevista nestes termos ou no Livro-Guia será analisada e tratada de acordo com a legislação vigente da República de Angola."
+      },
+      "accept_terms": "Aceitar Termos e Responsabilidades",
+      "upload_label": "Por favor submeta o seu Bilhete de Identidade ou Passaporte",
+      "upload_hint": "Clique para seleccionar ou arraste os ficheiros aqui",
+      "upload_formats": "JPG, PNG, PDF",
+      "guide_label": "Por favor baixe o livro guia para agentes e intermediários",
+      "download_book": "Baixar livro",
+      "submit": "Submeter Aplicação",
+      "errors": {
+        "pais": "País é obrigatório",
+        "provincia": "Província é obrigatória",
+        "municipio": "Município é obrigatório",
+        "distrito": "Distrito é obrigatório",
+        "rua": "Rua é obrigatória",
+        "docs": "Envie pelo menos um documento de identificação",
+        "terms": "Deve aceitar os termos e responsabilidades",
+        "submit_success": "Aplicação submetida com sucesso",
+        "submit_error": "Erro ao submeter. Verifique a sua ligação."
+      }
+    },
+    "verifyuip": {
+      "title": "Verificar UIP",
+      "by": "por bwisi corporation",
+      "subtitle": "Verificar UIP/PIU"
+    },
+    "qrcode": {
+      "description": "bwisi propriedades",
+      "not_found": "Não Encontrado",
+      "label_name": "Nome",
+      "label_status": "Estado",
+      "label_uip": "UIP"
+    },
+    "propriedades_page": {
+      "title": "Meus Imóveis",
+      "description": "bwisi propriedades"
+    }
+  },
+  "admin": {
+    "entrar": {
+      "title": "NJINGA",
+      "welcome": "Bem-vindo à Njinga Admin",
+      "subtitle": "Por favor acesse a sua conta introduzindo os seus dados abaixo",
+      "identificacao_label": "Identificação",
+      "identificacao_placeholder": "Número do bilhete de identidade",
+      "senha_label": "Senha",
+      "senha_placeholder": "Mínimo 6 caracteres",
+      "codigo_label": "Código de entrada",
+      "codigo_placeholder": "Código recebido",
+      "receive_code": "Receber código",
+      "codigo_hint": "Clique em \"Receber código\" para obter o seu código de acesso",
+      "submit": "Entrar",
+      "errors": {
+        "identificacao_required": "Número do bilhete é obrigatório",
+        "identificacao_invalid": "Número do bilhete inválido",
+        "senha_required": "Senha é obrigatória",
+        "senha_short": "A senha deve ter pelo menos 6 caracteres",
+        "codigo_required": "Código de entrada é obrigatório",
+        "codigo_invalid": "Código de entrada inválido",
+        "wrong_credentials": "Credenciais incorrectas. Verifique os seus dados.",
+        "connection_error": "Erro ao entrar. Verifique a sua ligação."
+      }
+    },
+    "dashboard": {
+      "description": "inta inc",
+      "card_validate_properties": "Validar Imóveis",
+      "card_agents": "Agentes",
+      "card_payments": "Emolumentos",
+      "card_validate_piu": "Validar PIU",
+      "card_register": "Registar",
+      "card_gov": "Func. Gov",
+      "card_uip": "Meu PIU/UIP",
+      "recent_payments": "Pagamentos",
+      "validate_piu": "Validar PIU",
+      "gov_employees": "Func. Gov Actuais",
+      "download_pdf": "baixar em pdf"
+    },
+    "agentes": {
+      "form": {
+        "title": "Governo de Angola",
+        "subtitle": "Ministério da Urbanização e Transportes",
+        "type": "Formulário de Registo de Agente Imobiliário & Intermediário"
+      },
+      "fields": {
+        "birth_country": "País de Nascimento",
+        "state": "Estado / Província",
+        "municipality": "Município",
+        "comuna": "Comuna",
+        "district": "Distrito",
+        "street": "Rua"
+      },
+      "terms": {
+        "title": "Termos e Responsabilidades do Agente Imobiliário ou Intermediário",
+        "accept": "Aceitar Termos e Responsabilidades",
+        "items": {
+          "1": "O agente deverá portar e utilizar o seu cartão UIP sempre que estiver em exercício das suas funções profissionais.",
+          "2": "O agente compromete-se a fornecer informações correctas, claras e verificáveis aos clientes.",
+          "3": "O agente deverá apresentar tabelas de preços transparentes e previamente definidas aos clientes.",
+          "4": "O agente deverá informar previamente o cliente sobre qualquer informação relevante ou necessária para a realização da operação imobiliária.",
+          "5": "É estritamente proibido ao agente aceitar ou solicitar gasosa, suborno ou qualquer forma de benefício ilícito no exercício das suas funções.",
+          "6": "Qualquer fraude ou tentativa de fraude será imediatamente comunicada às autoridades competentes e poderá resultar na suspensão ou cancelamento do UIP do agente por tempo indeterminado.",
+          "7": "O agente ou intermediário deverá cumprir integralmente as normas, regulamentos e diretrizes estabelecidas no Livro-Guia para Agentes e Intermediários da plataforma.",
+          "8": "O agente ou intermediário detém o direito de recusar o atendimento de qualquer cidadão, desde que existam motivos justificáveis e que tal recusa não seja baseada em discriminação racial, de género, religião, nacionalidade ou orientação sexual.",
+          "9": "As comissões relativas à venda ou intermediação de imóveis deverão ser previamente acordadas entre as partes envolvidas na transação.",
+          "10": "Qualquer situação não prevista nestes termos ou no Livro-Guia será analisada e tratada de acordo com a legislação vigente da República de Angola."
+        }
+      },
+      "upload": {
+        "description": "Por favor submeta o seu Bilhete de Identidade ou Passaporte",
+        "drop": "Clique para seleccionar ou arraste os ficheiros aqui",
+        "types": "JPG, PNG, PDF"
+      },
+      "guide": {
+        "title": "Por favor baixe o livro guia para agentes e intermediários",
+        "download": "Baixar Livro"
+      },
+      "buttons": {
+        "submit": "Submeter Aplicação"
+      }
+    },
+    "dashboardAdmin": {
+      "cards": {
+        "validateProperties": "Validar Imóveis",
+        "propertyRequests": "Pedidos recebidos",
+        "agents": "Agentes",
+        "agentRequests": "Pedidos de Agentes",
+        "fees": "Emolumentos",
+        "recentPayments": "Pagamentos",
+        "validateUIP": "Validar UIP",
+        "registerProperty": "Registar",
+        "govEmployees": "Func. Gov",
+        "currentGovEmployees": "Func. Gov Actuais"
+      },
+      "fields": {
+        "name": "Nome",
+        "employeeName": "Nome do Funcionário",
+        "country": "País",
+        "nationality": "Nacionalidade",
+        "province": "Província",
+        "municipality": "Município",
+        "comuna": "Comuna",
+        "district": "Distrito",
+        "street": "Rua",
+        "employeePhoto": "Foto do Funcionário",
+        "idNumber": "Número do BI",
+        "uploadId": "Envie uma cópia do BI ou passaporte",
+        "uploadDocuments": "Enviar Documentos"
+      },
+      "buttons": {
+        "delete": "Eliminar",
+        "addEmployee": "Adicionar Funcionário"
+      },
+      "messages": {
+        "emptyFields": "Campos Vazios",
+        "fillFields": "Por favor preencha todos os campos obrigatórios",
+        "sent": "Enviado",
+        "employeeAdded": "Funcionário adicionado com sucesso",
+        "error": "Algo correu mal",
+        "employeeNotAdded": "Funcionário não foi adicionado"
+      }
+    },
+    "registerProperty": {
+      "title": "Registar Imóvel",
+      "government": "Governo de Angola",
+      "ministry": "Ministério da Urbanização e Transportes",
+      "formTitle": "Formulário de Posse de Imóvel",
+      "preview": { "title": "Pré-visualização" },
+      "buttons": {
+        "previous": "Anterior",
+        "next": "Próximo",
+        "submit": "Submeter"
+      },
+      "messages": {
+        "incomplete": "Formulário Incompleto",
+        "sessionExpired": "Sessão Expirada",
+        "loginAgain": "Por favor faça login novamente",
+        "propertyRegistered": "Imóvel Registado",
+        "requestSent": "O seu pedido foi enviado com sucesso"
+      },
+      "validation": {
+        "firstName": "Primeiro nome é obrigatório",
+        "lastName": "Sobrenome é obrigatório",
+        "country": "País é obrigatório",
+        "state": "Estado / Província é obrigatório",
+        "municipality": "Município é obrigatório",
+        "district": "Distrito é obrigatório",
+        "street": "Rua é obrigatória",
+        "idType": "Tipo de identificação é obrigatório",
+        "idNumber": "Número de identificação é obrigatório",
+        "idPhoto": "Envie pelo menos uma foto de identificação",
+        "propertyCountry": "País do imóvel é obrigatório",
+        "propertyState": "Estado do imóvel é obrigatório",
+        "propertyMunicipality": "Município do imóvel é obrigatório",
+        "propertyDistrict": "Distrito do imóvel é obrigatório",
+        "propertyStreet": "Rua do imóvel é obrigatória",
+        "propertyCategory": "Categoria do imóvel é obrigatória",
+        "propertyType": "Tipo de imóvel é obrigatório",
+        "propertyArea": "Área total é obrigatória",
+        "propertyLength": "Comprimento é obrigatório",
+        "propertyWidth": "Largura é obrigatória",
+        "propertyPhoto": "Envie pelo menos uma foto do imóvel",
+        "propertyDocs": "Envie os documentos de posse do imóvel",
+        "purchaseDate": "Data de compra é obrigatória",
+        "previousOwner": "Nome do dono anterior é obrigatório",
+        "agentName": "Nome do vendedor / agente é obrigatório",
+        "previousOwnerIdType": "Tipo de identificação do dono anterior é obrigatório",
+        "previousOwnerId": "Número de BI do dono anterior é obrigatório",
+        "projectApproval": "Nº de aprovação do projecto é obrigatório",
+        "rooms": "Número de quartos é obrigatório",
+        "kitchens": "Número de cozinhas é obrigatório",
+        "livingRooms": "Número de salas é obrigatório",
+        "bathrooms": "Número de WC é obrigatório"
+      }
+    },
+    "perfilAdmin": {
+      "buttons": {
+        "enableNotifications": "Activar Notificações",
+        "logout": "Sair"
+      }
+    },
+    "documentoSingle": {
+      "messages": { "noDocuments": "Sem documentos disponíveis" }
+    },
+    "documentos": { "helloWorld": "Olá mundo" },
+    "agents": {
+      "form": {
+        "government": "Governo de Angola",
+        "ministry": "Ministério da Urbanização e Transportes",
+        "title": "Formulário de Registo de Agente Imobiliário & Intermediário"
+      },
+      "fields": {
+        "municipality": "Município",
+        "commune": "Comuna",
+        "district": "Distrito",
+        "street": "Rua"
+      },
+      "buttons": { "submit": "Submeter Aplicação" },
+      "terms": {
+        "title": "Termos e Responsabilidades do Agente Imobiliário ou Intermediário",
+        "accept": "Aceitar Termos e Responsabilidades"
+      },
+      "upload": { "description": "Por favor submeta o seu Bilhete de Identidade ou Passaporte" },
+      "validation": {
+        "country": "País é obrigatório",
+        "province": "Província é obrigatória",
+        "municipality": "Município é obrigatório",
+        "district": "Distrito é obrigatório",
+        "street": "Rua é obrigatória",
+        "documents": "Envie pelo menos um documento de identificação",
+        "terms": "Deve aceitar os termos e responsabilidades"
+      },
+      "messages": {
+        "success": "Aplicação submetida com sucesso",
+        "error": "Erro ao submeter. Verifique a sua ligação."
+      }
+    }
+  },
+  "accordion": { "defaultTitle": "Adicionar Funcionários" },
+  "agentCard": {
+    "user": "Utilizador",
+    "processStatus": "Estado do Processo",
+    "status": {
+      "enviado": "Enviado",
+      "nao_aceite": "Rejeitado",
+      "incompleto": "Incompleto",
+      "aceite": "Aprovado"
+    }
+  },
+  "ecard": {
+    "user": "Utilizador",
+    "person": "Pessoa",
+    "bank": "Banco",
+    "debitPayment": "Pagamento por Débito"
+  },
+  "Navbar": {
+    "menu": "Menu",
+    "home": "Início",
+    "services": "Serviços",
+    "about": "Sobre nós",
+    "verify": "Verificar PIU/UIP",
+    "login": "Entrar",
+    "register": "Registar"
+  },
+  "Footer": {
+    "contacts": "Contactos",
+    "terms": "Termos & Condições",
+    "privacy": "Termos de Privacidade",
+    "dataProtection": "Termos de Protecção de Dados",
+    "about": "Saiba mais sobre nós",
+    "services": "Serviços",
+    "piu": "PIU/UIP",
+    "taxes": "Impostos",
+    "registration": "Registo",
+    "rights": "Todos os direitos reservados."
+  }
+}

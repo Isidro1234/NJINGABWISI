@@ -7,6 +7,7 @@ import {
   createListCollection,
   useSelectContext,
 } from "@chakra-ui/react"
+import { useLocale } from "next-intl"
 
 const SelectValue = () => {
   const select = useSelectContext()
@@ -27,17 +28,18 @@ const SelectValue = () => {
 }
 
 
-const SelectCustom = ({items}:{items:Array<object>}) => {
+const SelectCustom = ({items , onchange}:{items:Array<object>, onchange:Function}) => {
     const members = 
     createListCollection({items ,
          itemToString:(item:any)=>item?.name, itemToValue: (item:any) => item?.id})
+         const locale = useLocale()
   return (
-    <Select.Root
+    <Select.Root onValueChange={(e)=>{onchange(e.value)}}
       collection={members}
       size='xs'
       width="85px"
       borderRadius={50}
-      defaultValue={["_pt"]}
+      defaultValue={[locale]}
       positioning={{ sameWidth: true }}
     >
       <Select.HiddenSelect  />

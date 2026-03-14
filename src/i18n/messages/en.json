@@ -1,0 +1,594 @@
+{
+  "auth": {
+    "entrar": {
+      "title": "Sign in",
+      "subtitle": "Enter your details to access your account",
+      "identificacao_label": "Identification",
+      "identificacao_placeholder": "ID number or passport",
+      "password_label": "Password",
+      "password_placeholder": "Minimum 6 characters",
+      "submit": "Sign in",
+      "no_account": "Don't have an account?",
+      "click_here": "click here",
+      "errors": {
+        "identificacao_required": "Identification number is required",
+        "identificacao_invalid": "Invalid identification number",
+        "password_required": "Password is required",
+        "password_short": "Password must be at least 6 characters",
+        "wrong_credentials": "Incorrect identification or password. Try again.",
+        "connection_error": "Connection error. Check your internet."
+      }
+    },
+    "codigo": {
+      "title": "Security Code",
+      "subtitle": "Enter the code sent to your email",
+      "submit": "Verify",
+      "errors": {
+        "wrong_code": "Incorrect code. Please try again.",
+        "connection_error": "Connection error. Check your internet."
+      }
+    },
+    "criarconta": {
+      "title": "Create account",
+      "nome_label": "Full name",
+      "nome_placeholder": "First and last name",
+      "email_label": "Email",
+      "email_placeholder": "example@email.com",
+      "moradia_label": "Where do you live?",
+      "moradia_placeholder": "Neighbourhood, municipality or city",
+      "identificacao_label": "Identification",
+      "identificacao_placeholder": "ID number or passport",
+      "passport": "Passport",
+      "bilhete": "ID Card",
+      "nif": "NIF",
+      "profissao_label": "Profession",
+      "profissao_agente": "Real Estate Agent",
+      "profissao_funcionario": "Civil Servant",
+      "profissao_desempregado": "Unemployed",
+      "profissao_comerciante": "Merchant",
+      "profissao_empreendedor": "Entrepreneur",
+      "profissao_petrolifero": "Oil Industry",
+      "profissao_outro": "Other",
+      "profissao_outro_label": "Profession (other)",
+      "profissao_outro_placeholder": "Describe your profession",
+      "password_label": "Password",
+      "password_placeholder": "Minimum 6 characters",
+      "confirm_password_label": "Confirm password",
+      "confirm_password_placeholder": "Repeat your password",
+      "telefone_label": "Phone number",
+      "telefone_placeholder": "+244 9XX XXX XXX",
+      "submit": "Create account",
+      "already_have_account": "Already have an account?",
+      "click_here": "click here",
+      "success": "Account created successfully!",
+      "errors": {
+        "nome_required": "Full name is required",
+        "nome_incomplete": "Please enter your full name",
+        "email_required": "Email is required",
+        "email_invalid": "Invalid email",
+        "moradia_required": "Location is required",
+        "identificacao_required": "Identification number is required",
+        "tipo_identificacao_required": "Identification type is required",
+        "profissao_required": "Profession is required",
+        "profissao_outro_required": "Please describe your profession",
+        "telefone_required": "Phone number is required",
+        "telefone_invalid": "Invalid phone number",
+        "password_required": "Password is required",
+        "password_short": "Password must be at least 6 characters",
+        "confirm_password_required": "Please confirm your password",
+        "passwords_mismatch": "Passwords do not match",
+        "create_failed": "Could not create account. Please try again.",
+        "connection_error": "Connection error. Check your internet."
+      }
+    }
+  },
+  "home": {
+    "hero_title": "Welcome to NJINGA",
+    "hero_subtitle": "State of the Art Angolan Platform for Digital Property Registration",
+    "hero_cta": "Create your account",
+    "section1_badge": "Registration & Taxes",
+    "section1_title_1": "Facilitating",
+    "section1_title_property": "property",
+    "section1_title_2": "registration and",
+    "section1_title_tax": "Tax",
+    "section1_title_3": "payments",
+    "section1_subtitle": "Learn more about our services",
+    "section2_badge": "From Cabinda to Cunene — Register Your Property",
+    "section2_title_1": "Register your property in any province of",
+    "section2_title_angola": "Angola",
+    "section2_body": "With Njinga you can simply register your property online, submit all documents in compliance and benefit from having your property in accordance with Angolan law",
+    "contact_title": "Contact us",
+    "contact_subtitle": "Receive notifications about new services added to NJINGA",
+    "contact_placeholder": "Enter your email",
+    "contact_submit": "Send"
+  },
+    "verifyuip": {
+      "title": "Verify UIP",
+      "by": "by bwisi corporation",
+      "subtitle": "Verify UIP/PIU"
+    },
+    
+  "servicos": {
+    "title": "Services",
+    "cta": "Get started",
+    "items": {
+      "impostos_title": "Taxes",
+      "impostos_text": "With NJINGA you can pay your taxes online easily and securely",
+      "registo_title": "Registration",
+      "registo_text": "NJINGA helps you register your properties in a simple and practical way",
+      "uip_title": "PIU/UIP",
+      "uip_text": "NJINGA has its own digital identification technology for online users"
+    }
+  },
+  "quemsomos": {
+    "title": "NJINGA",
+    "body": "We are a property registration and tax payment platform created by INTA (National Institute of Advanced Technology) with the objective of helping the Angolan government facilitate property registration and easy tax payment. INTA was founded by Isidoro Zau and Afonso Teba."
+  },
+  
+  "portal": {
+    "index": {
+      "properties_list": "Property list",
+      "apply_agent": "Apply to be an Agent",
+      "apply_agent_sub": "Click below to apply for an agent account",
+      "apply_agent_btn": "Apply for Real Estate Agent",
+      "my_agent_profile": "My Agent Profile",
+      "recent_payments": "Recent Payments",
+      "validate_piu": "Validate PIU",
+      "gov_employees": "Current Gov Employees",
+      "download_pdf": "download as pdf",
+      "card_properties_title": "My Properties",
+      "card_agents_title": "Agents",
+      "card_payments_title": "Emoluments",
+      "card_validate_title": "Validate PIU",
+      "card_register_title": "Register Property",
+      "card_gov_title": "Gov Employees",
+      "card_uip_title": "My PIU/UIP",
+      "card_transfer_title": "Transfer UIP",
+      "description": "inta inc",
+      "errors": {
+        "no_photo": "Please add a photo to your UIP",
+        "no_photo_desc": "It is only possible to download the UIP with a photo, please insert a photo"
+      }
+    },
+    "registar": {
+      "card_title": "Register Property",
+      "card_description": "inta register",
+      "form_title": "Government of Angola",
+      "form_subtitle": "Ministry of Urbanisation and Transport",
+      "form_type": "Property Possession Form",
+      "btn_previous": "Previous",
+      "btn_next": "Next",
+      "btn_submit": "Submit",
+      "preview_form1_title": "Form 1",
+      "preview_form2_title": "Form 2",
+      "preview_id_photos": "Identification photos",
+      "preview_additional_rooms": "Additional Rooms / Areas",
+      "f1_primeiro_nome": "First Name",
+      "f1_nome_do_meio": "Middle Name",
+      "f1_sobrenome": "Last Name",
+      "f1_pais": "Country",
+      "f1_estado": "State",
+      "f1_municipio": "Municipality",
+      "f1_comuna": "Comuna",
+      "f1_distrito": "District",
+      "f1_rua": "Street",
+      "f1_tipo_identificacao": "Identification Type",
+      "f1_identificacao": "Identification",
+      "f2_pais": "Country",
+      "f2_estado": "State / Province",
+      "f2_municipio": "Municipality",
+      "f2_comuna": "Comuna",
+      "f2_distrito": "District",
+      "f2_rua": "Street",
+      "f2_dono": "Is property owner",
+      "f2_agente": "Is real estate agent",
+      "f2_doc_completo": "Has complete documentation",
+      "f2_tem_docs": "Has some documents",
+      "f2_categoria": "Property category",
+      "f2_uip": "UIP",
+      "f2_data_compra": "Purchase date",
+      "f2_dono_antigo": "Previous owner",
+      "f2_novo_dono": "New owner",
+      "f2_vendedor": "Seller / agent name",
+      "f2_tipo_id_dono_antigo": "Previous owner ID type",
+      "f2_bilhete_dono_antigo": "Previous owner ID / UIP",
+      "f2_tipo_imovel": "Property type",
+      "f2_aprovacao": "Project approval number",
+      "f2_area": "Total area",
+      "f2_comprimento": "Length",
+      "f2_largura": "Width",
+      "f2_quartos": "No. of Bedrooms",
+      "f2_cozinhas": "No. of Kitchens",
+      "f2_salas": "No. of Living rooms",
+      "f2_casas_banho": "No. of Bathrooms",
+      "f2_mais_quartos": "Has more rooms/areas",
+      "yes": "Yes",
+      "no": "No",
+      "errors": {
+        "incomplete_form": "Incomplete form",
+        "primeiro_nome": "First name is required",
+        "sobrenome": "Last name is required",
+        "pais": "Country is required",
+        "estado": "State / Province is required",
+        "municipio": "Municipality is required",
+        "distrito": "District is required",
+        "rua": "Street is required",
+        "tipo_identificacao": "Identification type is required",
+        "numero_identificacao": "Identification number is required",
+        "fotos_identificacao": "Upload at least one identification photo",
+        "pais_imovel": "Property country is required",
+        "estado_imovel": "Property state / province is required",
+        "municipio_imovel": "Property municipality is required",
+        "distrito_imovel": "Property district is required",
+        "rua_imovel": "Property street is required",
+        "categoria": "Property category is required",
+        "tipo_imovel": "Property type is required",
+        "area": "Total area is required",
+        "comprimento": "Property length is required",
+        "largura": "Property width is required",
+        "fotos_imovel": "Upload at least one property photo",
+        "docs_posse": "Upload property ownership documents",
+        "data_compra": "Property purchase date is required",
+        "dono_antigo": "Previous owner name is required",
+        "vendedor": "Seller / agent name is required",
+        "tipo_id_antigo": "Previous owner identification type is required",
+        "bilhete_antigo": "Previous owner ID / UIP number is required",
+        "aprovacao": "Project approval number is required",
+        "quartos": "Number of bedrooms is required",
+        "cozinhas": "Number of kitchens is required",
+        "salas": "Number of living rooms is required",
+        "casas_banho": "Number of bathrooms is required",
+        "session_expired": "Session expired",
+        "session_expired_desc": "Please log in again",
+        "registered": "Property registered",
+        "registered_desc": "Your request was submitted successfully"
+      }
+    },
+     "propriedades": {
+      "title": "My Properties",
+      "description": "bwisi properties"
+    },
+    "perfil": {
+      "profession_label": "Profession",
+      "profession_placeholder": "Profession",
+      "agent_question": "Want to be a Real Estate Agent?",
+      "apply": "Apply",
+      "logout": "Sign out",
+      "errors": {
+        "image_update_failed": "Error updating profile image",
+        "image_store_failed": "Error saving image"
+      }
+    },
+    "pagamentos": {
+      "title": "Emoluments",
+      "description": "bwisi properties",
+      "recent_payments": "Recent Payments"
+    }, "agentes": {
+      "form_title": "Government of Angola",
+      "form_subtitle": "Ministry of Urbanisation and Transport",
+      "form_type": "Real Estate Agent & Intermediary Registration Form",
+      "country_label": "Country of Birth",
+      "state_label": "State / Province",
+      "municipality_label": "Municipality",
+      "municipality_placeholder": "Municipality",
+      "comuna_label": "Comuna",
+      "comuna_placeholder": "Comuna",
+      "distrito_placeholder": "District",
+      "rua_placeholder": "Street",
+      "terms_title": "Terms and Responsibilities of the Real Estate Agent or Intermediary",
+      "terms": {
+        "t1": "The agent must carry and use their UIP card whenever performing their professional duties.",
+        "t2": "The agent commits to providing accurate, clear and verifiable information to clients.",
+        "t3": "The agent must present transparent and pre-defined price tables to clients.",
+        "t4": "The agent must inform the client in advance of any relevant information necessary for the real estate transaction.",
+        "t5": "It is strictly prohibited for the agent to accept or solicit bribes or any form of illicit benefit in the exercise of their duties.",
+        "t6": "Any fraud or attempted fraud will be immediately reported to the competent authorities and may result in the suspension or cancellation of the agent's UIP indefinitely.",
+        "t7": "The agent or intermediary must fully comply with the rules, regulations and guidelines set out in the platform's Guide Book for Agents and Intermediaries.",
+        "t8": "The agent or intermediary has the right to refuse service to any citizen, provided there are justifiable reasons and that such refusal is not based on racial, gender, religious, nationality or sexual orientation discrimination.",
+        "t9": "Commissions relating to the sale or intermediation of properties must be previously agreed between the parties involved in the transaction.",
+        "t10": "Any situation not covered by these terms or the Agent and Intermediary Guide Book will be analysed in accordance with the laws of the Republic of Angola."
+      },
+      "accept_terms": "Accept Terms and Responsibilities",
+      "upload_label": "Please submit your Identity Card or Passport",
+      "upload_hint": "Click to select or drag files here",
+      "upload_formats": "JPG, PNG, PDF",
+      "guide_label": "Please download the guide book for agents and intermediaries",
+      "download_book": "Download book",
+      "submit": "Submit Application",
+      "errors": {
+        "pais": "Country is required",
+        "provincia": "Province is required",
+        "municipio": "Municipality is required",
+        "distrito": "District is required",
+        "rua": "Street is required",
+        "docs": "Upload at least one identification document",
+        "terms": "You must accept the terms and responsibilities",
+        "submit_success": "Application submitted successfully",
+        "submit_error": "Error submitting. Please check your connection."
+      }
+    }
+  },
+   "admin": {
+    "entrar": {
+      "title": "NJINGA",
+      "welcome": "Welcome to Njinga Admin",
+      "subtitle": "Please access your account by entering your details below",
+      "identificacao_label": "Identification",
+      "identificacao_placeholder": "Identity card number",
+      "senha_label": "Password",
+      "senha_placeholder": "Minimum 6 characters",
+      "codigo_label": "Entry code",
+      "codigo_placeholder": "Received code",
+      "receive_code": "Receive code",
+      "codigo_hint": "Click \"Receive code\" to get your access code",
+      "submit": "Sign in",
+      "errors": {
+        "identificacao_required": "ID card number is required",
+        "identificacao_invalid": "Invalid ID card number",
+        "senha_required": "Password is required",
+        "senha_short": "Password must be at least 6 characters",
+        "codigo_required": "Entry code is required",
+        "codigo_invalid": "Invalid entry code",
+        "wrong_credentials": "Incorrect credentials. Please check your details.",
+        "connection_error": "Error signing in. Check your connection."
+      }
+    },
+    "dashboard": {
+      "description": "inta inc",
+      "card_validate_properties": "Validate Properties",
+      "card_agents": "Agents",
+      "card_payments": "Emoluments",
+      "card_validate_piu": "Validate PIU",
+      "card_register": "Register Property",
+      "card_gov": "Gov Employees",
+      "card_uip": "My PIU/UIP",
+      "recent_payments": "Recent Payments",
+      "validate_piu": "Validate PIU",
+      "gov_employees": "Current Gov Employees",
+      "download_pdf": "download as pdf"
+    },
+    "agentes": {
+    "form": {
+      "title": "Government of Angola",
+      "subtitle": "Ministry of Urbanization and Transport",
+      "type": "Real Estate Agent & Intermediary Registration Form"
+    },
+    "fields": {
+      "birth_country": "Country of Birth",
+      "state": "State / Province",
+      "municipality": "Municipality",
+      "comuna": "Commune",
+      "district": "District",
+      "street": "Street"
+    },
+    "terms": {
+      "title": "Terms and Responsibilities of the Real Estate Agent or Intermediary",
+      "accept": "Accept Terms and Responsibilities",
+      "items": {
+        "1": "The agent must carry and use their UIP card whenever performing their professional duties.",
+        "2": "The agent commits to providing correct, clear, and verifiable information to clients.",
+        "3": "The agent must present transparent and previously defined price tables to clients.",
+        "4": "The agent must inform the client in advance of any relevant information necessary for completing the real estate transaction.",
+        "5": "It is strictly prohibited for the agent to accept or request bribes, illegal payments, or any illicit benefits while performing their duties.",
+        "6": "Any fraud or attempted fraud will be immediately reported to the competent authorities and may result in suspension or cancellation of the agent’s UIP indefinitely.",
+        "7": "The agent or intermediary must fully comply with the rules, regulations, and guidelines established in the Guidebook for Agents and Intermediaries on the platform.",
+        "8": "The agent or intermediary has the right to refuse service to any citizen, provided there are justifiable reasons and the refusal is not based on discrimination such as race, gender, religion, nationality, or sexual orientation.",
+        "9": "Commissions related to the sale or intermediation of properties must be previously agreed upon between the parties involved in the transaction, namely the property owner and the agent or intermediary.",
+        "10": "Any situation not covered in these terms or in the Agent and Intermediary Guidebook will be analyzed and handled according to the current legislation of the Republic of Angola."
+      }
+    },
+    "upload": {
+      "description": "Please submit your Identity Card or Passport",
+      "drop": "Click to select or drag files here",
+      "types": "JPG, PNG, PDF"
+    },
+    "guide": {
+      "title": "Please download the guidebook for agents and intermediaries",
+      "download": "Download Book"
+    },
+    "buttons": {
+      "submit": "Submit Application"
+    }
+  },
+  "dashboardAdmin": {
+    "cards": {
+      "validateProperties": "Validate Properties",
+      "propertyRequests": "Received Property Registration Requests",
+      "agents": "Agents",
+      "agentRequests": "Received Agent Registration Requests",
+      "fees": "Fees",
+      "recentPayments": "Recent Payments",
+      "validateUIP": "Validate UIP",
+      "registerProperty": "Register Property",
+      "govEmployees": "Government Employees",
+      "currentGovEmployees": "Current Government Employees"
+    },
+    "fields": {
+      "name": "Name",
+      "employeeName": "Employee Name",
+      "country": "Country",
+      "nationality": "Nationality",
+      "province": "Province",
+      "municipality": "Municipality",
+      "comuna": "Comuna",
+      "district": "District",
+      "street": "Street",
+      "employeePhoto": "Employee Photo",
+      "idNumber": "ID Number",
+      "uploadId": "Upload a copy of the ID or passport",
+      "uploadDocuments": "Upload Documents"
+    },
+    "buttons": {
+      "delete": "Delete",
+      "addEmployee": "Add New Employee"
+    },
+    "messages": {
+      "emptyFields": "Empty Fields",
+      "fillFields": "Please fill in all required fields",
+      "sent": "Sent",
+      "employeeAdded": "Employee successfully added",
+      "error": "Something went wrong",
+      "employeeNotAdded": "Employee was not added"
+    }
+  },
+  
+  "registerProperty": {
+    "title": "Register Property",
+    "government": "Government of Angola",
+    "ministry": "Ministry of Urbanization and Transport",
+    "formTitle": "Property Possession Form",
+
+    "preview": {
+      "title": "Form Preview"
+    },
+
+    "buttons": {
+      "previous": "Previous",
+      "next": "Next",
+      "submit": "Submit"
+    },
+
+    "messages": {
+      "incomplete": "Incomplete Form",
+      "sessionExpired": "Session Expired",
+      "loginAgain": "Please login again",
+      "propertyRegistered": "Property Registered",
+      "requestSent": "Your request was sent successfully"
+    },
+
+    "validation": {
+      "firstName": "First name is required",
+      "lastName": "Last name is required",
+      "country": "Country is required",
+      "state": "State / Province is required",
+      "municipality": "Municipality is required",
+      "district": "District is required",
+      "street": "Street is required",
+      "idType": "Identification type is required",
+      "idNumber": "Identification number is required",
+      "idPhoto": "Upload at least one ID photo",
+
+      "propertyCountry": "Property country is required",
+      "propertyState": "Property state is required",
+      "propertyMunicipality": "Property municipality is required",
+      "propertyDistrict": "Property district is required",
+      "propertyStreet": "Property street is required",
+      "propertyCategory": "Property category is required",
+      "propertyType": "Property type is required",
+      "propertyArea": "Total area is required",
+      "propertyLength": "Property length is required",
+      "propertyWidth": "Property width is required",
+      "propertyPhoto": "Upload at least one property photo",
+
+      "propertyDocs": "Upload property ownership documents",
+
+      "purchaseDate": "Purchase date is required",
+      "previousOwner": "Previous owner name is required",
+      "agentName": "Seller / agent name is required",
+      "previousOwnerIdType": "Previous owner identification type is required",
+      "previousOwnerId": "Previous owner ID number is required",
+
+      "projectApproval": "Project approval number is required",
+
+      "rooms": "Number of rooms is required",
+      "kitchens": "Number of kitchens is required",
+      "livingRooms": "Number of living rooms is required",
+      "bathrooms": "Number of bathrooms is required"
+    }
+  },
+  "perfilAdmin": {
+    "buttons": {
+      "enableNotifications": "Enable Notifications",
+      "logout": "Logout"
+    }
+  },
+   "documentoSingle": {
+    "messages": {
+      "noDocuments": "No documents available"
+    }
+  },
+  "documentos": {
+    "helloWorld": "Hello world"
+  },
+  "agents": {
+    "form": {
+      "government": "Government of Angola",
+      "ministry": "Ministry of Urbanization and Transport",
+      "title": "Real Estate Agent & Intermediary Registration Form"
+    },
+    "fields": {
+      "municipality": "Municipality",
+      "commune": "Commune",
+      "district": "District",
+      "street": "Street"
+    },
+    "buttons": {
+      "submit": "Submit Application"
+    },
+    "terms": {
+      "title": "Terms and Responsibilities of the Real Estate Agent or Intermediary",
+      "accept": "Accept Terms and Responsibilities"
+    },
+    "upload": {
+      "description": "Please submit your Identification Card or Passport"
+    },
+    "validation": {
+      "country": "Country is required",
+      "province": "Province is required",
+      "municipality": "Municipality is required",
+      "district": "District is required",
+      "street": "Street is required",
+      "documents": "Upload at least one identification document",
+      "terms": "You must accept the terms and responsibilities"
+    },
+    "messages": {
+      "success": "Application submitted successfully",
+      "error": "Error submitting. Check your connection."
+    }
+  }
+  },
+"accordion": {
+    "defaultTitle": "Add Employees"
+  },
+  "agentCard": {
+    "user": "User",
+    "processStatus": "Process Status",
+    "status": {
+      "enviado": "Submitted",
+      "nao_aceite": "Rejected",
+      "incompleto": "Incomplete",
+      "aceite": "Approved"
+    }
+  },
+  "ecard": {
+    "user": "User",
+    "person": "Person",
+    "bank": "Bank",
+    "debitPayment": "Debit Payment"
+  },
+   "Navbar": {
+    "menu": "Menu",
+    "home": "Home",
+    "services": "Services",
+    "about": "About us",
+    "verify": "Verify PIU/UIP",
+    "login": "Login",
+    "register": "Register"
+  },
+  
+  "Footer": {
+    "contacts": "Contacts",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Terms",
+    "dataProtection": "Data Protection Terms",
+    "about": "Learn more about us",
+    "services": "Services",
+    "piu": "PIU/UIP",
+    "taxes": "Taxes",
+    "registration": "Registration",
+    "rights": "All rights reserved."
+  }
+
+
+}
+

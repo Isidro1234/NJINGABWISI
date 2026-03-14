@@ -1,48 +1,68 @@
 "use client"
-import { Box, Button, Heading, HStack, Text, VStack } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
-import AvatarCustom from './AvatarCustom'
-import Image from 'next/image'
 import { useLogicState } from '@/states/useLogicState'
+import { Box, Button, Heading, HStack, Text, VStack } from '@chakra-ui/react';
+import React, { useEffect, useState, useTransition } from 'react'
+import AvatarCustom from './AvatarCustom';
+import Location from '../../public/icons/location-pin.svg'
+import Message from '../../public/icons/message.svg'
+import { useStreamChatContext } from '@/context/streamChatContext';
+import { createChannel } from '@/logic/createChannel';
+import { decryptdata } from '@/logic/encryptdata';
+import { useRouter } from 'next/navigation';
 
 export default function CustomGovCard() {
-    const funcionarios = useLogicState((state:any)=>state.getfuncionarios)
-    const [funcio_info, setFuncio_info] = useState<any>([]);
+    const getfuncionarios = useLogicState((state:any)=>state.getfuncionarios);
+    const [funcionarios, setFuncionarios ] = useState<any>(null);
+    const {client, pronto} = useStreamChatContext()
+    const router = useRouter()
+    const t = useTransition()
     useEffect(()=>{
-            async function res(){
-                const r = await funcionarios();
-                if(r){
-                    setFuncio_info(r || [])
-                }
-            }
-            res()
+        async function funcionarios_get(){
+            const res = await getfuncionarios()
+            setFuncionarios(res)
+        }
+        funcionarios_get()
     }, [])
+    async function createchannel(userId:string){
+        if(!pronto) return;
+        const uip = localStorage.getItem('uip');
+        const uipadmin = localStorage.getItem('uipadmin')
+        const newuip = uip || uipadmin;
+        if(!newuip) return;
+        const currentID = await decryptdata(newuip)?.id?.slice(0,5);  
+        const other = userId?.slice(0,5)
+        console.log(currentID, other)
+        const channel = await createChannel(client,currentID,other)
+        if(channel){
+           router.push('/portal/Mensagens') 
+        } 
+    }
   return (
-    <VStack width={'100%'} alignItems={'center'}>
-        {funcio_info?.map((item:any, index:any )=>{
-            return(
-
-        <HStack key={index} width={'100%'} alignItems={'center'}>
-                <AvatarCustom  name={item?.nome || 'Usuário'} image={item?.photo}/>
-                <VStack flex={1} gap={0} alignItems={'flex-start'}>
-                    <Heading fontWeight={400} lineHeight={1.2} fontSize={12}>{item?.nome}</Heading>
-                    <HStack justifyContent={'flex-start'} alignItems={'center'}>
-                    <Text lineHeight={1.2} color={'gray'} fontSize={10}>{item?.pais}</Text> 
-                    </HStack>
-                </VStack>
-                <VStack gap={0}>
-                    <Heading marginTop={3} fontWeight={300} lineHeight={1.4} fontSize={10} color={'gray'}>Contactar</Heading>
-                    <Box padding={1} display={'flex'} gap={2}>
-                        <Image alt='uip' src={'/icons/message-icon.svg'} width={15} height={15}/>
-                        <Text fontWeight={400} color={'#747474'} fontSize={10}>Menssagem</Text>
+    <VStack width={'100%'}>
+        {
+            funcionarios?.map((item:any, index:any)=>{
+                return(
+                    <Box gap={2} alignItems={'center'} justifyContent={'flex-start'} width={'100%'} display={'flex'} key={index}>
+                        <AvatarCustom image={item?.photo} name={item?.nome}/>
+                        <VStack gap={.5} flex={1} alignItems={'start'}>
+                            <Heading fontWeight={400} lineHeight={1.2} fontSize={11} 
+                            color={'#202020'}>{item?.nome}</Heading>
+                            <HStack  alignItems={'center'} gap={1} justifyContent={'start'}>
+                              <Location  width={7} height={7}/>
+                              <Text lineHeight={1} fontSize={9} color={'gray'}>{item?.pais}</Text>
+                            </HStack>
+                        </VStack>
+                        <VStack>
+                            <Button onClick={()=>{createchannel(item?.numero_do_bilhete)}} gap={0} bg={'#f7f7f7'} width={10} height={10} borderRadius={50} padding={0}>
+                               <Message  width={20} height={20}/> 
+                            </Button>
+                            
+                        </VStack>
                     </Box>
-                </VStack>
-            </HStack>
-
-            )
-            })}
+                )
+            })
+        }
+        
     </VStack>
-    
-    
   )
 }

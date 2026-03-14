@@ -5,7 +5,7 @@ import React, { useEffect } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import AvatarCustom from './AvatarCustom'
-import Message from "../../public/icons/message-1.svg"
+import Message from "../../public/icons/message.svg"
 import Notification from "../../public/icons/notification-1.svg"
 import { auth } from '@/config/firebse'
 import CustomMenu from './CustomMenu'
@@ -53,7 +53,7 @@ export default function NavBarLogged() {
             
             <HStack className='navbar-logged-user-conteiner' >
                 <Button className='navbar-logged-button notification' ><Notification fill={'#f7f7f7'} color={'blue'} width={40} height={40} /></Button>
-                <Button className='navbar-logged-button' ><Message  width={40} height={40} fill={'blue'} /></Button>
+                <Button className='navbar-logged-button' onClick={()=>{router.push('/portal/Mensagens')}}><Message  width={40} height={40} fill={'blue'} /></Button>
                 <span className='space'></span>
                 <CustomMenu menuitems={[{label:'Perfil', value:'/portal/perfil'}, 
                 ]} icon={

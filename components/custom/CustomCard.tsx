@@ -8,7 +8,7 @@ export default function CustomCard({children , icon , bg , title, description, l
     icon?:React.ReactNode, bg?:string, title?:string, description?:string, link?:string}) {
         const router = useRouter()
   return (
-    <VStack borderRadius={20} bg={'white'}  alignItems={'flex-start'} padding={8}>
+    <VStack borderRadius={20} className='card'  alignItems={'flex-start'} padding={8}>
         <HStack gap={5} width={'100%'} justifyContent={'flex-start'} alignItems={'center'}>
             <HStack flex={1} justifyContent={'flex-start'} alignItems={'center'}>
                 <Box display={'flex'} width={'55px'} height={'55px'} borderRadius={50} 

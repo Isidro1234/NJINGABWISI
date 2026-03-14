@@ -1,9 +1,9 @@
 import type { NextConfig } from "next";
 import path from "path";
-
-const nextConfig: NextConfig = {
-  /* config options here */
-    outputFileTracingRoot: path.join(__dirname)
+import createNextIntlPlugin from 'next-intl/plugin'
+const withNextIntl = createNextIntlPlugin()
+export default withNextIntl({ 
+  outputFileTracingRoot: path.join(__dirname)
   ,
   experimental: {
     optimizePackageImports: ["@chakra-ui/react"],
@@ -33,6 +33,6 @@ const nextConfig: NextConfig = {
       protocol:"https", hostname:"njinga-worker.njinga.workers.dev/**" , 
       pathname:"/**"}]
   },
-};
 
-export default nextConfig;
+
+})

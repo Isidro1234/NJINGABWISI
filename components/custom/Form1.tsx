@@ -6,6 +6,7 @@ import SelectCustomValue from './SelectCustomValue'
 import { Country, State } from 'country-state-city'
 import { angola, municipos_angola } from '@/logic/countries'
 import { store } from '@/logic/storemedia'
+import Image from 'next/image'
 
 interface Form1Props {
   getform: Function
@@ -33,6 +34,9 @@ export default function Form1({ getform }: Form1Props) {
     numero_de_identificacao: null,
     fotos_de_identificacao: [] as any[],
   })
+
+  // Local file list for preview — keeps File objects separate from uploaded URLs
+  const [previewFiles, setPreviewFiles] = useState<File[]>([])
 
   const photoref = useRef<HTMLInputElement>(null)
 
@@ -88,17 +92,32 @@ export default function Form1({ getform }: Form1Props) {
   const processfile = useCallback(async (file: File): Promise<any> => {
     const reader = new FileReader()
     reader.readAsDataURL(file)
-    const storemedia:any = await store({ image: file, name: file.name, type: file.type })
+    const storemedia: any = await store({ image: file, name: file.name, type: file.type })
     return storemedia
   }, [])
 
   const enviarDocs = useCallback(async (files: FileList | null) => {
     if (!files) return
-    const result = await Promise.all(Array.from(files).map(processfile))
-    setformulario1((prev) => ({ ...prev, fotos_de_identificacao: result }))
- 
+    const filesArray = Array.from(files)
+    setPreviewFiles(prev => [...prev, ...filesArray])
+    const result = await Promise.all(filesArray.map(processfile))
+    setformulario1((prev) => ({
+      ...prev,
+      fotos_de_identificacao: [...prev.fotos_de_identificacao, ...result]
+    }))
   }, [processfile])
- 
+
+  // ✅ Remove file by index — keeps preview and uploaded URLs in sync
+  const deleteFile = useCallback((index: number) => {
+    setPreviewFiles(prev => prev.filter((_, i) => i !== index))
+    setformulario1(prev => ({
+      ...prev,
+      fotos_de_identificacao: prev.fotos_de_identificacao.filter((_, i) => i !== index)
+    }))
+  }, [])
+
+  const isImage = (file: File) => file.type.startsWith('image/')
+
   return (
     <VStack width={'100%'}>
       <Text margin={4} fontSize={12} color={'gray'}>
@@ -133,7 +152,6 @@ export default function Form1({ getform }: Form1Props) {
               <SelectCustomValue setChange={(e: any) => setformulario1((p) => ({ ...p, utente_municipio: e[0] }))}
                 borderRadius={0} width={'100%'} items={municipios} />
             </Box>
-
             <Box display={showComunas ? 'flex' : 'none'} flexDirection={'column'} gap={1}>
               <Text fontSize={12} color={'gray'}>Comuna</Text>
               <SelectCustomValue setChange={(e: any) => setformulario1((p) => ({ ...p, utente_comuna: e[0] }))}
@@ -161,19 +179,129 @@ export default function Form1({ getform }: Form1Props) {
           <SelectCustomValue setChange={(e: any) => setformulario1((p) => ({ ...p, tipo_de_identificacao: e[0] }))}
             borderRadius={0} width={'100%'} items={IDENTIFICATION_ITEMS} />
         </Box>
-
         <InputLabel onchange={set('numero_de_identificacao')} type='text'
           placeholder='Número do documento' label='Identificação' />
-
-        <Box display={'flex'} flexDirection={'column'} gap={1}>
-          <Text fontSize={12} color={'gray'}>Passaporte/Bilhete</Text>
-          <Input multiple ref={photoref} type='file' display={'none'}
-            onChange={(e) => enviarDocs(e.target.files)} />
-          <Button onClick={() => photoref.current?.click()} size={'sm'} fontSize={12}>
-            Enviar Documentos
-          </Button>
-        </Box>
       </HStack>
+
+      {/* ── Document upload + preview ── */}
+      <VStack width={'100%'} gap={3} alignItems={'start'}>
+        <Text fontSize={12} color={'gray'}>Passaporte / Bilhete de Identidade</Text>
+
+        {/* Drop zone */}
+        <Box
+          onClick={() => photoref.current?.click()}
+          cursor={'pointer'}
+          width={'100%'}
+          borderWidth={2}
+          borderStyle={'dashed'}
+          borderColor={'gray.300'}
+          borderRadius={12}
+          padding={6}
+          display={'flex'}
+          flexDirection={'column'}
+          alignItems={'center'}
+          gap={2}
+          transition={'all 0.2s'}
+          _hover={{ borderColor: 'blue.400', bg: 'blue.50' }}
+        >
+          <Input
+            multiple
+            ref={photoref}
+            type='file'
+            display={'none'}
+            accept='image/*,.pdf'
+            onClick={(e) => { (e.target as HTMLInputElement).value = '' }}
+            onChange={(e) => enviarDocs(e.target.files)}
+          />
+          <Box position={'relative'} width={8} height={8}>
+            <Image src={'/icons/file.svg'} fill alt='upload' />
+          </Box>
+          <Text fontSize={12} color={'gray'} textAlign={'center'}>
+            Clique para seleccionar ou arraste os ficheiros aqui
+          </Text>
+          <Text fontSize={10} color={'gray.400'}>
+            Suporta: JPG, PNG, PDF
+          </Text>
+        </Box>
+
+        {/* Preview grid */}
+        {previewFiles.length > 0 && (
+          <Box
+            width={'100%'}
+            display={'grid'}
+            gridTemplateColumns={'repeat(auto-fill, minmax(120px, 1fr))'}
+            gap={3}
+          >
+            {previewFiles.map((file, index) => (
+              <VStack
+                key={index}
+                position={'relative'}
+                borderWidth={1}
+                borderRadius={10}
+                overflow={'hidden'}
+                bg={'white'}
+                boxShadow={'sm'}
+                gap={0}
+              >
+                {/* ✅ Delete button */}
+                <Box
+                  position={'absolute'}
+                  top={1}
+                  right={1}
+                  zIndex={10}
+                  bg={'red.500'}
+                  borderRadius={'full'}
+                  width={5}
+                  height={5}
+                  display={'flex'}
+                  alignItems={'center'}
+                  justifyContent={'center'}
+                  cursor={'pointer'}
+                  onClick={() => deleteFile(index)}
+                  _hover={{ bg: 'red.600' }}
+                >
+                  <Text fontSize={10} color={'white'} lineHeight={1}>✕</Text>
+                </Box>
+
+                {/* ✅ Image preview or file icon */}
+                <Box width={'100%'} height={'80px'} position={'relative'} bg={'gray.50'}>
+                  {isImage(file) ? (
+                    <Image
+                      src={URL.createObjectURL(file)}
+                      fill
+                      alt={file.name}
+                      style={{ objectFit: 'cover' }}
+                    />
+                  ) : (
+                    <Box display={'flex'} alignItems={'center'} justifyContent={'center'} height={'100%'}>
+                      <Box position={'relative'} width={8} height={10}>
+                        <Image src={'/icons/file.svg'} fill alt='file' />
+                      </Box>
+                    </Box>
+                  )}
+                </Box>
+
+                {/* File name */}
+                <Box padding={2} width={'100%'}>
+                  <Text
+                    fontSize={10}
+                    color={'gray'}
+                    overflow={'hidden'}
+                    textOverflow={'ellipsis'}
+                    whiteSpace={'nowrap'}
+                    title={file.name}
+                  >
+                    {file.name}
+                  </Text>
+                  <Text fontSize={9} color={'gray.400'}>
+                    {(file.size / 1024).toFixed(0)} KB
+                  </Text>
+                </Box>
+              </VStack>
+            ))}
+          </Box>
+        )}
+      </VStack>
     </VStack>
   )
 }
