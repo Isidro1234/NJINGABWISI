@@ -479,5 +479,101 @@
     "success": "转让申请提交成功",
     "error_submit": "提交失败，请检查您的网络连接。",
     "error_comprador_vendoro":"买方 UIP 必须与卖方 UIP 不同"
+  },
+     "dashboardAdmin": {
+    "cards": {
+      "validateProperties": "验证房产",
+      "propertyRequests": "收到的申请",
+      "agents": "代理",
+      "agentRequests": "代理申请",
+      "fees": "费用",
+      "recentPayments": "最近付款",
+      "validateUIP": "验证 UIP",
+      "registerProperty": "注册房产",
+      "govEmployees": "政府员工",
+      "currentGovEmployees": "现任政府员工"
+    },
+    "fields": {
+      "name": "姓名",
+      "employeeName": "员工姓名",
+      "country": "国家",
+      "nationality": "国籍",
+      "province": "省份",
+      "municipality": "市",
+      "comuna": "区",
+      "district": "区",
+      "street": "街道",
+      "employeePhoto": "员工照片",
+      "idNumber": "身份证号码",
+      "uploadId": "上传身份证或护照副本",
+      "uploadDocuments": "上传文件"
+    },
+    "buttons": {
+      "delete": "删除",
+      "addEmployee": "添加员工"
+    },
+    "messages": {
+      "emptyFields": "空字段",
+      "fillFields": "请填写所有必填字段",
+      "sent": "已发送",
+      "employeeAdded": "员工添加成功",
+      "error": "出现错误",
+      "employeeNotAdded": "员工无法添加"
+    }
+  },
+  "registerProperty": {
+    "title": "注册房产",
+    "government": "安哥拉政府",
+    "ministry": "城市化与交通部",
+    "formTitle": "房产所有权表格",
+    "preview": {
+      "title": "预览"
+    },
+    "buttons": {
+      "previous": "上一步",
+      "next": "下一步",
+      "submit": "提交"
+    },
+    "messages": {
+      "incomplete": "表格不完整",
+      "sessionExpired": "会话已过期",
+      "loginAgain": "请重新登录",
+      "propertyRegistered": "房产已注册",
+      "requestSent": "您的申请已成功提交"
+    },
+    "validation": {
+      "firstName": "名字为必填项",
+      "lastName": "姓氏为必填项",
+      "country": "国家为必填项",
+      "state": "州/省为必填项",
+      "municipality": "市为必填项",
+      "district": "区为必填项",
+      "street": "街道为必填项",
+      "idType": "证件类型为必填项",
+      "idNumber": "证件号码为必填项",
+      "idPhoto": "请至少上传一张证件照片",
+      "propertyCountry": "房产所在国为必填项",
+      "propertyState": "房产所在州为必填项",
+      "propertyMunicipality": "房产所在市为必填项",
+      "propertyDistrict": "房产所在区为必填项",
+      "propertyStreet": "房产所在街道为必填项",
+      "propertyCategory": "房产类别为必填项",
+      "propertyType": "房产类型为必填项",
+      "propertyArea": "总面积为必填项",
+      "propertyLength": "长度为必填项",
+      "propertyWidth": "宽度为必填项",
+      "propertyPhoto": "请至少上传一张房产照片",
+      "propertyDocs": "请上传房产所有权文件",
+      "purchaseDate": "购买日期为必填项",
+      "previousOwner": "前任业主姓名为必填项",
+      "agentName": "卖方/代理人姓名为必填项",
+      "previousOwnerIdType": "前任业主证件类型为必填项",
+      "previousOwnerId": "前任业主证件号码为必填项",
+      "projectApproval": "项目批准编号为必填项",
+      "rooms": "房间数为必填项",
+      "kitchens": "厨房数为必填项",
+      "livingRooms": "客厅数为必填项",
+      "bathrooms": "卫生间数为必填项"
+    }
   }
 }

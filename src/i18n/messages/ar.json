@@ -479,5 +479,101 @@
     "success": "تم إرسال طلب النقل بنجاح",
     "error_submit": "فشل الإرسال. يرجى التحقق من اتصالك.",
     "error_comprador_vendoro":"يجب أن يكون UIP المشتري مختلفاً عن UIP البائع"
+  },
+    "dashboardAdmin": {
+    "cards": {
+      "validateProperties": "التحقق من العقارات",
+      "propertyRequests": "الطلبات المستلمة",
+      "agents": "الوكلاء",
+      "agentRequests": "طلبات الوكلاء",
+      "fees": "الرسوم",
+      "recentPayments": "المدفوعات الأخيرة",
+      "validateUIP": "التحقق من UIP",
+      "registerProperty": "تسجيل عقار",
+      "govEmployees": "موظفو الحكومة",
+      "currentGovEmployees": "موظفو الحكومة الحاليون"
+    },
+    "fields": {
+      "name": "الاسم",
+      "employeeName": "اسم الموظف",
+      "country": "البلد",
+      "nationality": "الجنسية",
+      "province": "المقاطعة",
+      "municipality": "البلدية",
+      "comuna": "المقاطعة الصغيرة",
+      "district": "المنطقة",
+      "street": "الشارع",
+      "employeePhoto": "صورة الموظف",
+      "idNumber": "رقم الهوية",
+      "uploadId": "ارفع نسخة من الهوية أو جواز السفر",
+      "uploadDocuments": "رفع المستندات"
+    },
+    "buttons": {
+      "delete": "حذف",
+      "addEmployee": "إضافة موظف"
+    },
+    "messages": {
+      "emptyFields": "حقول فارغة",
+      "fillFields": "يرجى ملء جميع الحقول المطلوبة",
+      "sent": "تم الإرسال",
+      "employeeAdded": "تمت إضافة الموظف بنجاح",
+      "error": "حدث خطأ ما",
+      "employeeNotAdded": "تعذر إضافة الموظف"
+    }
+  },
+  "registerProperty": {
+    "title": "تسجيل عقار",
+    "government": "حكومة أنغولا",
+    "ministry": "وزارة التعمير والنقل",
+    "formTitle": "نموذج ملكية العقار",
+    "preview": {
+      "title": "معاينة"
+    },
+    "buttons": {
+      "previous": "السابق",
+      "next": "التالي",
+      "submit": "إرسال"
+    },
+    "messages": {
+      "incomplete": "النموذج غير مكتمل",
+      "sessionExpired": "انتهت الجلسة",
+      "loginAgain": "يرجى تسجيل الدخول مجدداً",
+      "propertyRegistered": "تم تسجيل العقار",
+      "requestSent": "تم إرسال طلبك بنجاح"
+    },
+    "validation": {
+      "firstName": "الاسم الأول مطلوب",
+      "lastName": "اسم العائلة مطلوب",
+      "country": "البلد مطلوب",
+      "state": "الولاية / المقاطعة مطلوبة",
+      "municipality": "البلدية مطلوبة",
+      "district": "المنطقة مطلوبة",
+      "street": "الشارع مطلوب",
+      "idType": "نوع الهوية مطلوب",
+      "idNumber": "رقم الهوية مطلوب",
+      "idPhoto": "يرجى رفع صورة هوية واحدة على الأقل",
+      "propertyCountry": "بلد العقار مطلوب",
+      "propertyState": "ولاية العقار مطلوبة",
+      "propertyMunicipality": "بلدية العقار مطلوبة",
+      "propertyDistrict": "منطقة العقار مطلوبة",
+      "propertyStreet": "شارع العقار مطلوب",
+      "propertyCategory": "فئة العقار مطلوبة",
+      "propertyType": "نوع العقار مطلوب",
+      "propertyArea": "المساحة الإجمالية مطلوبة",
+      "propertyLength": "الطول مطلوب",
+      "propertyWidth": "العرض مطلوب",
+      "propertyPhoto": "يرجى رفع صورة عقار واحدة على الأقل",
+      "propertyDocs": "يرجى رفع وثائق ملكية العقار",
+      "purchaseDate": "تاريخ الشراء مطلوب",
+      "previousOwner": "اسم المالك السابق مطلوب",
+      "agentName": "اسم البائع / الوكيل مطلوب",
+      "previousOwnerIdType": "نوع هوية المالك السابق مطلوب",
+      "previousOwnerId": "رقم هوية المالك السابق مطلوب",
+      "projectApproval": "رقم الموافقة على المشروع مطلوب",
+      "rooms": "عدد الغرف مطلوب",
+      "kitchens": "عدد المطابخ مطلوب",
+      "livingRooms": "عدد غرف المعيشة مطلوب",
+      "bathrooms": "عدد الحمامات مطلوب"
+    }
   }
 }

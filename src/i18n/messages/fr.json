@@ -479,5 +479,101 @@
     "success": "Demande de transfert soumise avec succès",
     "error_submit": "Échec de la soumission. Vérifiez votre connexion.",
     "error_comprador_vendoro":"L'UIP de l'acheteur doit être différent de l'UIP du vendeur"
+  },
+  "dashboardAdmin": {
+    "cards": {
+      "validateProperties": "Valider les biens",
+      "propertyRequests": "Demandes reçues",
+      "agents": "Agents",
+      "agentRequests": "Demandes d'agents",
+      "fees": "Émoluments",
+      "recentPayments": "Paiements récents",
+      "validateUIP": "Valider UIP",
+      "registerProperty": "Enregistrer un bien",
+      "govEmployees": "Employés Gov",
+      "currentGovEmployees": "Employés Gov actuels"
+    },
+    "fields": {
+      "name": "Nom",
+      "employeeName": "Nom de l'employé",
+      "country": "Pays",
+      "nationality": "Nationalité",
+      "province": "Province",
+      "municipality": "Municipalité",
+      "comuna": "Commune",
+      "district": "District",
+      "street": "Rue",
+      "employeePhoto": "Photo de l'employé",
+      "idNumber": "Numéro de pièce d'identité",
+      "uploadId": "Téléversez une copie de la pièce d'identité ou du passeport",
+      "uploadDocuments": "Téléverser des documents"
+    },
+    "buttons": {
+      "delete": "Supprimer",
+      "addEmployee": "Ajouter un employé"
+    },
+    "messages": {
+      "emptyFields": "Champs vides",
+      "fillFields": "Veuillez remplir tous les champs obligatoires",
+      "sent": "Envoyé",
+      "employeeAdded": "Employé ajouté avec succès",
+      "error": "Une erreur s'est produite",
+      "employeeNotAdded": "L'employé n'a pas pu être ajouté"
+    }
+  },
+  "registerProperty": {
+    "title": "Enregistrer un bien",
+    "government": "Gouvernement d'Angola",
+    "ministry": "Ministère de l'Urbanisme et des Transports",
+    "formTitle": "Formulaire de propriété immobilière",
+    "preview": {
+      "title": "Aperçu"
+    },
+    "buttons": {
+      "previous": "Précédent",
+      "next": "Suivant",
+      "submit": "Soumettre"
+    },
+    "messages": {
+      "incomplete": "Formulaire incomplet",
+      "sessionExpired": "Session expirée",
+      "loginAgain": "Veuillez vous reconnecter",
+      "propertyRegistered": "Bien enregistré",
+      "requestSent": "Votre demande a été envoyée avec succès"
+    },
+    "validation": {
+      "firstName": "Le prénom est obligatoire",
+      "lastName": "Le nom de famille est obligatoire",
+      "country": "Le pays est obligatoire",
+      "state": "L'état / la province est obligatoire",
+      "municipality": "La municipalité est obligatoire",
+      "district": "Le district est obligatoire",
+      "street": "La rue est obligatoire",
+      "idType": "Le type de pièce d'identité est obligatoire",
+      "idNumber": "Le numéro de pièce d'identité est obligatoire",
+      "idPhoto": "Veuillez téléverser au moins une photo de pièce d'identité",
+      "propertyCountry": "Le pays du bien est obligatoire",
+      "propertyState": "L'état du bien est obligatoire",
+      "propertyMunicipality": "La municipalité du bien est obligatoire",
+      "propertyDistrict": "Le district du bien est obligatoire",
+      "propertyStreet": "La rue du bien est obligatoire",
+      "propertyCategory": "La catégorie du bien est obligatoire",
+      "propertyType": "Le type de bien est obligatoire",
+      "propertyArea": "La superficie totale est obligatoire",
+      "propertyLength": "La longueur est obligatoire",
+      "propertyWidth": "La largeur est obligatoire",
+      "propertyPhoto": "Veuillez téléverser au moins une photo du bien",
+      "propertyDocs": "Veuillez téléverser les documents de propriété",
+      "purchaseDate": "La date d'achat est obligatoire",
+      "previousOwner": "Le nom du propriétaire précédent est obligatoire",
+      "agentName": "Le nom du vendeur / agent est obligatoire",
+      "previousOwnerIdType": "Le type de pièce d'identité du propriétaire précédent est obligatoire",
+      "previousOwnerId": "Le numéro de pièce d'identité du propriétaire précédent est obligatoire",
+      "projectApproval": "Le numéro d'approbation du projet est obligatoire",
+      "rooms": "Le nombre de chambres est obligatoire",
+      "kitchens": "Le nombre de cuisines est obligatoire",
+      "livingRooms": "Le nombre de salons est obligatoire",
+      "bathrooms": "Le nombre de salles de bain est obligatoire"
+    }
   }
 }

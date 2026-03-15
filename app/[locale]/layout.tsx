@@ -33,7 +33,26 @@ const inter = Inter({
 
 export const metadata2: Metadata = {
   title: "Njinga | Pagina Inicial",
-  description: "Plataforma digital de regulamentacao de imoveis em Angola",
+  description: `Plataforma digital de regulamentação de imóveis em Angola:
+registe o seu imóvel, crie o seu UIP/PIU, pague os seus impostos 
+e conecte-se à inovação tecnológica do país`,
+  keywords:["imoveis", "angola", "registo","impostos","UIP"],
+  openGraph:
+    {
+      images:['https://njinga-worker.njinga.workers.dev/photo.png'] , 
+      description:`Plataforma digital de regulamentação de imóveis em Angola:
+registe o seu imóvel, crie o seu UIP/PIU, pague os seus impostos 
+e conecte-se à inovação tecnológica do país`,
+      title:'NJINGA – Portal Imobiliário de Angola',  
+  },
+  twitter:{
+    images:['https://njinga-worker.njinga.workers.dev/photo.png'],
+    description:`Plataforma digital de regulamentação de imóveis em Angola:
+registe o seu imóvel, crie o seu UIP/PIU, pague os seus impostos 
+e conecte-se à inovação tecnológica do país`,
+    title:'NJINGA – Portal Imobiliário de Angola'
+  },
+  
 };
 export const metadata: Metadata = {
   manifest: '/manifest.json',
@@ -44,11 +63,11 @@ export const metadata: Metadata = {
   },
   icons: {
     apple: [
-      { url: '/icons/apple-touch-icon.png', sizes: '180x180' },
+      { url: 'https://njinga-worker.njinga.workers.dev/icon-180.png', sizes: '180x180' },
     ],
     icon: [
-      { url: '/icons/icon-192x192.png', sizes: '192x192' },
-      { url: '/icons/icon-512x512.png', sizes: '512x512' },
+      { url: 'https://njinga-worker.njinga.workers.dev/angola-flag-png.png', sizes: '192x192' },
+      { url: 'https://njinga-worker.njinga.workers.dev/angola-flag-png.png', sizes: '512x512' },
     ],
   },
 }

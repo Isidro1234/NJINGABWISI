@@ -641,8 +641,103 @@
     "success": "Transfer request submitted successfully",
     "error_submit": "Submission failed. Please check your connection.",
     "error_comprador_vendoro":"Buyer UIP must be different from the seller UIP"
+  },
+  "dashboardAdmin": {
+    "cards": {
+      "validateProperties": "Validate Properties",
+      "propertyRequests": "Received Requests",
+      "agents": "Agents",
+      "agentRequests": "Agent Requests",
+      "fees": "Fees",
+      "recentPayments": "Recent Payments",
+      "validateUIP": "Validate UIP",
+      "registerProperty": "Register Property",
+      "govEmployees": "Gov Employees",
+      "currentGovEmployees": "Current Gov Employees"
+    },
+    "fields": {
+      "name": "Name",
+      "employeeName": "Employee Name",
+      "country": "Country",
+      "nationality": "Nationality",
+      "province": "Province",
+      "municipality": "Municipality",
+      "comuna": "Comuna",
+      "district": "District",
+      "street": "Street",
+      "employeePhoto": "Employee Photo",
+      "idNumber": "ID Number",
+      "uploadId": "Upload a copy of ID or passport",
+      "uploadDocuments": "Upload Documents"
+    },
+    "buttons": {
+      "delete": "Delete",
+      "addEmployee": "Add Employee"
+    },
+    "messages": {
+      "emptyFields": "Empty Fields",
+      "fillFields": "Please fill in all required fields",
+      "sent": "Sent",
+      "employeeAdded": "Employee added successfully",
+      "error": "Something went wrong",
+      "employeeNotAdded": "Employee could not be added"
+    }
+  },
+  "registerProperty": {
+    "title": "Register Property",
+    "government": "Government of Angola",
+    "ministry": "Ministry of Urbanisation and Transport",
+    "formTitle": "Property Ownership Form",
+    "preview": {
+      "title": "Preview"
+    },
+    "buttons": {
+      "previous": "Previous",
+      "next": "Next",
+      "submit": "Submit"
+    },
+    "messages": {
+      "incomplete": "Incomplete Form",
+      "sessionExpired": "Session Expired",
+      "loginAgain": "Please log in again",
+      "propertyRegistered": "Property Registered",
+      "requestSent": "Your request was sent successfully"
+    },
+    "validation": {
+      "firstName": "First name is required",
+      "lastName": "Last name is required",
+      "country": "Country is required",
+      "state": "State / Province is required",
+      "municipality": "Municipality is required",
+      "district": "District is required",
+      "street": "Street is required",
+      "idType": "ID type is required",
+      "idNumber": "ID number is required",
+      "idPhoto": "Please upload at least one ID photo",
+      "propertyCountry": "Property country is required",
+      "propertyState": "Property state is required",
+      "propertyMunicipality": "Property municipality is required",
+      "propertyDistrict": "Property district is required",
+      "propertyStreet": "Property street is required",
+      "propertyCategory": "Property category is required",
+      "propertyType": "Property type is required",
+      "propertyArea": "Total area is required",
+      "propertyLength": "Length is required",
+      "propertyWidth": "Width is required",
+      "propertyPhoto": "Please upload at least one property photo",
+      "propertyDocs": "Please upload the property ownership documents",
+      "purchaseDate": "Purchase date is required",
+      "previousOwner": "Previous owner name is required",
+      "agentName": "Seller / agent name is required",
+      "previousOwnerIdType": "Previous owner ID type is required",
+      "previousOwnerId": "Previous owner ID number is required",
+      "projectApproval": "Project approval number is required",
+      "rooms": "Number of rooms is required",
+      "kitchens": "Number of kitchens is required",
+      "livingRooms": "Number of living rooms is required",
+      "bathrooms": "Number of bathrooms is required"
+    }
   }
-
 
 }
 

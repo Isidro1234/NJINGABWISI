@@ -479,5 +479,101 @@
     "success": "Ìbéèrè gbígbé ti firanṣẹ pẹlu àṣeyọrí",
     "error_submit": "Kò ṣiṣẹ. Ṣayẹwo asopọ rẹ.",
     "error_comprador_vendoro":"UIP olùránu gbọdọ yatọ si UIP olùtajà"
+  },
+  "dashboardAdmin": {
+    "cards": {
+      "validateProperties": "Jẹrisi Ohun-ini",
+      "propertyRequests": "Awọn Ìbéèrè Tí a Gbà",
+      "agents": "Awọn Aṣojú",
+      "agentRequests": "Awọn Ìbéèrè Aṣojú",
+      "fees": "Owó Ìsanwó",
+      "recentPayments": "Awọn Isanwo Aipẹ",
+      "validateUIP": "Jẹrisi UIP",
+      "registerProperty": "Forukọsilẹ Ohun-ini",
+      "govEmployees": "Awọn Oṣiṣẹ Ijọba",
+      "currentGovEmployees": "Awọn Oṣiṣẹ Ijọba Lọwọlọwọ"
+    },
+    "fields": {
+      "name": "Orukọ",
+      "employeeName": "Orukọ Oṣiṣẹ",
+      "country": "Orílẹ̀-èdè",
+      "nationality": "Ìbílẹ̀",
+      "province": "Ìpínlẹ̀",
+      "municipality": "Ìjọba Ìlú",
+      "comuna": "Àdúgbò",
+      "district": "Àgbègbè",
+      "street": "Òpópónà",
+      "employeePhoto": "Fọto Oṣiṣẹ",
+      "idNumber": "Nọmba ID",
+      "uploadId": "Gbe ẹ̀dà ID tabi pasipoti soke",
+      "uploadDocuments": "Gbe Àwọn Ìwé soke"
+    },
+    "buttons": {
+      "delete": "Parẹ",
+      "addEmployee": "Fi Oṣiṣẹ kun"
+    },
+    "messages": {
+      "emptyFields": "Àwọn Aaye Òfo",
+      "fillFields": "Jọwọ kun gbogbo aaye tí a nílò",
+      "sent": "Ti firanṣẹ",
+      "employeeAdded": "Oṣiṣẹ ti fi kun pẹlu àṣeyọrí",
+      "error": "Nkan kan ṣẹlẹ",
+      "employeeNotAdded": "Oṣiṣẹ ko le fi kun"
+    }
+  },
+  "registerProperty": {
+    "title": "Forukọsilẹ Ohun-ini",
+    "government": "Ìjọba Angola",
+    "ministry": "Ìjọba Ìlú àti Ìrìnàjò",
+    "formTitle": "Fọọmu Ohun-ini",
+    "preview": {
+      "title": "Àwòṣe"
+    },
+    "buttons": {
+      "previous": "Ìṣaájú",
+      "next": "Tókàn",
+      "submit": "Fi sílẹ̀"
+    },
+    "messages": {
+      "incomplete": "Fọọmu Aipe",
+      "sessionExpired": "Àkókò Ìpàdé Ti Parí",
+      "loginAgain": "Jọwọ wọlé lẹẹkansí",
+      "propertyRegistered": "Ohun-ini Ti Forukọsilẹ",
+      "requestSent": "Ìbéèrè rẹ ti firanṣẹ pẹlu àṣeyọrí"
+    },
+    "validation": {
+      "firstName": "Orukọ àkọ́kọ́ nilo",
+      "lastName": "Orukọ ìdílé nilo",
+      "country": "Orílẹ̀-èdè nilo",
+      "state": "Ìpínlẹ̀ nilo",
+      "municipality": "Ìjọba Ìlú nilo",
+      "district": "Àgbègbè nilo",
+      "street": "Òpópónà nilo",
+      "idType": "Iru ID nilo",
+      "idNumber": "Nọmba ID nilo",
+      "idPhoto": "Jọwọ gbe o kere ju fọto ID kan soke",
+      "propertyCountry": "Orílẹ̀-èdè ohun-ini nilo",
+      "propertyState": "Ìpínlẹ̀ ohun-ini nilo",
+      "propertyMunicipality": "Ìjọba Ìlú ohun-ini nilo",
+      "propertyDistrict": "Àgbègbè ohun-ini nilo",
+      "propertyStreet": "Òpópónà ohun-ini nilo",
+      "propertyCategory": "Ẹ̀ka ohun-ini nilo",
+      "propertyType": "Iru ohun-ini nilo",
+      "propertyArea": "Agbegbe lapapọ nilo",
+      "propertyLength": "Gígùn nilo",
+      "propertyWidth": "Ìgbòkè nilo",
+      "propertyPhoto": "Jọwọ gbe o kere ju fọto ohun-ini kan soke",
+      "propertyDocs": "Jọwọ gbe àwọn ìwé ohun-ini soke",
+      "purchaseDate": "Ọjọ́ rírà nilo",
+      "previousOwner": "Orukọ onílé tẹ́lẹ̀ nilo",
+      "agentName": "Orukọ olùtajà / aṣojú nilo",
+      "previousOwnerIdType": "Iru ID onílé tẹ́lẹ̀ nilo",
+      "previousOwnerId": "Nọmba ID onílé tẹ́lẹ̀ nilo",
+      "projectApproval": "Nọmba ìfọwọ́sí iṣẹ́ nilo",
+      "rooms": "Nọmba yàrá nilo",
+      "kitchens": "Nọmba ilé ìdáná nilo",
+      "livingRooms": "Nọmba yàrá ìjókòó nilo",
+      "bathrooms": "Nọmba yàrá ìwẹ̀ nilo"
+    }
   }
 }

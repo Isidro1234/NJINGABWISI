@@ -480,5 +480,101 @@
     "success": "Yêu cầu chuyển nhượng đã được gửi thành công",
     "error_submit": "Gửi thất bại. Vui lòng kiểm tra kết nối của bạn.",
     "error_comprador_vendoro":"UIP người mua phải khác UIP người bán"
+  },
+  "dashboardAdmin": {
+    "cards": {
+      "validateProperties": "Xác minh bất động sản",
+      "propertyRequests": "Yêu cầu nhận được",
+      "agents": "Đại lý",
+      "agentRequests": "Yêu cầu đại lý",
+      "fees": "Phí",
+      "recentPayments": "Thanh toán gần đây",
+      "validateUIP": "Xác minh UIP",
+      "registerProperty": "Đăng ký bất động sản",
+      "govEmployees": "Nhân viên chính phủ",
+      "currentGovEmployees": "Nhân viên chính phủ hiện tại"
+    },
+    "fields": {
+      "name": "Tên",
+      "employeeName": "Tên nhân viên",
+      "country": "Quốc gia",
+      "nationality": "Quốc tịch",
+      "province": "Tỉnh",
+      "municipality": "Thành phố",
+      "comuna": "Xã",
+      "district": "Quận",
+      "street": "Đường",
+      "employeePhoto": "Ảnh nhân viên",
+      "idNumber": "Số CMND",
+      "uploadId": "Tải lên bản sao CMND hoặc hộ chiếu",
+      "uploadDocuments": "Tải lên tài liệu"
+    },
+    "buttons": {
+      "delete": "Xóa",
+      "addEmployee": "Thêm nhân viên"
+    },
+    "messages": {
+      "emptyFields": "Trường trống",
+      "fillFields": "Vui lòng điền vào tất cả các trường bắt buộc",
+      "sent": "Đã gửi",
+      "employeeAdded": "Nhân viên đã được thêm thành công",
+      "error": "Đã xảy ra lỗi",
+      "employeeNotAdded": "Không thể thêm nhân viên"
+    }
+  },
+  "registerProperty": {
+    "title": "Đăng ký bất động sản",
+    "government": "Chính phủ Angola",
+    "ministry": "Bộ Đô thị hóa và Giao thông",
+    "formTitle": "Mẫu sở hữu bất động sản",
+    "preview": {
+      "title": "Xem trước"
+    },
+    "buttons": {
+      "previous": "Trước",
+      "next": "Tiếp theo",
+      "submit": "Gửi"
+    },
+    "messages": {
+      "incomplete": "Biểu mẫu chưa hoàn chỉnh",
+      "sessionExpired": "Phiên đã hết hạn",
+      "loginAgain": "Vui lòng đăng nhập lại",
+      "propertyRegistered": "Bất động sản đã đăng ký",
+      "requestSent": "Yêu cầu của bạn đã được gửi thành công"
+    },
+    "validation": {
+      "firstName": "Tên là bắt buộc",
+      "lastName": "Họ là bắt buộc",
+      "country": "Quốc gia là bắt buộc",
+      "state": "Tỉnh/Thành phố là bắt buộc",
+      "municipality": "Thành phố là bắt buộc",
+      "district": "Quận là bắt buộc",
+      "street": "Đường là bắt buộc",
+      "idType": "Loại giấy tờ là bắt buộc",
+      "idNumber": "Số giấy tờ là bắt buộc",
+      "idPhoto": "Vui lòng tải lên ít nhất một ảnh giấy tờ",
+      "propertyCountry": "Quốc gia bất động sản là bắt buộc",
+      "propertyState": "Tỉnh bất động sản là bắt buộc",
+      "propertyMunicipality": "Thành phố bất động sản là bắt buộc",
+      "propertyDistrict": "Quận bất động sản là bắt buộc",
+      "propertyStreet": "Đường bất động sản là bắt buộc",
+      "propertyCategory": "Danh mục bất động sản là bắt buộc",
+      "propertyType": "Loại bất động sản là bắt buộc",
+      "propertyArea": "Tổng diện tích là bắt buộc",
+      "propertyLength": "Chiều dài là bắt buộc",
+      "propertyWidth": "Chiều rộng là bắt buộc",
+      "propertyPhoto": "Vui lòng tải lên ít nhất một ảnh bất động sản",
+      "propertyDocs": "Vui lòng tải lên tài liệu sở hữu bất động sản",
+      "purchaseDate": "Ngày mua là bắt buộc",
+      "previousOwner": "Tên chủ sở hữu trước là bắt buộc",
+      "agentName": "Tên người bán / đại lý là bắt buộc",
+      "previousOwnerIdType": "Loại giấy tờ của chủ sở hữu trước là bắt buộc",
+      "previousOwnerId": "Số giấy tờ của chủ sở hữu trước là bắt buộc",
+      "projectApproval": "Số phê duyệt dự án là bắt buộc",
+      "rooms": "Số phòng là bắt buộc",
+      "kitchens": "Số nhà bếp là bắt buộc",
+      "livingRooms": "Số phòng khách là bắt buộc",
+      "bathrooms": "Số phòng tắm là bắt buộc"
+    }
   }
 }

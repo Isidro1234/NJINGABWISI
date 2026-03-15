@@ -144,14 +144,15 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
                         Activar Notificações no iPhone
                     </Text>
                     <Text fontSize={12} color='whiteAlpha.800'>
-                        1. Toque em <strong>Partilhar</strong> (ícone de seta para cima)
+                        1. Clique no botao com tres pontinhos no canto inferior ridreito da sua tela
                     </Text>
                     <Text fontSize={12} color='whiteAlpha.800'>
-                        2. Toque em <strong>Adicionar ao ecrã principal</strong>
+                        2. Selecione a opcao partilhar (share)
                     </Text>
                     <Text fontSize={12} color='whiteAlpha.800'>
-                        3. Abra a app pelo ecrã principal e toque em <strong>Activar Notificações</strong>
+                        3. No menu que aparecer faca um scroll e selecione a opcao adicionar ao ecra inicial(add to home)
                     </Text>
+                    <Text>4.Apos adicionar abra o app, faca login e active as notificacoes</Text>
                     <Button
                         fontSize={11}
                         size='xs'
