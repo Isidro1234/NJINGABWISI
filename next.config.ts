@@ -7,6 +7,7 @@ export default withNextIntl({
   ,
   experimental: {
     optimizePackageImports: ["@chakra-ui/react"],
+    serverComponentsExternalPackages: ['firebase-admin'],
   }, webpack: (config) => {
     // Find the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule:any) =>

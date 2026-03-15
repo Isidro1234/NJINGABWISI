@@ -9,7 +9,7 @@ export default function PortalLayout({
 }>) {
  
   return (
-    <VStack className='portal' width={'100%'} bg={'#f6f6f6'} height={'100%'}>
+    <VStack className='portal' width={'100%'}  >
       {children}
     </VStack>
   )

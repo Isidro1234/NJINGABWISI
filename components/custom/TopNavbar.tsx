@@ -18,7 +18,7 @@ export default function TopNavbar() {
     <HStack width={'100%'} alignItems={'center'} justifyContent={'space-between'} 
     background={'#f6f6f6'} padding={'4px 30px'}>
         <Box>
-          <Text color={'gray'} fontSize={10}>Bwisi Corporation</Text>
+          <Text color={'gray'} fontSize={10}>inta inc</Text>
         </Box>
         <Box>
             <SelectCustom onchange={(e:any)=>{change(e)}} items={[{name:'pt', avatar:"/icons/portugal.svg" , id:'pt'}, 

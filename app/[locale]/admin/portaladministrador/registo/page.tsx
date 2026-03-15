@@ -143,7 +143,9 @@ export default function Registar() {
             }
 
             const uip: string = localStorage.getItem('uip') || ''
-            const decrypt = decryptdata(uip)?.id
+            const uipadmin: string = localStorage.getItem('uipadmin') || ''
+            const check = uip || uipadmin
+            const decrypt = decryptdata(check)?.id
 
             if (!decrypt) {
                 toaster.create({

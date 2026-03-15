@@ -1,20 +1,26 @@
 export async function createChannel(
-  client: any,
-  currentId: string,
-  otheruserID: string
+    client: any,
+    currentId: string,
+    otherUserId: string
 ) {
+    if (!client?.userID) throw new Error('Stream client not connected')
 
-  if (!client?.userID) {
+    const res = await fetch('/api/stream-channel', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ currentUserId: currentId, otherUserId })
+    })
 
-    throw new Error("Stream client not connected")
-    
-  }
+    if (!res.ok) {
+        const err = await res.json()
+        throw new Error(err.error || 'Failed to create channel')
+    }
 
-  const channel = client.channel("messaging", {
-    members: [currentId, otheruserID],
-  })
+    const { channelId, channelType } = await res.json()
 
-  await channel.create()
+    // Client only watches — server already created it
+    const channel = client.channel(channelType, channelId)
+    await channel.watch()
 
-  return { channel }
+    return { channel }
 }

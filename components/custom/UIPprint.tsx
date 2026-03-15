@@ -30,7 +30,11 @@ export default function UIPprint({ref}:{ref:any}) {
         </VStack>
         <HStack className='uipstyle' borderStyle={'dashed'} borderWidth={1.5} alignItems={'flex-start'} gap={5} padding={4} borderRadius={10} bg={'#ffffff'}>
             <Box className='uipstyle' padding={2} borderRadius={10} position={'relative'} width={150} height={150}>
-              <Image  fill style={{objectFit:"cover",borderRadius:10, height:'100%', width:'100%'}} src={decrypt?.photo}  alt='imge'/>  
+                {decrypt?.photo &&
+                    <Image  fill style={{objectFit:"cover",borderRadius:10, height:'100%', width:'100%'}} src={decrypt?.photo}  alt='imge'/>  
+                
+                }
+              
             </Box>
             <Box className='uipstyle' flex={1}>
                 <HStack className='uipstyle'  gap={1} width={'100%'} alignItems={'center'} justifyContent={'end'}>

@@ -1,6 +1,8 @@
 import { auth, authsecond, db } from "@/config/firebse";
 import { decryptdata, encryptdata } from "@/logic/encryptdata";
+import { notify_user_group } from "@/logic/notifying";
 import { registeruserstripe } from "@/logic/registeruserStripe";
+import { notification_send } from "@/logic/sendNotifications";
 import { streamchat_client_frontend } from "@/logic/streamchatregistering";
 import { Filter } from "firebase-admin/firestore";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
@@ -23,8 +25,8 @@ export const useLogicState = create((set, get)=>({
         }   
     }, registerhouse:async(form1:any , form2:any , id:any)=>{
         try {
-            const docref = collection(db, "Registos");
-            await addDoc(docref, {
+            const docref = doc(collection(db, "Registos"));
+            await setDoc(docref, {
                 id,
                 ref:docref.id,
                 formulario_dono:form1,
@@ -185,16 +187,16 @@ getpedidosderegisto_de_agentes: async () => {
                 })
                 const dorefR = id[0]
             if(status === 'aprovado' && type === "Registos"){
-                const docrefc = collection(db, "MeuUIP", userId , "Propriedades");
-                const r = await addDoc(docrefc,{
-                    id:userId,
+                const docrefc = doc(db, "MeuUIP", userId , "Propriedades", ref_do_documento);
+                await setDoc(docrefc,{
+                    id:ref_do_documento,
                     ...casainfo,
                     added_at:new Date(),
                     estado:'aprovado'
                 }) 
                 await updateDoc(dorefR, {
                     estado:"aprovado",
-                    ultima_propriedade_enviada:r.id,
+                    ultima_propriedade_enviada:docrefc.id,
                 })
                 return {res:"aprovado", message:true}
             }else if(status === 'aprovado' && type === "Registos_Agentes"){
@@ -219,59 +221,50 @@ getpedidosderegisto_de_agentes: async () => {
             return {res:false, messaging:false}
         }
     },
-    vender_imovel:async(current_dono_uip:string, intermediario_uip:string, temIntermediario:boolean,
+    vender_imovel:async(current_dono_uip:string, intermediario_uip:string,
          comprador_uip:string, preco:string, percentagem_dono:string,
          percentagem_intermediario:string, propriedade_id:string)=>{
             try {
-                const docreftransacao_de_imovel = doc(db, "Transacao_de_Imoveis", propriedade_id);
-                 const intermediario = intermediario_uip || null;
-                 const percentagem_int = percentagem_intermediario || 0
-                 const docref_pedido_de_venda = doc(db, "Pedido_de_Venda", propriedade_id);
-                 const resd = await getDoc(docref_pedido_de_venda);
-                 if(!resd.exists()) {
-                    const titulo ="pedido de venda do imovel" + propriedade_id
-                    await setDoc(docref_pedido_de_venda,{
-                        title:titulo,
-                        dono_do_imove:current_dono_uip,
-                        intermediario,
-                        comprador:comprador_uip,
-                        preco,
-                        percentagem_do_dono: percentagem_dono,
-                        percentagem_do_intermediario:percentagem_intermediario,
-                        pedido_efetuado_na_data:new Date(),
-                        _comprador_concorda:null,
-                        _vendedor_concorda:true,
-                    })
-                    return
-                 }
-                 if(!resd.data()?._comprador_concorda || !resd.data()?.vendedor_concorda){
-                    return false;
-                 }
-                    const percentagem_do_dono = '100%';
-                    const propriedade_ref = doc(db, "MeuUIP", current_dono_uip , "Proprieades", propriedade_id);
-                    const propriedades_compradordocRef = doc(db, "MeuUIP",comprador_uip);
-                    const propriedades_compradorRef = collection(propriedades_compradordocRef, "Propriedades");
-                    const obter_propriedade = await getDoc(propriedade_ref);
-                    if(!obter_propriedade.exists()) return;
-                    const propriedade = obter_propriedade.data();
-                    await addDoc(propriedades_compradorRef, {
-                        ...propriedade,
-                        dono:comprador_uip,
-                        dono_anterior:current_dono_uip,
-                        houve_intermediacao:temIntermediario,
-                        intermediario: intermediario,
-                        data_de_transferencia: new Date()
-                    })
-                    await deleteDoc(propriedade_ref);
-                    await setDoc(docreftransacao_de_imovel, {
-                         dono:comprador_uip,
-                         dono_anterior:current_dono_uip,
-                         percentagem_dono,
-                         houve_intermediacao:temIntermediario,
-                         preco_do_imovel:preco,
-                         percentagem_do_intermediario: percentagem_int,
-                         data_de_transferencia: new Date()
-                    })
+                const docref = doc(db,"Pedido_de_Venda", propriedade_id )
+                const perc_in = percentagem_intermediario || null
+                await setDoc(docref,{
+                    id:docref.id,
+                    current_dono_uip,
+                    preco,
+                    percentagem_dono,
+                    percentagem_intermediario,
+                    intermediario_uip,
+                    comprador_uip,
+                    propriedade_id
+                })
+                const uip = localStorage.getItem('uip');
+                if(!uip) return;
+                const usuario = decryptdata(uip);
+                const data:Array<any> = [{
+                    userId:comprador_uip,
+                    title:'Pedido de Venda de Imovel',
+                    body:`O usuario,${usuario?.nome} comecou um pedido de venda de um imovel de ${preco}`,
+                    image:'https://njinga-worker.njinga.workers.dev/pexels-aboodi-13992148.jpg',
+                    url:'https://n-jinga.vercel.app/pt/portal/',
+                },{
+                    userId:intermediario_uip,
+                    title:'Pedido de Venda de Imovel',
+                    body:`O usuario,${usuario?.nome} comecou um pedido de venda de um imovel de ${preco}`,
+                    image:'https://njinga-worker.njinga.workers.dev/pexels-aboodi-13992148.jpg',
+                    url:'https://n-jinga.vercel.app/pt/portal/',
+                }] 
+                if(percentagem_intermediario){
+                    const notifying_group = notify_user_group(data || null)
+                    return true;
+                }
+                  const notifyuser = notification_send({
+                    userId:comprador_uip, 
+                    title:'Pedido de Venda de Imovel',
+                    body:`O usuario,${usuario?.nome} comecou um pedido de venda de um imovel de ${preco}`,
+                    image:'https://njinga-worker.njinga.workers.dev/pexels-aboodi-13992148.jpg',
+                    url:'https://n-jinga.vercel.app/pt/portal/',
+                })
+                
                 return true
             } catch (error) {
                 console.log(error)
@@ -297,7 +290,7 @@ getpedidosderegisto_de_agentes: async () => {
     }, queryUserUIP: async(pesquisa:string)=>{
         try {
            const docref = collection(db, "MeuUIP")
-        const q = query(docref, or (where("id","==",pesquisa), where("short_uip","==",pesquisa) ))
+        const q = query(docref, or (where("id","==",pesquisa), where("shortuip_id","==",pesquisa) ))
         const uips = await getDocs(q);
         if(uips.empty) return []
         const res = uips.docs.map((item)=>{
@@ -307,6 +300,12 @@ getpedidosderegisto_de_agentes: async () => {
         } catch (error) {
            return []   
         }
+    },TwofactorAutheication:async({pergunta, resposta}:
+        {pergunta:string, codigo_ZAU:string, resposta:string})=>{
+        const docref = doc(collection(db,"Two_factor_authentication"));
+        await setDoc(docref,{
+
+        })
     }
 
 }))

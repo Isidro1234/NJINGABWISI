@@ -31,7 +31,7 @@ export default function CustomHouseAdmin({name,casa_info,docref, location,estado
         fotos_da_propriedade: casa_info?.formulario_imovel?.fotos_da_propriedade || [],
         location: `${casa_info?.formulario_imovel?.utente_rua || ''}, ${casa_info?.formulario_imovel?.utente_distrito || ''}, ${comuna}, ${casa_info?.formulario_imovel?.utente_municipio || ''}, ${casa_info?.formulario_imovel?.utente_estado || ''}`,
         image: image || '',
-        id: id || '',
+        dono_id: id || '',
         imovel_: casa_info?.formulario_imovel?.tipo_de_imovel || '',
         tipo_imovel: casa_info?.formulario_imovel?.categoria_de_imovel || '',
         area_total: casa_info?.formulario_imovel?.area_total_do_imove || '',

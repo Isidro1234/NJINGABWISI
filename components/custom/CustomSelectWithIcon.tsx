@@ -57,7 +57,7 @@ const SelecWithIcon = ({
       </Select.Control>
       <Select.Positioner>
         <Select.Content>
-          {items.map((item) => (
+          {items?.map((item) => (
             <Select.Item item={item} key={item.id} justifyContent="flex-start">
               <Avatar.Root shape="rounded" size="2xs">
                 {/* ✅ Same guard in the dropdown list */}

@@ -78,7 +78,7 @@ export default function PortalLayout({
             name={userdatauip?.nome}
             image={userdatauip?.photo || ''}
           >
-            <VStack className='portal' width={'100%'} height={'100%'}>
+            <VStack className='portal' width={'100%'} height={'100%'} bg={'#f6f6f6'}>
                 <NavBarLogged />
                 {children}
             </VStack>

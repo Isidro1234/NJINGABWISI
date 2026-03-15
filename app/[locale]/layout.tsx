@@ -31,10 +31,18 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
+export const metadata2: Metadata = {
   title: "Njinga | Pagina Inicial",
   description: "Plataforma digital de regulamentacao de imoveis em Angola",
 };
+export const metadata = {
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Njinga',
+  },
+}
 
 export default async function RootLayout({
   children,

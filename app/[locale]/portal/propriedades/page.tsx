@@ -22,7 +22,6 @@ export default function Propriedades() {
           <CustomPCard estado='' image='' name='' location='' />
         </VStack>
       </CustomCard>
-      <UIPprint ref={null} />
     </VStack>
   )
 }

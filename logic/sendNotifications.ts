@@ -1,7 +1,7 @@
 export const notification_send = async({userId, title, body, url , image }:{
     body:string, image:string, userId:string, title:string, url:string
 })=>{
-    const sendNotification = await fetch(`http://localhost:3000/api/notification`,{
+    const sendNotification = await fetch(`https://n-jinga.vercel.app/api/notification`,{
         method:'POST',
         headers:{
             "Content-Type":'application/json'

@@ -1,13 +1,8 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import {getAuth} from 'firebase/auth';
-import {getFirestore} from 'firebase/firestore'
-import {getMessaging, getToken, isSupported} from 'firebase/messaging'
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore'
+import { getMessaging, getToken, isSupported } from 'firebase/messaging'
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
     authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -18,12 +13,31 @@ const firebaseConfig = {
     measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const secondary = initializeApp(firebaseConfig, 'secundary');
 export const authsecond = getAuth(secondary);
 export const auth = getAuth(app);
 export const db = getFirestore(app)
+
+// ── iOS helpers ───────────────────────────────────────────────────────────────
+
+export function isIOS(): boolean {
+    if (typeof navigator === 'undefined') return false
+    return /iPad|iPhone|iPod/.test(navigator.userAgent)
+}
+
+export function isRunningAsPWA(): boolean {
+    if (typeof window === 'undefined') return false
+    return window.matchMedia('(display-mode: standalone)').matches
+        || (navigator as any).standalone === true  // Safari specific
+}
+
+// Returns true if iOS but NOT installed as PWA
+export function isIOSBrowser(): boolean {
+    return isIOS() && !isRunningAsPWA()
+}
+
+// ── Messaging ─────────────────────────────────────────────────────────────────
 
 export async function getFirebaseMessaging() {
     try {
@@ -35,23 +49,28 @@ export async function getFirebaseMessaging() {
         return null
     }
 }
+
 export async function grantPermission() {
     try {
-        // ✅ Check support
+        // ── iOS: must be installed as PWA ────────────────────────────────────
+        if (isIOS() && !isRunningAsPWA()) {
+            console.log('iOS detected but not running as PWA — notifications unavailable')
+            return { token: null, permission: null, requiresInstall: true }
+        }
+
         const messaging = await getFirebaseMessaging()
         if (!messaging) return null
 
-        // ✅ Register service worker first
         if ('serviceWorker' in navigator) {
             await navigator.serviceWorker.register('/firebase-messaging-sw.js')
         }
 
-        // ✅ Request permission
+        // ── iOS: permission must be triggered by user gesture ────────────────
+        // (this function should only be called from a button onClick)
         const permission = await Notification.requestPermission()
         console.log('Permission:', permission)
-        if (permission !== 'granted') return null
+        if (permission !== 'granted') return { token: null, permission }
 
-        // ✅ Get token
         const token = await getToken(messaging, {
             vapidKey: process.env.NEXT_PUBLIC_VAPID_KEY,
             serviceWorkerRegistration: await navigator.serviceWorker.ready
