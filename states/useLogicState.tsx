@@ -13,13 +13,20 @@ import { create } from "zustand";
 
 export const useLogicState = create((set, get)=>({
     UIPprofile:[],
-    getUIPprofile:async(uip:string)=>{
+    getUIPprofile:async(pesquisa:string)=>{
         try {
-            const prodocref = doc(db, 'MeuUIP', uip)
-            const getuip = await getDoc(prodocref);
-            if(!getuip.exists()) return; 
-            set({UIPprofile:getuip.data()}) 
-            return getuip.data()
+             try {
+           const docref = collection(db, "MeuUIP")
+        const q = query(docref, or (where("id","==",pesquisa), where("shortuip_id","==",pesquisa) ))
+        const uips = await getDocs(q);
+        if(uips.empty) return []
+        const res = uips.docs.map((item)=>{
+            return item.data()
+        })
+        return res || [] 
+        } catch (error) {
+           return []   
+        }
         } catch (error:any) {
             console.log(error?.message)
         }   
