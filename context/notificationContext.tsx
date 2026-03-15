@@ -120,7 +120,7 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
     return (
         <NotificationContext.Provider value={{ permission, token, requestPermission }}>
 
-            {showButton && !showIOSBanner && (
+            {userdata?.id && showButton && !showIOSBanner && (
                 <Button
                     fontSize={12}
                     size='sm'
@@ -132,7 +132,7 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
             )}
 
             {/* ── iOS install banner ── */}
-            {showIOSBanner && (
+            {userdata?.id && showIOSBanner && (
                 <VStack
                     padding={4}
                     bg='#1a1a2e'
