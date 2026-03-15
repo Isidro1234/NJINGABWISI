@@ -19,7 +19,8 @@ export default function VerifyUIP() {
   }, [])
    async function fetchData() {
       const data = await getqrcodedata(inputValue)
-      setQrcodedata([data])
+      if(data?.length <= 0) return;
+       setQrcodedata(data)
     }
   return (
     <VStack alignItems={'center'} justifyContent={'center'} padding={10}
