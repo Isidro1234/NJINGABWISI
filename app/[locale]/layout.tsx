@@ -35,12 +35,21 @@ export const metadata2: Metadata = {
   title: "Njinga | Pagina Inicial",
   description: "Plataforma digital de regulamentacao de imoveis em Angola",
 };
-export const metadata = {
+export const metadata: Metadata = {
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
     title: 'Njinga',
+  },
+  icons: {
+    apple: [
+      { url: '/icons/apple-touch-icon.png', sizes: '180x180' },
+    ],
+    icon: [
+      { url: '/icons/icon-192x192.png', sizes: '192x192' },
+      { url: '/icons/icon-512x512.png', sizes: '512x512' },
+    ],
   },
 }
 
