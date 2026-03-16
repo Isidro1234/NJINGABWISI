@@ -1,5 +1,5 @@
 export async function codeemail(email:string){
-     const getCode = await fetch('http://localhost:3000/api/email', {
+     const getCode = await fetch('https:n-jinga.vercel.app/api/email', {
         method:"POST",
         headers:{
             "Content-Type":'application/json',

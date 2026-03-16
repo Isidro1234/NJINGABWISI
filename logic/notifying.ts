@@ -1,7 +1,7 @@
 export const notify_user_group = async(data:Array<object> | null)=>{
     if(!data) return;
     const res = await Promise.all ( data.map((item:any)=>{
-        const fetchdata =  fetch(`http://localhost:3000/api/notification`, {
+        const fetchdata =  fetch(`https:n-jinga.vercel.app/api/notification`, {
             method:"POST",
             headers:{
                 "Content-Type":"application/json",

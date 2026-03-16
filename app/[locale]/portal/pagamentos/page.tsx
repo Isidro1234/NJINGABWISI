@@ -155,18 +155,7 @@ export default function Pagamentos() {
     <VStack padding={{ base: 4, md: 10 }} bg={'#f6f6f6'} width={'100%'} minHeight={'100%'} gap={6}>
       <Toaster />
 
-      <CustomCard
-        link='portal/pagamentos'
-        description={t('description')}
-        title={t('title')}
-        icon={<Image src={'/icons/coin.svg'} alt='coin' width={50} height={50} />}
-        bg={'#f6f6f6'}
-      >
-        <VStack alignItems={'flex-start'} width={'100%'} height={'100%'} paddingTop={2} gap={4}>
-          <Text fontSize={12} color={'gray'}>{t('recent_payments')}</Text>
-          <CustomECard />
-        </VStack>
-      </CustomCard>
+      
 
       {/* ── Services section ── */}
       <VStack width={'100%'} alignItems={'flex-start'} gap={4}>
