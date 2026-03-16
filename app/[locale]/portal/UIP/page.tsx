@@ -1,3 +1,4 @@
+"use client"
 import CustomCard from '@/components/custom/CustomCard'
 import CustomMeuUIP from '@/components/custom/CustomMeuUIP'
 import UIPprint from '@/components/custom/UIPprint'
