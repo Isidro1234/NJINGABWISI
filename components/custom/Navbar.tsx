@@ -8,6 +8,7 @@ import Logo from './Logo'
 import { CustomDrawer } from './CustomDrawer'
 import { usePathname, useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
+import Menu from "../../public/icons/menu-mobile.svg"
 
 type NavbarProps = {
   islogged?: boolean
@@ -24,38 +25,37 @@ export default function Navbar({ islogged, image, name }: NavbarProps) {
     pathname.includes('portal') || pathname.includes('messages')
 
   return (
-    <HStack className="nav-bar" display={hideNavbar ? 'none' : 'flex'}>
+    <HStack className="nav-bar" display={hideNavbar ? 'none' : 'flex'} _dark={{background:'#16171b'}}>
       <Logo />
 
       {/* Desktop Menu */}
       <Box className="Menu">
-        <Text className="menu-item" cursor="pointer" onClick={() => router.push('/')}>
+        <Text className="menu-item" _dark={{color:'#f6f6f6'}} cursor="pointer" onClick={() => router.push('/')}>
           {t('home')}
         </Text>
 
-        <Text className="menu-item" cursor="pointer" onClick={() => router.push('/servicos')}>
+        <Text className="menu-item" _dark={{color:'#f6f6f6'}} cursor="pointer" onClick={() => router.push('/servicos')}>
           {t('services')}
         </Text>
 
-        <Text className="menu-item" cursor="pointer" onClick={() => router.push('/quemsomos')}>
+        <Text className="menu-item" _dark={{color:'#f6f6f6'}} cursor="pointer" onClick={() => router.push('/quemsomos')}>
           {t('about')}
         </Text>
 
-        <Text className="menu-item" cursor="pointer" onClick={() => router.push('/verifyuip')}>
+        <Text className="menu-item" _dark={{color:'#f6f6f6'}} cursor="pointer" onClick={() => router.push('/verifyuip')}>
           {t('verify')}
         </Text>
       </Box>
 
       {/* Mobile Menu */}
-      <Box className="mobile-menu">
+      <Box className="mobile-menu"  _dark={{background:"#13131500"}}>
         <CustomDrawer
           title={t('menu')}
           icon={
-            <Image
+            <Menu
               width={30}
               height={30}
-              alt="menu-mobile"
-              src="/icons/menu-mobile.svg"
+              fill={'gray'}
             />
           }
           content={

@@ -15,6 +15,7 @@ import { Box, Button, HStack, Input, Text, VStack } from '@chakra-ui/react'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
+import { useRouter } from 'next/navigation'
 
 export default function DashboardAdmin() {
 
@@ -26,6 +27,7 @@ export default function DashboardAdmin() {
     const [pedido_de_registo_de_casas, setCasas] = useState<any[]>([]) 
     const [pedido_de_registo_de_agents, setAgents] = useState<any[]>([])
     const [previewdoc, setprevdocs] = useState<any>([])
+    const router = useRouter()
 
     const inpuref = useRef<HTMLInputElement>(null)
     const inputref2 = useRef<HTMLInputElement>(null)
@@ -227,8 +229,9 @@ bg={'#f6f6f6'}
 {t('cards.recentPayments')}
 </Text>
 
-<CustomECard/>
-
+<Text fontSize={12} color={'gray'}>Criar Servicos e Impostos</Text>
+<Button onClick={()=>{router.push('/admin/portaladministrador/pagamentos')}} 
+borderRadius={50} bg={'#4264fc'}>Criar</Button>
 </VStack>
 </CustomCard>
 

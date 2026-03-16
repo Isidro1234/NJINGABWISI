@@ -15,7 +15,7 @@ export default function TopNavbar() {
       router.push(path)
   }
   return (
-    <HStack width={'100%'} alignItems={'center'} justifyContent={'space-between'} 
+    <HStack _dark={{backgroundColor:'#0f0f12', color:'#8f8f8f'}} width={'100%'} alignItems={'center'} justifyContent={'space-between'} 
     background={'#f6f6f6'} padding={'4px 30px'}>
         <Box>
           <Text color={'gray'} fontSize={10}>inta inc</Text>

@@ -1,5 +1,5 @@
 'use client'
-import { Box, HStack, Text, VStack } from '@chakra-ui/react'
+import { Box, HStack, Span, Text, VStack } from '@chakra-ui/react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React from 'react'
@@ -15,9 +15,9 @@ export default function Logo() {
           </Box>  
         </Box>
         <VStack className='logo-text-conteiner'>
-            <Text className='logo-main-text' fontSize={35} lineHeight={.9} fontWeight={700}><span className='logo-text-1'>N</span><span className='logo-text-2'>J</span>
-                <span className='logo-text-3'>I</span>NGA</Text>
-            <Text className='logo-subtext'>Portal de registo digital de casas</Text>  
+            <Text className='logo-main-text' _dark={{color:'white'}} fontSize={35} lineHeight={.9} fontWeight={700}><Span className='logo-text-1'>N</Span><Span className='logo-text-2'>J</Span>
+                <Span className='logo-text-3' _dark={{color:'white'}}>I</Span >NGA</Text>
+            <Text className='logo-subtext'  _dark={{color:'#b4b4b4'}}>Portal de registo digital de casas</Text>  
         </VStack>            
     </HStack>
   )

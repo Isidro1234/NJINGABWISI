@@ -41,17 +41,18 @@ const SelectCustom = ({items , onchange}:{items:Array<object>, onchange:Function
       borderRadius={50}
       defaultValue={[locale]}
       positioning={{ sameWidth: true }}
+      _dark={{backgroundColor:'#2a2a2a', color:'#8f8f8f'}}
     >
       <Select.HiddenSelect  />
       <Select.Control >
-        <Select.Trigger borderRadius={50} background={'white'}>
+        <Select.Trigger _dark={{backgroundColor:'#16171b', color:'#8f8f8f'}} borderRadius={50} background={'white'}>
           <SelectValue />
         </Select.Trigger>
         <Select.IndicatorGroup>
           <Select.Indicator />
         </Select.IndicatorGroup>
       </Select.Control>
-      <Select.Positioner>
+      <Select.Positioner >
         <Select.Content >
           {members?.items?.map((item:any) => (
             <Select.Item item={item} key={item.id} justifyContent="flex-start">

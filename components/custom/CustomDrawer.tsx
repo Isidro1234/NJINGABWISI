@@ -16,8 +16,8 @@ export function CustomDrawer<T> ({icon, content,title}:CustomDrawerType<T>) {
     }
   return (
     <Drawer.Root >
-      <Drawer.Trigger asChild>
-        <Button className="drawer-menu">
+      <Drawer.Trigger asChild _dark={{backgroundColor:'transparent', color:'#8f8f8f'}}>
+        <Button className="drawer-menu" _dark={{backgroundColor:'#ffffff', color:'#8f8f8f'}}>
           {icon}
         </Button>
       </Drawer.Trigger>

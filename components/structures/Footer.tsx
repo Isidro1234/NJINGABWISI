@@ -21,6 +21,7 @@ export default function Footer() {
       padding="24px 40px"
       borderTopWidth={1}
       backgroundColor="#1f1f1fff"
+      _dark={{background:'#0f0f12'}}
     >
       <HStack
         gap={15}
@@ -44,19 +45,19 @@ export default function Footer() {
           </a>
 
           <HStack gap={2} marginTop={2} flexWrap="wrap">
-            <Button m={0} p={0} w={10} h={10} borderRadius={50}>
+            <Button _dark={{background:'#242424'}} m={0} p={0} w={10} h={10} borderRadius={50}>
               <Facebook width="20px" height="20px" />
             </Button>
 
-            <Button m={0} p={0} w={10} h={10} borderRadius={50}>
+            <Button _dark={{background:'#242424'}} m={0} p={0} w={10} h={10} borderRadius={50}>
               <Instagram width={40} height={40} />
             </Button>
 
-            <Button m={0} p={0} w={10} h={10} borderRadius={50}>
+            <Button _dark={{background:'#242424'}} m={0} p={0} w={10} h={10} borderRadius={50}>
               <Whatsapp width={40} height={40} />
             </Button>
 
-            <Button m={0} p={0} w={10} h={10} borderRadius={50}>
+            <Button _dark={{background:'#242424'}} m={0} p={0} w={10} h={10} borderRadius={50}>
               <Gmail width={40} height={40} />
             </Button>
           </HStack>

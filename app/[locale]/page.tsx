@@ -13,7 +13,7 @@ export default async function Home() {
   const t = await getTranslations("home")
 
   return (
-    <VStack width="100%" gap={0}>
+    <VStack width="100%" _dark={{background:'#16171b'}} gap={0}>
 
       {/* Hero */}
       <VStack
@@ -67,7 +67,7 @@ export default async function Home() {
             </Text>
 
             <Link href="/auth/criarconta">
-              <Button bg="red" borderRadius={20}>
+              <Button bg="red" borderRadius={20} _dark={{color:'white'}}>
                 {t("hero_cta")}
               </Button>
             </Link>
@@ -76,7 +76,7 @@ export default async function Home() {
       </VStack>
 
       {/* Section 1 */}
-      <VStack marginTop={7} paddingBottom={10}>
+      <VStack marginTop={7}  paddingBottom={10}>
         <Heading
           fontWeight={500}
           color="#da3d3d"
@@ -84,6 +84,7 @@ export default async function Home() {
           borderRadius={50}
           fontSize={10}
           boxShadow="1px 1px 2px #d5d5d5"
+          _dark={{boxShadow:"0px 0px 0px transparent", background:'#333333', color:"white"}}
         >
           {t("section1_badge")}
         </Heading>
@@ -115,7 +116,7 @@ export default async function Home() {
       </VStack>
 
       {/* Section 2 */}
-      <VStack width="100%" background="#fafafa" paddingBottom={10}>
+      <VStack width="100%" _dark={{background:'#0f1013'}} background="#fafafa" paddingBottom={10}>
         <Heading
           marginTop={5}
           fontWeight={500}
@@ -128,6 +129,7 @@ export default async function Home() {
           background="white"
           width={200}
           boxShadow="1px 1px 2px #d5d5d5"
+          _dark={{boxShadow:"0px 0px 0px transparent", background:'#333333', color:"white"}}
           textAlign="center"
         >
           {t("section2_badge")}
@@ -189,25 +191,27 @@ export default async function Home() {
         bg="#d33434"
         width="100%"
         padding={10}
+        _dark={{background:'#0f1012'}}
       >
         <VStack gap={2} padding={5}>
 
-          <Heading color="#ffffff" fontSize={30}>
+          <Heading _dark={{color:'#8f8f8f'}} color="#ffffff" fontSize={30}>
             {t("contact_title")}
           </Heading>
 
-          <Text width={220} color="#f6f6f6" fontSize={10} textAlign="center">
+          <Text _dark={{color:'#565656'}} width={220} color="#f6f6f6" fontSize={10} textAlign="center">
             {t("contact_subtitle")}
           </Text>
 
-          <Box display="flex" bg="white" borderRadius={50} padding={2}>
+          <Box _dark={{backgroundColor:'#2a2a2a', color:'#8f8f8f'}} display="flex" bg="white" borderRadius={50} padding={2}>
             <Input
+            _dark={{background:"transparent", color:'#8f8f8f'}}
               border="none"
               outline="none"
               placeholder={t("contact_placeholder")}
             />
 
-            <Button bg="red" borderRadius={50}>
+            <Button _dark={{backgroundColor:'#383838', color:'#8f8f8f'}} bg="red" borderRadius={50}>
               {t("contact_submit")}
             </Button>
           </Box>
@@ -215,17 +219,17 @@ export default async function Home() {
           {/* Social Icons */}
           <HStack gap={2} marginTop={2}>
 
-            <Button position={'relative'} bg="white" w={10} h={10} borderRadius={50}>
+            <Button _dark={{background:'#242424'}} position={'relative'} bg="white" w={10} h={10} borderRadius={50}>
               <Facebook width={40} height={40}/>
             </Button>
 
-             <Button position={'relative'} bg="white" w={10} h={10} borderRadius={50}>
+             <Button _dark={{background:'#242424'}} position={'relative'} bg="white" w={10} h={10} borderRadius={50}>
               <Instagram/>
             </Button>
-             <Button position={'relative'} bg="white" w={10} h={10} borderRadius={50}>
+             <Button _dark={{background:'#242424'}} position={'relative'} bg="white" w={10} h={10} borderRadius={50}>
               <Whatsapp/>
             </Button>
-            <Button position={'relative'} bg="white" w={10} h={10} borderRadius={50}>
+            <Button _dark={{background:'#242424'}} position={'relative'} bg="white" w={10} h={10} borderRadius={50}>
               <Email/>
             </Button>
 

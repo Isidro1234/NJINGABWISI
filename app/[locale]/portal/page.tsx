@@ -28,11 +28,14 @@ export default function Portal() {
   const [casas, setcasas] = useState([])
   const meu_registo = useLogicState((state: any) => state.getagenteregisto)
   const [agente, setagente] = useState<any>([])
+  const [servicos, setServicos] = useState<any>([])
   const refpdf = useRef(null)
 
   useEffect(() => {
     async function getting() {
       const data = await meu_registo()
+      const servicos = await buscarServicos() 
+      setServicos(servicos)
       setagente(data || [])
       const res = await casas_registradas(userdata?.id)
       if (!res) return
@@ -53,7 +56,20 @@ export default function Portal() {
     }
     printing_pdf(refpdf, userdata?.nome)
   }
+  async function buscarServicos(){
+    try {
+        const buscar = await fetch('/api/services');
+        const res = await buscar.json();
+        const {services} = res;
+        return services
+    } catch (error) {
+        console.log(error)
+        return []
+    }
+     
 
+  }
+  console.log(servicos)
   return (
     <HStack className='portal-conteiner' display={'grid'}
       gridTemplateColumns={'repeat(auto-fit, minmax(350px,1fr))'}
@@ -114,7 +130,7 @@ export default function Portal() {
         bg={'#f6f6f6'}>
         <VStack alignItems={'flex-start'} width={'100%'} height={'100%'} paddingTop={2} gap={4}>
           <Text fontSize={12} color={'gray'}>{t('recent_payments')}</Text>
-          <CustomECard />
+          
         </VStack>
       </CustomCard>
 

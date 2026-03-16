@@ -1,5 +1,5 @@
 export const registeruserstripe = async(email:string, id:string)=>{
-    const register = await fetch('https://n-jinga.vercel.app/api/create-customer', {
+    const register = await fetch('http://localhost:3000/api/create-customer', {
         method:'POST',
         headers:{
             "Content-Type" : 'application/json'
