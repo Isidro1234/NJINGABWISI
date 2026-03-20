@@ -1,9 +1,9 @@
 
 
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
-import { collection, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, or, query, setDoc, where } from 'firebase/firestore';
 import {create} from 'zustand'
-import {auth , db} from '../config/firebse'
+import {auth , authsecond, db} from '../config/firebse'
 import { codeemail } from '@/logic/codeemail';
 import { registeruserstripe } from '@/logic/registeruserStripe';
 import { decryptdata, encryptdata } from '@/logic/encryptdata';
@@ -128,7 +128,9 @@ export const useStateAuth = create((set, get)=>({
             const check =  localStorage.removeItem('uipadmin')
             const uip =  localStorage.removeItem('uip')
             const docref = collection(db,"MeuUIP");
-            const q = query(docref, where("Identificacao","==",identificacao));
+            const q = query(docref, or(where("Identificacao","==",identificacao),
+            where("numero_do_bilhete","==",identificacao)
+        ));
             const gettting = await getDocs(q);
             if(gettting.empty) return;
             const email = gettting.docs[0].data()?.email;
@@ -139,10 +141,22 @@ export const useStateAuth = create((set, get)=>({
             const encryot = encryptdata(data)
             console.log("this", encryot)
             localStorage.setItem('uipadmin', encryot)
-            const login = await signInWithEmailAndPassword(auth, email , password);
+            let login:any = ''
+            if(gettting.docs[0].data()?.role == 'admin'){
+                login = await signInWithEmailAndPassword(auth, email , password); 
+            }else if(gettting.docs[0].data()?.role == 'colaborator'){
+                login = await signInWithEmailAndPassword(authsecond, email , password);  
+            }
+            
             const username = data.nome;
             const id = data.id.slice(0,5)
             if(gettting.docs[0].data()?.role == "admin"){
+                const phot = gettting.docs[0].data()?.photo || "https://njinga-worker.njinga.workers.dev/angola-flag-png.png" 
+                await updateProfile(login.user,{
+                    displayName:gettting.docs[0].data()?.nome,
+                    photoURL:phot
+                }) 
+            }else if(gettting.docs[0].data()?.role == "colaborator"){
                 const phot = gettting.docs[0].data()?.photo || "https://njinga-worker.njinga.workers.dev/angola-flag-png.png" 
                 await updateProfile(login.user,{
                     displayName:gettting.docs[0].data()?.nome,

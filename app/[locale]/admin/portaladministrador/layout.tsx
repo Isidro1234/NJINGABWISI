@@ -1,7 +1,7 @@
 "use client"
 import LoadingAnim from '@/components/custom/LoadingAnim'
 import NavBarAdminLogged from '@/components/custom/NavbarAdminLogged'
-import { auth } from '@/config/firebse'
+import { auth, authsecond } from '@/config/firebse'
 import { useAuthContext } from '@/context/authContext'
 import { decryptdata } from '@/logic/encryptdata'
 import { VStack } from '@chakra-ui/react'
@@ -9,61 +9,45 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
-export default function LayoutAdminPortal({
-    children,
-}: Readonly<{
-    children: React.ReactNode
-}>) {
+export default function LayoutAdminPortal({ children }: { children: React.ReactNode }) {
     const router = useRouter()
     const [isLogged, setIsLogged] = useState(false)
     const { setUserdata }: any = useAuthContext()
 
     useEffect(() => {
-        // ✅ Store unsubscribe function to clean up on unmount
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (!user) {
-                router.push('/admin')
-                return
-            }
+        const handleAuth = (user: any) => {
+            if (!user) return
 
-            const userdata: string = localStorage.getItem('uipadmin') || ''
-            const uip: string = localStorage.getItem('uip') || ''
+            const userdata = localStorage.getItem('uipadmin')
+            const uip = localStorage.getItem('uip')
 
-            // Normal user logged in — redirect to user portal
             if (uip && !userdata) {
-                auth.signOut()
                 router.push('/portal')
                 return
             }
 
-            // No admin data found — sign out
-            if (!userdata) {
-                auth.signOut()
-                router.push('/admin')
-                return
-            }
+            if (!userdata) return
 
             const decrypt = decryptdata(userdata)
-            if (!decrypt) {
-                auth.signOut()
-                router.push('/admin')
-                return
-            }
+            if (!decrypt) return
 
             setUserdata(decrypt)
-            
-            // ✅ Only set logged AFTER all checks pass
-            if (decrypt?.role === 'admin' || decrypt?.role === 'collaborator') {
+
+            if (decrypt?.role === 'admin' || decrypt?.role === 'colaborator') {
                 setIsLogged(true)
             } else {
-                auth.signOut()
                 router.push('/admin')
             }
-        })
+        }
 
-        // ✅ Cleanup — unsubscribe when component unmounts
-        return () => unsubscribe()
-    }, []) // ✅ empty deps — only run once on mount
+        const unsub1 = onAuthStateChanged(auth, handleAuth)
+        const unsub2 = onAuthStateChanged(authsecond, handleAuth)
+
+        return () => {
+            unsub1()
+            unsub2()
+        }
+    }, [])
 
     if (!isLogged) {
         return (
@@ -74,7 +58,7 @@ export default function LayoutAdminPortal({
     }
 
     return (
-        <VStack className='admin' width={'100%'} >
+        <VStack className='admin' width={'100%'}>
             <NavBarAdminLogged />
             {children}
         </VStack>

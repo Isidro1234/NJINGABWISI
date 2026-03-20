@@ -1,6 +1,6 @@
 "use client"
 import CustomCard from '@/components/custom/CustomCard'
-import { Box, Button, HStack, Text, VStack } from '@chakra-ui/react'
+import { Box, Button, Heading, HStack, Text, VStack } from '@chakra-ui/react'
 import React, { useEffect, useRef, useState } from 'react'
 import CustomPCard from '@/components/custom/CustomPCard'
 import CustomECard from '@/components/custom/CustomECard'
@@ -30,13 +30,28 @@ export default function Portal() {
   const [agente, setagente] = useState<any>([])
   const [servicos, setServicos] = useState<any>([])
   const refpdf = useRef(null)
+  const finalizarTransferencia = useLogicState((state:any)=>state.finalizar_transferencia_imovel)
+const getpedidodeTransferencia = useLogicState((state: any) => state.getpedidodeTransferencia)
+const [pedidos, setPedidos] = useState([])
 
+useEffect(() => {
+   if(!userdata?.id) return;
+    // Pass setState as the callback
+    console.log(userdata?.id)
+    const unsubscribe = getpedidodeTransferencia(userdata?.id, setPedidos)
+
+    // Clean up listener when component unmounts
+    return () => {
+        if (typeof unsubscribe === 'function') unsubscribe()
+    }
+}, [userdata.id])
   useEffect(() => {
     async function getting() {
       const data = await meu_registo()
       const servicos = await buscarServicos() 
       setServicos(servicos)
       setagente(data || [])
+     
       const res = await casas_registradas(userdata?.id)
       if (!res) return
       setcasas(res)
@@ -68,12 +83,47 @@ export default function Portal() {
     }
      
 
+
+
   }
-  console.log(servicos)
+
+
+  async function resposta(respost:any){
+      const res = await finalizarTransferencia()
+  }
+  console.log(servicos , pedidos)
   return (
     <HStack className='portal-conteiner' display={'grid'}
       gridTemplateColumns={'repeat(auto-fit, minmax(350px,1fr))'}
       alignItems={'flex-start'} width={'100%'} bg={'#f6f6f6'} padding={10}>
+        <Box display={pedidos.length > 0 ?  'flex' : 'none'} justifyContent={'center'} alignItems={'center'} left={0} top={0} width={'100%'} height={'full'}
+         borderRadius={0} bg={'#4949494b'} position={'fixed'} zIndex={1000}>
+             <Box justifyContent={'start'} flexDirection={'column'} display={'flex'} bg={'white'} padding={10} borderRadius={10}>
+              <Heading fontSize={14}>Pedidos de Transacao</Heading>
+               {pedidos?.map((item:any, index)=>{
+              return(
+                <Box width={'100%'} display={'flex'} flexDirection={'column'} alignItems={'start'} key={index} >
+                      <Box width={'100%'} height={200} position={'relative'}>
+                        {
+                          item?.photohouse &&
+                           <Image src={item?.photohouse} alt='photo'/>
+                        }
+                       
+                      </Box>
+                      <Text fontSize={12} color={'gray'}>Dono: {item?.current_dono_uip?.nome}</Text>
+                      <Text fontSize={12} color={'gray'}>preco: {item?.preco}</Text>
+                      <HStack  gap={2}>
+                        <Button bg={'#12be5d'} borderRadius={50}>Aceitar</Button>
+                        <Button bg={'#d24242'} borderRadius={50}>Negar</Button>
+                      </HStack>
+                </Box> 
+              )
+            })}
+             </Box>
+             
+            
+            
+        </Box>
 
       {/* ── My Properties ── */}
       <CustomCard link='portal/propriedades' description={t('description')}
@@ -94,6 +144,7 @@ export default function Portal() {
         </VStack>
       </CustomCard>
 
+        
       {/* ── Agents ── */}
       <CustomCard bg={'#f6f6f6'} link='portal/Agentes' title={t('card_agents_title')}
         description={t('description')}

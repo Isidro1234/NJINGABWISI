@@ -214,9 +214,11 @@ export default function TransferirUIP({ casas }: Props) {
     const getuip = localStorage.getItem('uip');
     if(!getuip) return;
     const meu_uip = decryptdata(getuip);
+    const casafoto = casas.filter((it)=> it.ref === form.imovel_id)[0].avatar;
     const res = 
     await submit_request(meu_uip, form.uip_agente , form.uip_comprador,
-        form.preco, form.percentagem_vendedor, form.percentagem_agente, form.imovel_id)
+        form.preco, form.percentagem_vendedor, form.percentagem_agente, form.imovel_id,
+     casafoto || '' )
 
     setSubmitting(true)
     try {

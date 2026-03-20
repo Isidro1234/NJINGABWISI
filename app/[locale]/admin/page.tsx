@@ -1,6 +1,7 @@
 "use client"
 import InputLabel from '@/components/custom/InputLabel'
 import { Toaster, toaster } from '@/components/ui/toaster'
+import { useAuthContext } from '@/context/authContext'
 import { useStateAuth } from '@/states/useAuthState'
 import { Box, Button, HStack, Text, VStack } from '@chakra-ui/react'
 import { useTranslations } from 'next-intl'
@@ -8,12 +9,12 @@ import React, { useState } from 'react'
 
 export default function Entrar() {
   const t = useTranslations('admin.entrar')
-
   const [form, setForm] = useState(() => ({
     identificacao: null as string | null,
     codigo_de_entrada: null as string | null,
     senha: null as string | null,
   }))
+
 
   const login = useStateAuth((state: any) => state?.loginAdmin)
 
@@ -37,6 +38,7 @@ export default function Entrar() {
       const res = await login(form.identificacao, form.senha, form.codigo_de_entrada)
       if (!res) {
         toaster.create({ title: t('errors.wrong_credentials'), duration: 5000, type: 'error' })
+        return
       }
     } catch (_) {
       toaster.create({ title: t('errors.connection_error'), duration: 5000, type: 'error' })

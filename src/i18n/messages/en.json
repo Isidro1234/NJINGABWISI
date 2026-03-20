@@ -309,6 +309,51 @@
     }
   },
    "admin": {
+    "collaborator": {
+      "dashboard": {
+        "cards": {
+          "validateProperties": "Validar Imóveis",
+          "propertyRequests": "Pedidos recebidos",
+          "agents": "Agentes",
+          "agentRequests": "Pedidos de Agentes",
+          "fees": "Emolumentos",
+          "recentPayments": "Pagamentos Recentes",
+          "createServicesTitle": "Criar Serviços e Impostos",
+          "createBtn": "Criar",
+          "validateUIP": "Validar UIP",
+          "registerProperty": "Registar Imóvel",
+          "govEmployees": "Func. Gov",
+          "currentGovEmployees": "Funcionários Gov Actuais"
+        },
+        "fields": {
+          "name": "Nome",
+          "employeeName": "Nome do Funcionário",
+          "country": "País",
+          "nationality": "Nacionalidade",
+          "province": "Província",
+          "municipality": "Município",
+          "comuna": "Comuna",
+          "district": "Distrito",
+          "street": "Rua",
+          "employeePhoto": "Foto do Funcionário",
+          "idNumber": "Número do BI",
+          "uploadId": "Envie uma cópia do BI ou passaporte",
+          "uploadDocuments": "Enviar Documentos"
+        },
+        "buttons": {
+          "delete": "Eliminar",
+          "addEmployee": "Adicionar Funcionário"
+        },
+        "messages": {
+          "emptyFields": "Campos Vazios",
+          "fillFields": "Por favor preencha todos os campos obrigatórios",
+          "sent": "Enviado",
+          "employeeAdded": "Funcionário adicionado com sucesso",
+          "error": "Algo correu mal",
+          "employeeNotAdded": "Funcionário não foi adicionado"
+        }
+      }
+    },
     "entrar": {
       "title": "NJINGA",
       "welcome": "Welcome to Njinga Admin",

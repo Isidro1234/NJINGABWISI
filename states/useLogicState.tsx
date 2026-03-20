@@ -6,7 +6,7 @@ import { notification_send } from "@/logic/sendNotifications";
 import { streamchat_client_frontend } from "@/logic/streamchatregistering";
 import { Filter } from "firebase-admin/firestore";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, or, query, setDoc, updateDoc, where } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, or, query, runTransaction, setDoc, updateDoc, where } from "firebase/firestore";
 import { create } from "zustand";
 
 
@@ -132,6 +132,7 @@ getpedidosderegisto_de_agentes: async () => {
             const password = formulario?.numero_do_bilhete + "#$)8134";
             console.log(created_email , password)
             const create_funcionario_account = await createUserWithEmailAndPassword(authsecond, created_email , password)
+            const create_funcionario_account_2 = await createUserWithEmailAndPassword(auth, created_email , password)
             const docref = collection(db, "Funcionarios");
             await addDoc(docref, {
                 ...formulario,
@@ -230,7 +231,7 @@ getpedidosderegisto_de_agentes: async () => {
     },
     vender_imovel:async(current_dono_uip:string, intermediario_uip:string,
          comprador_uip:string, preco:string, percentagem_dono:string,
-         percentagem_intermediario:string, propriedade_id:string)=>{
+         percentagem_intermediario:string, propriedade_id:string, photohouse:string)=>{
             try {
                 const docref = doc(db,"Pedido_de_Venda", propriedade_id )
                 const perc_in = percentagem_intermediario || null
@@ -239,10 +240,14 @@ getpedidosderegisto_de_agentes: async () => {
                     current_dono_uip,
                     preco,
                     percentagem_dono,
+                    photohouse,
                     percentagem_intermediario,
                     intermediario_uip,
                     comprador_uip,
-                    propriedade_id
+                    propriedade_id,
+                    pedidio_sender:current_dono_uip,
+                    pedidio_receiver:comprador_uip,
+                    aceitacao_receiver:false
                 })
                 const uip = localStorage.getItem('uip');
                 if(!uip) return;
@@ -251,13 +256,13 @@ getpedidosderegisto_de_agentes: async () => {
                     userId:comprador_uip,
                     title:'Pedido de Venda de Imovel',
                     body:`O usuario,${usuario?.nome} comecou um pedido de venda de um imovel de ${preco}`,
-                    image:'https://njinga-worker.njinga.workers.dev/pexels-aboodi-13992148.jpg',
+                    image:photohouse,
                     url:'https://n-jinga.vercel.app/pt/portal/',
                 },{
                     userId:intermediario_uip,
                     title:'Pedido de Venda de Imovel',
                     body:`O usuario,${usuario?.nome} comecou um pedido de venda de um imovel de ${preco}`,
-                    image:'https://njinga-worker.njinga.workers.dev/pexels-aboodi-13992148.jpg',
+                    image:photohouse,
                     url:'https://n-jinga.vercel.app/pt/portal/',
                 }] 
                 if(percentagem_intermediario){
@@ -268,7 +273,7 @@ getpedidosderegisto_de_agentes: async () => {
                     userId:comprador_uip, 
                     title:'Pedido de Venda de Imovel',
                     body:`O usuario,${usuario?.nome} comecou um pedido de venda de um imovel de ${preco}`,
-                    image:'https://njinga-worker.njinga.workers.dev/pexels-aboodi-13992148.jpg',
+                    image:photohouse,
                     url:'https://n-jinga.vercel.app/pt/portal/',
                 })
                 
@@ -313,6 +318,101 @@ getpedidosderegisto_de_agentes: async () => {
         await setDoc(docref,{
 
         })
+    }, finalizar_transferencia_imovel: async (
+    allinfo: object,
+    vendedor: string,
+    currentUIP: string,
+    resposta: string,
+    pedidoid: any
+) => {
+    try {
+        const docref = doc(db, "Pedido_de_Venda", pedidoid)
+        const docrefuip_vendedor = doc(db, "MeuUIP", vendedor, "Propriedades", pedidoid)
+        const docrefuip_comprador = doc(db, "MeuUIP", currentUIP, "Propriedades", pedidoid)
+        const docrefuip_comprador_transaction = doc(db, "MeuUIP", currentUIP, "Transacoes", pedidoid)
+
+        // Handle rejection first
+        if (resposta === 'negado') {
+            await updateDoc(docref, {
+                aceitacao_receiver: false,
+                estado: 'negado',
+                negado_em: new Date()
+            })
+            return { sucesso: false, mensagem: 'Transferência recusada' }
+        }
+
+        // Atomic transaction — all or nothing
+        await runTransaction(db, async (transaction) => {
+            const vendedorDoc = await transaction.get(docrefuip_vendedor)
+
+            if (!vendedorDoc.exists()) {
+                throw new Error('Propriedade não encontrada no UIP do vendedor')
+            }
+
+            const data = vendedorDoc.data()
+
+            // Copy documents to new owner
+            const generate_new_owner_house_docs = data.my_docs || []
+
+            // 1. Delete sale request
+            transaction.delete(docref)
+
+            // 2. Remove property from seller
+            transaction.delete(docrefuip_vendedor)
+
+            // 3. Add property to buyer with updated ownership
+            transaction.set(docrefuip_comprador, {
+                ...data,
+                dono_id: currentUIP,
+                vendedor_anterior: vendedor,
+                my_docs: generate_new_owner_house_docs,
+                transferido_em: new Date(),
+                estado: 'aprovado'
+            })
+
+            // 4. Record transaction history for buyer
+            transaction.set(docrefuip_comprador_transaction, {
+                title: 'Transferência de Propriedade UIP',
+                ...allinfo,
+                vendedor,
+                comprador: currentUIP,
+                pedido_id: pedidoid,
+                created_at: new Date()
+            })
+        })
+
+        return { sucesso: true, mensagem: 'Propriedade transferida com sucesso' }
+
+    } catch (error: any) {
+        console.error('Erro na transferência:', error.message)
+        return { sucesso: false, mensagem: error.message }
     }
+},
+getpedidodeTransferencia: async (id: string, onChange: (data: any[]) => void) => {
+    try {
+        const docref = collection(db, "Pedido_de_Venda")  // consistent name
+        const q = query(docref, where('comprador_uip', "==", id))
+
+        // onSnapshot returns an unsubscribe function
+        const unsubscribe = onSnapshot(q, (snap) => {
+            if (snap.empty) {
+                onChange([])
+                return
+            }
+            const data = snap.docs.map((item) => ({
+                id: item.id,
+                ...item.data()
+            }))
+            onChange(data)  // pass data to callback instead of returning
+        })
+
+        // Return unsubscribe so caller can clean up
+        return unsubscribe
+
+    } catch (error) {
+        console.log(error)
+        return false
+    }
+}
 
 }))

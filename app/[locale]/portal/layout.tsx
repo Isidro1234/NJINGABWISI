@@ -1,5 +1,5 @@
-'use client'
-import { auth } from '@/config/firebse'
+"use client"
+import { auth, authsecond } from '@/config/firebse'
 import { useAuthContext } from '@/context/authContext'
 import { StreamChatContextProvider } from '@/context/streamChatContext'
 import { decryptdata } from '@/logic/encryptdata'
@@ -13,77 +13,70 @@ const StripeContextProvider = dynamic(() => import("../../../context/strinpeCont
 const LoadingAnim = dynamic(() => import("../../../components/custom/LoadingAnim"))
 const NavBarLogged = dynamic(() => import("../../../components/custom/NavBarLogged"))
 
-export default function PortalLayout({
-    children,
-}: Readonly<{
-    children: React.ReactNode
-}>) {
+export default function PortalLayout({ children }: { children: React.ReactNode }) {
     const router = useRouter()
     const [isLogged, setIsLogged] = useState(false)
     const { setUserdata }: any = useAuthContext()
     const [userdatauip, setuipdata] = useState<any>([])
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
+        const handleAuth = (user: any) => {
             if (!user) {
                 router.push('/auth/entrar')
                 return
             }
 
-            const userdata: string = localStorage.getItem('uip') || ''
-            const userdataadmin: string = localStorage.getItem('uipadmin') || ''
+            const userdata = localStorage.getItem('uip')
+            const userdataadmin = localStorage.getItem('uipadmin')
 
-            // No user data — sign out
             if (!userdata) {
-                auth.signOut()
                 router.push('/auth/entrar')
                 return
             }
 
-            // Admin/collaborator logged in — redirect away from user portal
             if (userdataadmin) {
                 const decryptAdmin = decryptdata(userdataadmin)
+
                 if (decryptAdmin?.role === 'admin') {
                     router.push('/admin/portaladministrador')
                     return
-                } else if (decryptAdmin?.role === 'collaborator') {
+                } else if (decryptAdmin?.role === 'colaborator') {
                     router.push('/admin/portalcolaborador')
                     return
                 }
             }
 
-            // Normal user — allow access
             const decrypt = decryptdata(userdata)
-            if (!decrypt) {
-                auth.signOut()
-                router.push('/auth/entrar')
-                return
-            }
-            setuipdata(decrypt)
-            setUserdata(decrypt)
-            setIsLogged(true)
-        })
+            if (!decrypt) return
 
-        return () => unsubscribe()  // ✅ cleanup
+            setUserdata(decrypt)
+            setuipdata(decrypt)
+            setIsLogged(true)
+        }
+
+        const unsub1 = onAuthStateChanged(auth, handleAuth)
+        const unsub2 = onAuthStateChanged(authsecond, handleAuth)
+
+        return () => {
+            unsub1()
+            unsub2()
+        }
     }, [])
 
-    if (!isLogged) {
-        return <LoadingAnim />
-    }
+    if (!isLogged) return <LoadingAnim />
 
     return (
         <StripeContextProvider>
-          <StreamChatContextProvider
-            userID={userdatauip?.id?.slice(0,5)}
-            name={userdatauip?.nome}
-            image={userdatauip?.photo || ''}
-          >
-            <VStack className='portal' width={'100%'} height={'100%'} bg={'#f6f6f6'}>
-                <NavBarLogged />
-                {children}
-            </VStack>
-          </StreamChatContextProvider>
-            
+            <StreamChatContextProvider
+                userID={userdatauip?.id?.slice(0, 5)}
+                name={userdatauip?.nome}
+                image={userdatauip?.photo || ''}
+            >
+                <VStack className='portal' width={'100%'} height={'100%'} bg={'#f6f6f6'}>
+                    <NavBarLogged />
+                    {children}
+                </VStack>
+            </StreamChatContextProvider>
         </StripeContextProvider>
     )
 }
