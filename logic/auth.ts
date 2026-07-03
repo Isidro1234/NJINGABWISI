@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const api = axios.create({
-  baseURL:         "/",
+  baseURL:         "https://njinga-api.onrender.com",
   headers:         { 'Content-Type': 'application/json' },
   withCredentials: true,  // ← sends the httpOnly cookie on every request
 })
