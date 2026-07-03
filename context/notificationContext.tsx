@@ -41,14 +41,17 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
         let unsubscribe: any
 
         async function init() {
-            const uip = localStorage.getItem('uip')
-            const uipadmin = localStorage.getItem('uipadmin')
+            const uip =localStorage.getItem('uip') || ""
+            const uipadmin = localStorage.getItem('uipadmin') || "" 
 
             let decryptedUser = null
+            if(!uip || !uipadmin) return null
             if (uip) {
-                decryptedUser = decryptdata(uip)
+                const uip2 = JSON.parse(uip)
+                decryptedUser = decryptdata(uip2)
             } else if (uipadmin) {
-                decryptedUser = decryptdata(uipadmin)
+                const uip3 = JSON.parse(uipadmin)
+                decryptedUser = decryptdata(uip3)
             }
 
             setuserdata(decryptedUser)

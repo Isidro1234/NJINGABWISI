@@ -6,11 +6,12 @@ import { Toaster, toaster } from '@/components/ui/toaster'
 import { useAuthContext } from '@/context/authContext'
 import { decryptdata } from '@/logic/encryptdata'
 import { useStateAuth } from '@/states/useAuthState'
-import { Box, Button, HStack, Text, VStack } from '@chakra-ui/react'
+import { Box, Button, HStack, Spinner, Text, VStack } from '@chakra-ui/react'
+import { Country } from 'country-state-city'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 
 export default function Criarconta() {
   const [form, setForm] = useState(() => ({
@@ -24,14 +25,19 @@ export default function Criarconta() {
     profissao: '',
     profissaoOutro: '',
     moradia: '',
+    accountType: '',
+    tipoVisto: '',
+    nacionalidade: 'angola' ,
   }))
-
+  const countries = useMemo(() =>
+      Country.getAllCountries().map((item) => ({ value: item.name, label: item.name }))
+    , [])
   const t = useTranslations('auth.criarconta')
   const set = (field: string) => (value: any) =>
     setForm((prev) => ({ ...prev, [field]: value }))
 
   const enviardados = useStateAuth((state: any) => state.createAccount)
-  const { setUserLogged, setUserdata, setLoading }: any = useAuthContext()
+  const { setLoading , isLoading }: any = useAuthContext()
   const router = useRouter()
 
   function validate(): string | null {
@@ -50,35 +56,44 @@ export default function Criarconta() {
     if (form.password.length < 6)                             return t('errors.password_short')
     if (!form.confirmPassword)                                return t('errors.confirm_password_required')
     if (form.password !== form.confirmPassword)               return t('errors.passwords_mismatch')
+    if (!form.accountType)                                    return "profavor selecione a categoria que se enquadra"
+    if (form.accountType === 'visto' && !form.tipoVisto)      return "porfavor adicione o tipo do seu visto"
+    if (form.accountType !== 'cidadao' && !form.nacionalidade)  return "profavor adicione a sua nacionalidade"
+    if (form.accountType !== 'cidadao' && form.nacionalidade && form.nacionalidade === 'angola') return "Porfavor selecione a nacionalidade correta"
     return null
   }
 
   async function submeter() {
+    setLoading(true)
     const error = validate()
+      
     if (error) {
       toaster.create({ title: error, duration: 4000, type: 'error' })
+        setLoading(false)
       return
     }
-    setLoading(true)
     try {
       const profissaoFinal = form.profissao === 'outro' ? form.profissaoOutro : form.profissao
       const res = await enviardados(
-        form.nome, form.identificacao, form.tipoIdentificacao,
-        form.telefone, form.email, form.password, form.moradia, profissaoFinal
+        form.nome, form.email, form.password , form.identificacao, "user" , profissaoFinal , form.telefone, form.moradia, form.tipoIdentificacao, form.nacionalidade , form.accountType , form.tipoVisto
       )
-      if (res?.nome) {
-        const userdata: string = localStorage.getItem('uip') || ''
-        setUserdata(decryptdata(userdata))
-        setUserLogged(true)
+      if (res) {
         toaster.create({ title: t('success'), duration: 3000, type: 'success' })
-        router.push('/portal')
+        router.push('/auth/codigo')
+        setLoading(false)
+        return
       } else {
         toaster.create({ title: t('errors.create_failed'), duration: 5000, type: 'error' })
+        setLoading(false)
+        return
       }
     } catch (_) {
       toaster.create({ title: t('errors.connection_error'), duration: 5000, type: 'error' })
+      setLoading(false)
+      return
     } finally {
       setLoading(false)
+      return
     }
   }
 
@@ -103,12 +118,11 @@ export default function Criarconta() {
             label={t('email_label')} placeholder={t('email_placeholder')}
           />
         </HStack>
-
-        <InputLabel
-          type='text' onchange={set('moradia')}
-          label={t('moradia_label')} placeholder={t('moradia_placeholder')}
-        />
-
+        <Box width={'100%'} display={'flex'} flexDirection={'column'} gap={1}>
+                <Text fontSize={12} color={'gray'}>{t('moradia_label')}</Text>
+                <SelectCustomValue setChange={(e: any) => set('moradia')(e[0])}
+                  borderRadius={0} width={'100%'} items={countries} />
+          </Box>
         <HStack gap={1} width={'100%'} alignItems={'center'}>
           <InputLabel
             type='text' onchange={set('identificacao')}
@@ -126,7 +140,45 @@ export default function Criarconta() {
             />
           </Box>
         </HStack>
-
+        <VStack gap={0} width={'100%'} alignItems={'flex-start'}>
+          <Text lineHeight={1.2} fontSize={12} color={'gray'}>Qual categoria você se enquadra?</Text>
+          <Box marginTop={2} width={'100%'}>
+            <SelectCustomValue
+              setChange={(e: any) => set('accountType')(e[0])}
+              borderRadius={2} width='100%'
+              items={[
+                { label: 'sou um cidadao angolano', value: 'cidadao' },
+                { label: 'tenho um visto', value: 'visto' },
+                { label: 'estou em estado irregular',     value: 'irregular' },
+                { label: 'sou um residente temporário',     value: 'residente_temporario' },
+                {label: 'sou um residente permanente', value: 'residente_permanente' },
+              ]}
+            />
+          </Box>
+        </VStack>
+        <Box width={'100%'} display={form.accountType !== 'cidadao' ? 'flex' : 'none'} flexDirection={'column'} gap={1}>
+                <Text fontSize={12} color={'gray'}>Qual é a sua nacionalidade?</Text>
+                <SelectCustomValue setChange={(e: any) => set('nacionalidade')(e[0])}
+                  borderRadius={0} width={'100%'} items={countries} />
+        </Box>
+        <VStack display={form.accountType === 'visto' ? "flex" : "none"} gap={0} width={'100%'} alignItems={'flex-start'}>
+          <Text lineHeight={1.2} fontSize={12} color={'gray'}>Tipo de Visto?</Text>
+          <Box marginTop={2} width={'100%'}>
+            <SelectCustomValue
+              setChange={(e: any) => set('tipoVisto')(e[0])}
+              borderRadius={2} width='100%'
+              items={[
+                { label: 'visto de turismo', value: 'turismo' },
+                { label: 'visto de trabalho', value: 'trabalho' },
+                { label: 'visto de transito',     value: 'transito' },
+                { label: 'visto de estudo',     value: 'estudo' },
+                { label: 'visto de tratamento médico', value: 'tratamento_medico' },
+                {label: 'visto de  permanência temporária', value: 'permanencia_temporaria' },
+                {label: 'Visto Diplomático, Oficial e de Cortesia', value: 'diplomatico' },
+              ]}
+            />
+          </Box>
+        </VStack>
         <VStack width={'100%'} alignItems={'flex-start'}>
           <Text fontSize={12} color={'gray'}>{t('profissao_label')}</Text>
           <SelectCustomValue
@@ -149,7 +201,7 @@ export default function Criarconta() {
             />
           )}
         </VStack>
-
+        
         <InputLabel
           type='password' onchange={set('password')}
           label={t('password_label')} placeholder={t('password_placeholder')}
@@ -163,8 +215,8 @@ export default function Criarconta() {
           label={t('telefone_label')} placeholder={t('telefone_placeholder')}
         />
 
-        <Button onClick={submeter} bg={'#d33434'} color={'white'} width={'100%'}>
-          {t('submit')}
+        <Button disabled={isLoading} onClick={submeter} bg={'#d33434'} color={'white'} width={'100%'}>
+          {isLoading ? <Spinner color={'white'} size={'sm'} marginRight={2} /> : t('submit')}
         </Button>
 
         <Link href={'/auth/entrar'}>

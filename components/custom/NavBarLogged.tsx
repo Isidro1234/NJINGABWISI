@@ -11,6 +11,7 @@ import CustomMenu from './CustomMenu'
 import { useLocale, useTranslations } from 'next-intl'
 import Right from '../../public/icons/right.svg'
 import Left from '../../public/icons/left.svg'
+import { useAuthContext } from '@/context/authContext'
 
 export default function NavBarLogged() {
     const t = useTranslations('nav')
@@ -19,7 +20,7 @@ export default function NavBarLogged() {
     const elementref = useRef<HTMLDivElement>(null)
     const locale = useLocale()
     const router = useRouter()
-
+    const {userdata}:any = useAuthContext()
     useEffect(() => {
         const menu = document.getElementsByClassName('navbar-logged-menu-items');
         Array.from(menu[0].children).map((item, index: any) => {
@@ -42,6 +43,7 @@ export default function NavBarLogged() {
             elementref.current?.scrollBy({ left: -100, behavior: 'smooth' })
         }
     }
+    console.log(userdata)
 
     return (
         <VStack className='navbar-logged' bg={'white'}>
@@ -69,13 +71,13 @@ export default function NavBarLogged() {
                     <Button className='navbar-logged-button' onClick={() => { router.push('/portal/Mensagens') }}><Message width={40} height={40} fill={'blue'} /></Button>
                     <span className='space'></span>
                     <CustomMenu menuitems={[{ label: t('perfil'), value: '/portal/perfil' }]} icon={
-                        <AvatarCustom name={auth.currentUser?.displayName || ''} image={auth.currentUser?.photoURL || '/icons/avatar.svg'} />
+                        <AvatarCustom name={userdata?.nome || ''} image={userdata?.photo || '/icons/avatar.svg'} />
                     } />
                 </HStack>
             </HStack>
             <HStack className='navbar-logged-conteiner-bottom'>
                 <VStack className='navbar-logged-welcome'>
-                    <Heading className='navbar-logged-welcome-text'>{t('welcome', { name: auth.currentUser?.displayName?.split(' ')[0] || '' })}</Heading>
+                    <Heading className='navbar-logged-welcome-text'>{t('welcome', { name: userdata?.nome?.split(' ')[0] || '' })}</Heading>
                     <Text className='navbar-logged-welcome-subtext'>{t('welcome_back')}</Text>
                 </VStack>
                 <HStack className='navbar-logged-other'>

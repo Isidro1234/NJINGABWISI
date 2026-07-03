@@ -116,7 +116,7 @@ export default function Agentes() {
   }
 
   async function enviar(form: any) {
-    const decrypt: any = localStorage.getItem('uip')
+    const decrypt: any = JSON.parse(localStorage.getItem('uip') || "") || ""
     const uip = decryptdata(decrypt)?.id
     const res = await registar_agente(form, uip)
 

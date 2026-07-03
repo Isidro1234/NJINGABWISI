@@ -1,5 +1,7 @@
 "use client"
 import CustomOTP from '@/components/custom/CustomOtp'
+import { useAuthContext } from '@/context/authContext'
+import { decryptdata } from '@/logic/encryptdata'
 import { useStateAuth } from '@/states/useAuthState'
 import { Box, Button, Spinner, Text, VStack } from '@chakra-ui/react'
 import { useTranslations } from 'next-intl'
@@ -9,26 +11,30 @@ import React, { useEffect, useState } from 'react'
 export default function Code() {
   const t = useTranslations('auth.codigo')
   const router = useRouter()
-  const code = useStateAuth((state: any) => state?.code)
-  const [currentCode, setCode] = useState(0)
+  const code = useStateAuth((state: any) => state?.verificarCodigo)
+  const code2 = useStateAuth((state: any) => state?.resendEmail)
   const [userCode, setUserCode] = useState(0)
-  const [loading, setLoading] = useState(false)
+  const {setUserdata, setUserLogged, setLoading, isLoading}:any = useAuthContext()
 
-  useEffect(() => {
-    async function getting() {
-      const res = await code
-      setCode(res)
-    }
-    getting()
-  }, [code])
 
-  function checkCode() {
+  async function checkCode() { 
     setLoading(true)
-    if (currentCode == userCode) {
+    const res = await code(userCode)
+  
+    if (res.email) {
+      setUserdata(res)
       router.push('/portal')
+      setLoading(false)
       return
     }
     setLoading(false)
+  }
+
+  async function resendcode(){
+    const stringdata = localStorage.getItem('uip') || ''
+    const decrypt =  decryptdata(stringdata)
+    console.log(decrypt, stringdata)
+    const res = await code2(decrypt.id )
   }
 
   return (
@@ -37,10 +43,12 @@ export default function Code() {
         <Text fontSize={20} fontWeight={700}>{t('title')}</Text>
         <Text fontSize={12} color={'gray'}>{t('subtitle')}</Text>
         <CustomOTP onchange={(e: any) => setUserCode(e)} />
-        <Button onClick={checkCode}>
-          {loading ? <Spinner /> : t('submit')}
+        <Button disabled={isLoading} onClick={checkCode}>
+          {isLoading ? <Spinner color={'white'} size={'sm'} /> : t('submit')}
         </Button>
+        <Text onClick={resendcode} _hover={{textDecoration:"underline", cursor:"pointer"}} color={'gray'} fontSize={12}>Resend code through email</Text>
       </Box>
+      
     </VStack>
   )
 }

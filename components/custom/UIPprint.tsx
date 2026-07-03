@@ -5,17 +5,11 @@ import { Box, Heading, HStack, Text, VStack } from '@chakra-ui/react'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import CustomQrcode from './CustomQrcode';
+import { useStateAuth } from '@/states/useAuthState';
 
 export default function UIPprint({ref}:{ref:any}) {
-    const [decrypt, setDecrypt] = useState<any>(null)
+    const uip_info = useStateAuth((state:any)=>state.MyUIP)
 
-    useEffect(() => {
-        const uip = localStorage?.getItem('uip') || ''
-        const decrypted = uip ? decryptdata(uip) : null
-        setDecrypt(decrypted)
-    }, [])
-
-    if (!decrypt) return null
   return (
     <VStack className='uipstyle' gap={5} ref={ref} bg={'white'} width={'100%'} padding={10}>
          <VStack className='uipstyle' width={'100%'}>
@@ -30,8 +24,8 @@ export default function UIPprint({ref}:{ref:any}) {
         </VStack>
         <HStack className='uipstyle' borderStyle={'dashed'} borderWidth={1.5} alignItems={'flex-start'} gap={5} padding={4} borderRadius={10} bg={'#ffffff'}>
             <Box className='uipstyle' padding={2} borderRadius={10} position={'relative'} width={150} height={150}>
-                {decrypt?.photo &&
-                    <Image  fill style={{objectFit:"cover",borderRadius:10, height:'100%', width:'100%'}} src={decrypt?.photo}  alt='imge'/>  
+                {uip_info?.data?.photo &&
+                    <Image  fill style={{objectFit:"cover",borderRadius:10, height:'100%', width:'100%'}} src={uip_info?.data?.photo}  alt='imge'/>  
                 
                 }
               
@@ -64,16 +58,16 @@ export default function UIPprint({ref}:{ref:any}) {
                         <Text color={'gray'} fontSize={10} >Profissão:</Text>
                     </Box>
                     <Box className='uipstyle'>
-                        <Text color={'gray'} fontSize={10}>{decrypt?.nome || ''}</Text>
-                        <Text color={'green.500'} fontSize={10}>{decrypt?.estado || ''}</Text>
-                        <Text fontSize={10} color={'green.500'}>{decrypt?.shortuip_id || ''}</Text>
-                        <Text color={'gray'} fontSize={10} >{decrypt?.tipoIdentificacao || ''}</Text> 
-                        <Text color={'gray'} fontSize={10}>{decrypt?.profissao || ''}</Text> 
+                        <Text color={'gray'} fontSize={10}>{uip_info?.data?.full_name || ''}</Text>
+                        <Text color={'green.500'} fontSize={10}>{uip_info?.data?.nacionalidade || ''}</Text>
+                        <Text fontSize={10} color={'green.500'}>{uip_info?.data?.short_uip || ''}</Text>
+                        <Text color={'gray'} fontSize={10} >{uip_info?.data?.tipoIdentificacao || ''}</Text> 
+                        <Text color={'gray'} fontSize={10}>{uip_info?.data?.job || ''}</Text> 
                     </Box>
                 </HStack>
                 <Box className='uipstyle' paddingTop={4} width={'100%'} display={'flex'} justifyContent={'end'}>
                     <Box className='uipstyle' alignSelf={'flex-end'}>
-                       <CustomQrcode size={5}  value={`https://n-jinga.vercel.app/verifyuip/${decrypt?.id}` || 'N/A'}/>  
+                       <CustomQrcode size={5}  value={`https://n-jinga.vercel.app/verifyuip/${uip_info?.data?.shortuip_id}` || 'N/A'}/>  
                     </Box>
                     
                 </Box>

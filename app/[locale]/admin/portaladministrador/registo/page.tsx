@@ -142,8 +142,8 @@ export default function Registar() {
                 return
             }
 
-            const uip: string = localStorage.getItem('uip') || ''
-            const uipadmin: string = localStorage.getItem('uipadmin') || ''
+            const uip: string = JSON.parse(localStorage.getItem('uip') || "") || ""
+            const uipadmin: string = JSON.parse(localStorage.getItem('uipadmin')  || "") || ""
             const check = uip || uipadmin
             const decrypt = decryptdata(check)?.id
 

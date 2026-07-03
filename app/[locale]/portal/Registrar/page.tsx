@@ -112,7 +112,7 @@ export default function Registar() {
         toaster.create({ title: t('errors.incomplete_form'), description: error1 || error2 || '', type: 'error', duration: 5000 })
         return
       }
-      const uip: string = localStorage.getItem('uip') || ''
+      const uip: string = JSON.parse(localStorage.getItem('uip') || "") || ""
       const decrypt = decryptdata(uip)?.id
       if (!decrypt) {
         toaster.create({ title: t('errors.session_expired'), description: t('errors.session_expired_desc'), type: 'error', duration: 5000 })

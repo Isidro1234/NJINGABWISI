@@ -18,8 +18,8 @@ export default function LayoutAdminPortal({ children }: { children: React.ReactN
         const handleAuth = (user: any) => {
             if (!user) return
 
-            const userdata = localStorage.getItem('uipadmin')
-            const uip = localStorage.getItem('uip')
+            const userdata = JSON.parse(localStorage.getItem('uipadmin') || "")  || ""
+            const uip = JSON.parse(localStorage.getItem('uip') || "") || ""
 
             if (uip && !userdata) {
                 router.push('/portal')

@@ -1,4 +1,5 @@
 import { auth, authsecond, db } from "@/config/firebse";
+import { api } from "@/logic/auth";
 import { decryptdata, encryptdata } from "@/logic/encryptdata";
 import { notify_user_group } from "@/logic/notifying";
 import { registeruserstripe } from "@/logic/registeruserStripe";
@@ -13,6 +14,7 @@ import { create } from "zustand";
 
 export const useLogicState = create((set, get)=>({
     UIPprofile:[],
+    userDigitalFolder:{},
     getUIPprofile:async(pesquisa:string)=>{
         try {
              try {
@@ -301,14 +303,9 @@ getpedidosderegisto_de_agentes: async () => {
             
     }, queryUserUIP: async(pesquisa:string)=>{
         try {
-           const docref = collection(db, "MeuUIP")
-        const q = query(docref, or (where("id","==",pesquisa), where("shortuip_id","==",pesquisa) ))
-        const uips = await getDocs(q);
-        if(uips.empty) return []
-        const res = uips.docs.map((item)=>{
-            return item.data()
-        })
-        return res || [] 
+           const res = await api.post('/api/v1/internal/VerifyUIP', { pesquisa })
+           if(!res.data.success) return []
+           return res.data
         } catch (error) {
            return []   
         }
@@ -414,5 +411,108 @@ getpedidodeTransferencia: async (id: string, onChange: (data: any[]) => void) =>
         return false
     }
 }
+, create_digital_folder_profile:async(username:string, uip:string)=>{
+  
+   alert(uip)
+   try {
+     const {data} =  await api.post("/api/v1/digitalfolder/createProfile", {username, user_uip:uip})
+     if(data?.success){
+    return true
+   }
+   return false
+   } catch (error) {
+    console.log(error)
+    return false
+   }
+  
+},
+get_digital_folder:async(uip:string)=>{
+try {
+    const res = await api.post("/api/v1/digitalfolder/getProfile", 
+        {user_uip:uip})
+         console.log("stopped here")
+        if(!res.data.success){
+            console.log("falsing")
+             console.log("stopped here")
+            return false
+        }
+        console.log("this is", res.data)
+         console.log("stopped here")
+       return res.data
 
+} catch (error) {
+     console.log("stopped here")
+    console.log(error)
+    return false
+}
+},
+get_digital_folder_code:async(uip:string)=>{
+
+},
+search_digital_folder:async(search:string, uip:string)=>{
+
+},
+upload_to_digital_folder:async(uip:string, doc_name:string , doc:string, doctype:string)=>{
+    try {
+      const {data} = await api.post('/api/v1/digitalfolder/documents/upload', 
+        {user_uip:uip , document:doc , document_name:doc_name , doc_type:doctype})  
+        if(!data.success){
+            return false
+        }
+        return data.data
+    } catch (error) {
+        return false
+    }
+    
+
+},
+updateDoc_from_digital_folder:async(uip:string, doc_name:string, newdata:any)=>{
+    try {
+      const {data} = await api.post('/api/v1/digitalfolder/upload/document', 
+        {user_uip:uip, document_name:doc_name , document_url:newdata})  
+        if(!data.success){
+            return false
+        }
+        return data.data
+    } catch (error) {
+        return false
+    }
+},
+update_uip_profile:async(account_id: string, user_uip: string, update_data:object)=>{
+    try{
+        console.log(account_id, user_uip, update_data)
+      const update = await api.post('/api/v1/internal/updateUIP',{ account_id, user_uip,  update_data});
+    if(!update.data.success){
+        return false
+    }
+    return true
+    }catch(error){
+        console.log(error)
+        return false
+    }
+},
+download_uip:async()=>{
+        const download = await api.get('/api/v1/internal/downloadUIP', {responseType:'blob'})
+        if(!download.data) return false
+        const url = window.URL.createObjectURL(new Blob([download.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'uip.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        return true
+},
+create_Eshare:async()=>{
+
+},
+send_Eshare:async()=>{
+
+},
+get_Eshare:async()=>{
+
+},
+update_Eshare:async()=>{
+
+}
 }))

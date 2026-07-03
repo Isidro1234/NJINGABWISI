@@ -1,13 +1,13 @@
-import { Box, HStack, Input } from '@chakra-ui/react'
+import { Box, HStack, Input, Spinner } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import SelectCustomValue from './SelectCustomValue'
 import Image from 'next/image'
 import CustomQrCodeScanner from './CustomQrcodeScanner'
+import { toaster , Toaster } from '../ui/toaster'
 
-export default function CustomUIPElement({ showselect , onchange, onclick, value , onchangeselect}: { onchangeselect?: (value: string) => void, showselect: boolean, onchange?: (value: string) => void, onclick?: () => void, value?: string }) {
+export default function CustomUIPElement({ showselect , onchange, onclick, value , onchangeselect, isloading}: { onchangeselect?: (value: string) => void, showselect: boolean, onchange?: (value: string) => void, onclick?: () => void, value?: string, isloading?: boolean }) {
     const [inputValue, setInputValue] = useState('')
     function handleInputChange(e:any) {
-        console.log("this is scannerUIP", e)
         setInputValue(e)
         onchange?.(e)
     }
@@ -25,11 +25,13 @@ export default function CustomUIPElement({ showselect , onchange, onclick, value
                 <Box display={showselect ? 'block' : 'none'}>
                 <SelectCustomValue setChange={(e:any)=>{onchangeselect?.(e)}} borderRadius={50} width='80px' items={[{label:'Agente', value:'agente'}, {label:'Cidadao', value:'cidadao'}]}/>    
                 </Box>
-                
+                  <Toaster/>
               </HStack>
             <Box className='button-mb'>
-              <Box className='button-mb' display={'flex'} alignItems={'center'} justifyContent={'center'} onClick={onclick} minWidth={50} cursor={'pointer'} borderRadius={10} position={'relative'} padding={4} bg={'#41AA9B'}><Image width={20} height={20} src={'/icons/send.svg'} alt='qrcode'/></Box>
+              <Box className='button-mb' display={'flex'} alignItems={'center'} justifyContent={'center'} onClick={onclick} minWidth={50} cursor={'pointer'} borderRadius={10} position={'relative'} padding={4} bg={'#41AA9B'}>
+                {isloading ? <Spinner size="sm" color={'white'} /> : <Image width={20} height={20} src={'/icons/send.svg'} alt='qrcode'/>}</Box>
             </Box>
+          
             </HStack>
   )
 }

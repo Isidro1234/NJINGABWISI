@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
-import "./globals.css";
+import   './globals.css'
 import {Provider} from '../../components/ui/provider'
 import dynamic from "next/dynamic";
-import "stream-chat-react/dist/css/v2/index.css";
 import { NotificationProvider } from "@/context/notificationContext";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
 
 const  AuthContextProvider= dynamic(
-  () => import("../../context/authContext"),
+  () => import("../../context/authContext"), 
 );
 const  Navbar = dynamic(
   () => import("../../components/custom/Navbar"),
@@ -87,19 +86,21 @@ export default async function RootLayout({
         className={inter.className}
       >
         <NextIntlClientProvider messages={messages}>
-            <AuthContextProvider>
+            
         
             <Provider>
+              <AuthContextProvider>
               <NotificationProvider>     
                   <TopNavbar/>
                   <Navbar name={undefined} image={undefined} islogged={false}/>
                   {children}
             
               </NotificationProvider>
+              </AuthContextProvider>
             </Provider>
           
               
-          </AuthContextProvider>
+          
         </NextIntlClientProvider>
        
       </body>

@@ -190,7 +190,7 @@ export default function TransferirUIP({ casas }: Props) {
   const searchComprador = useCallback(async (query: string): Promise<UIPUser[]> => {
     try { return (await buscarUtente(query)) || [] } catch (_) { return [] }
   }, [buscarUtente])
-   const getuip = localStorage.getItem('uip');
+   const getuip = '';
    if(!getuip){return}
    const meu_uip= decryptdata(getuip)
   function validate(): string | null {
@@ -211,7 +211,7 @@ export default function TransferirUIP({ casas }: Props) {
   async function handleSubmit() {
     const error = validate()
     if (error) { toaster.create({ title: error, duration: 4000, type: 'error' }); return }
-    const getuip = localStorage.getItem('uip');
+    const getuip = ""
     if(!getuip) return;
     const meu_uip = decryptdata(getuip);
     const casafoto = casas.filter((it)=> it.ref === form.imovel_id)[0].avatar;

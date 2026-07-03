@@ -1,39 +1,61 @@
 import type { NextConfig } from "next";
 import path from "path";
 import createNextIntlPlugin from 'next-intl/plugin'
-const withNextIntl = createNextIntlPlugin()
-export default withNextIntl({ 
-  outputFileTracingRoot: path.join(__dirname)
-  ,
-  experimental: {
-    optimizePackageImports: ["@chakra-ui/react"],
-    serverComponentsExternalPackages: ['firebase-admin'],
-  }, webpack: (config) => {
-    // Find the existing rule that handles SVG imports
-    const fileLoaderRule = config.module.rules.find((rule:any) =>
-      rule.test?.test?.('.svg')
-    );
 
-    // Exclude SVG from the existing file loader rule
+const withNextIntl = createNextIntlPlugin()
+
+const nextConfig: NextConfig = {
+  outputFileTracingRoot: path.join(__dirname),
+
+  // ── External packages (moved out of experimental in Next.js 15+) ──────────
+  serverExternalPackages: ['firebase-admin'],
+
+  // ── Experimental ──────────────────────────────────────────────────────────
+  experimental: {
+    optimizePackageImports: ['@chakra-ui/react'],
+  },
+
+  // ── Images ────────────────────────────────────────────────────────────────
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname:  'njinga-worker.njinga.workers.dev',
+        pathname:  '/**',
+      },
+    ],
+  },
+
+  // ── Proxy API calls to Express backend ────────────────────────────────────
+  async rewrites() {
+    return [
+      {
+        source:      '/api/v1/:path*',
+        destination: 'http://localhost:8000/api/v1/:path*',
+      },
+    ]
+  },
+
+  // ── Webpack (SVGR support) ─────────────────────────────────────────────────
+  webpack(config) {
+    // Exclude SVGs from the default file loader
+    const fileLoaderRule = config.module.rules.find((rule: any) =>
+      rule.test?.test?.('.svg')
+    )
     if (fileLoaderRule) {
-      fileLoaderRule.exclude = /\.svg$/i;
+      fileLoaderRule.exclude = /\.svg$/i
     }
 
-    // Add a new rule for SVGR
+    // Handle SVGs with SVGR
     config.module.rules.push({
-      test: /\.svg$/i,
-      issuer: fileLoaderRule?.issuer,
-      resourceQuery: { not: [/url/] }, // Exclude SVGs with `?url` query
-      use: ['@svgr/webpack'],
-    });
+      test:          /\.svg$/i,
+      issuer:        fileLoaderRule?.issuer,
+      resourceQuery: { not: [/url/] },
+      use:           ['@svgr/webpack'],
+    })
 
-    return config;
+    return config
   },
-  images:{
-    remotePatterns:[{
-      protocol:"https", hostname:"njinga-worker.njinga.workers.dev/**" , 
-      pathname:"/**"}]
-  },
+}
 
-
-})
+export default withNextIntl(nextConfig)

@@ -9,13 +9,14 @@ import Notification from "../../public/icons/notification-1.svg"
 import { auth } from '@/config/firebse'
 import CustomMenu from './CustomMenu'
 import { useTranslations } from 'next-intl'
+import { useAuthContext } from '@/context/authContext'
 
 export default function NavBarAdminLogged() {
     const t = useTranslations('nav')
     const pathname = usePathname();
     const isBwisiPage = pathname === '/admin';
     const router = useRouter()
-
+    const {userdata}:any = useAuthContext()
     useEffect(() => {
         const menu = document.getElementsByClassName('navbar-logged-menu-items');
         Array.from(menu[0].children).map((item) => {
@@ -28,7 +29,7 @@ export default function NavBarAdminLogged() {
             }
         })
     }, [pathname])
-
+    console.log("this is the userdata:", userdata)
     return (
         <VStack className='navbar-logged' bg={'white'}>
             <HStack className='navbar-logged-conteiner-top'>
@@ -54,13 +55,13 @@ export default function NavBarAdminLogged() {
                     <Button className='navbar-logged-button' onClick={() => { router.push('/admin/portaladministrador/mensagem') }}><Message width={40} height={40} fill={'blue'} /></Button>
                     <span className='space'></span>
                     <CustomMenu menuitems={[{ label: t('perfil'), value: '/admin/portaladministrador/perfil' }]} icon={
-                        <AvatarCustom name={auth.currentUser?.displayName || ''} image={auth.currentUser?.photoURL || '/icons/avatar.svg'} />
+                        <AvatarCustom name={userdata?.nome || ''} image={userdata?.photo || '/icons/avatar.svg'} />
                     } />
                 </HStack>
             </HStack>
             <HStack className='navbar-logged-conteiner-bottom'>
                 <VStack className='navbar-logged-welcome'>
-                    <Heading className='navbar-logged-welcome-text'>{t('welcome', { name: auth.currentUser?.displayName?.split(' ')[0] || '' })}</Heading>
+                    <Heading className='navbar-logged-welcome-text'>{t('welcome', { name: userdata?.nome?.split(' ')[0] || '' })}</Heading>
                     <Text className='navbar-logged-welcome-subtext'>{t('welcome_back')}</Text>
                 </VStack>
                 <HStack className='navbar-logged-other'>

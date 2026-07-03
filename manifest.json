@@ -1,7 +1,7 @@
 {
-  "name": "Njinga",
-  "short_name": "Njinga",
-  "description": "Plataforma de registo de imóveis",
+  "name": "njinga",
+  "short_name": "njinga",
+  "description": "plataforma de registo de imóveis",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#e30a20",

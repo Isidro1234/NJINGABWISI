@@ -1,178 +1,93 @@
+import { api, Login,  Register } from "@/logic/auth"
+import { create } from "zustand"
+
+export const useStateAuth = create<any>((set, get) => ({
+  access_token: null,   // lives in memory only — gone on hard refresh, restored by initSession
+  user:         null,
+  MyUIP:        null,
+  isReady:      false,  // true after initSession completes
 
 
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
-import { collection, doc, getDoc, getDocs, or, query, setDoc, where } from 'firebase/firestore';
-import {create} from 'zustand'
-import {auth , authsecond, db} from '../config/firebse'
-import { codeemail } from '@/logic/codeemail';
-import { registeruserstripe } from '@/logic/registeruserStripe';
-import { decryptdata, encryptdata } from '@/logic/encryptdata';
-import { StreamChat } from 'stream-chat';
-import { streamchat_client_frontend } from '@/logic/streamchatregistering';
+  // ── Call this once in your root layout on mount ───────────
+  initSession: async () => {
+  try {
 
-const client = StreamChat.getInstance(`${process.env.NEXT_PUBLIC_STREAM_KEY}`)
-export const useStateAuth = create((set, get)=>({
-    code:null,
-    client:null,
-    uip:[],
-    login:async(Identificacao:string, password:string)=>{
-        try {
-            localStorage.removeItem('uip');
-            const docref = collection(db, "Perfil")
-            console.log('entrou')
-            const q = query(docref, where("Identificacao", "==", Identificacao));
-            const getting = await getDocs(q);
-            if(getting.empty) return;
-            console.log('entrou e checkou o id')
-            const res = getting.docs.map((item)=>{
-                    return item.data()
-            })
-            const uip:any = doc(db, 'MeuUIP', res[0].Identificacao)
-            const getuip = await getDoc(uip);
-            if(!getuip.exists()) return;
-            const uipdata:any = getuip.data()
-            const encrypt = encryptdata(uipdata)
-            localStorage.setItem('uip', encrypt)
-            const email = res[0].email;
-            const username = res[0].nome;
-            const id = res[0].id;
-            console.log('workin', email, res)
-            const credentials = await signInWithEmailAndPassword(auth,email,password);
-            console.log('entrou e fez o login,', credentials)
-            const code = await codeemail(email)
-            console.log('resoleveu o code', code)
-            if(!code) return;
-            set({code})
-            if(!credentials.user.email) return;
-            console.log('entrou e resposta final')
-            return {uip:uipdata}
-        } catch (error:any) {
-            console.log(error.message)
-            return false
-        }
-        
-    },
-    createAccount:async(nome:string, Identificacao:string, tipoIdentificacao:Array<string>, Phonenumber:string, email:string, 
-        password:string, moradia:string, profissao:string)=>{
-        try {
-            console.log(nome)
-            const check = await getDocs(query(collection(db, 'Perfil'), where('Identificacao', '==', Identificacao)))
-            if(!check.empty){
-                alert('Identificacao ja existe');
-                return;
-            }
-           const credentials = await createUserWithEmailAndPassword(auth, email , password);
-           if(!credentials.user.email) return;
-           const userid = credentials.user.uid
-           const docref : any = doc(db, 'Perfil', userid)
-           const docrefUip:any = doc(db, 'MeuUIP', Identificacao);
-           const shortuip_id = tipoIdentificacao[0][0].toUpperCase() + Identificacao.slice(Identificacao.length - 4, Identificacao.length - 1);
-           const register_user_stripe = await registeruserstripe(email, Identificacao)
-           await setDoc(docref, {
-              id:userid,
-              nome, 
-              Identificacao, 
-              tipoIdentificacao, 
-              Phonenumber, 
-              email,
-              createdAt:new Date(),
-              photo:null,
-              stripe_customer_id : register_user_stripe,
-           })
-           await setDoc(docrefUip, {
-              id:Identificacao,
-              shortuip_id,
-              nome, 
-              Identificacao, 
-              tipoIdentificacao, 
-              Phonenumber, 
-              email,
-              moradia,
-              profissao,
-              createdAt:new Date(),
-              estado:'activo',
-              photo:null,
-              stripe_customer_id : register_user_stripe,
-           })
-           await updateProfile(credentials.user,{
-             displayName:nome,
-           })
-            const getuip = await getDoc(docrefUip);
-            if(!getuip.exists()) return;
-            const uipdata:any = getuip.data()
-            const encrypt = encryptdata(uipdata)
-            localStorage.setItem('uip', encrypt)
-           return  {
-              id:Identificacao,
-              shortuip_id,
-              nome, 
-              Identificacao, 
-              tipoIdentificacao, 
-              Phonenumber, 
-              email,
-              moradia,
-              profissao,
-              createdAt:new Date(),
-              estado:'activo',
-              photo:null,
-              stripe_customer_id : register_user_stripe,
-           }
-        } catch (error:any) {
-            console.log(error.message)
-            return false
-        }
-    },
-    loginAdmin: async(identificacao:any , password:any , codigo:any)=>{
-        console.log("this is changing", identificacao, password , codigo)
-        try {
-            const check =  localStorage.removeItem('uipadmin')
-            const uip =  localStorage.removeItem('uip')
-            const docref = collection(db,"MeuUIP");
-            const q = query(docref, or(where("Identificacao","==",identificacao),
-            where("numero_do_bilhete","==",identificacao)
-        ));
-            const gettting = await getDocs(q);
-            if(gettting.empty) return;
-            const email = gettting.docs[0].data()?.email;
-            console.log(gettting.docs[0].data())
-            if(gettting.docs[0].data()?.role == "user") return;
-           
-            const data:any = gettting.docs[0].data()
-            const encryot = encryptdata(data)
-            console.log("this", encryot)
-            localStorage.setItem('uipadmin', encryot)
-            let login:any = ''
-            if(gettting.docs[0].data()?.role == 'admin'){
-                login = await signInWithEmailAndPassword(auth, email , password); 
-            }else if(gettting.docs[0].data()?.role == 'colaborator'){
-                login = await signInWithEmailAndPassword(authsecond, email , password);  
-            }
-            
-            const username = data.nome;
-            const id = data.id.slice(0,5)
-            if(gettting.docs[0].data()?.role == "admin"){
-                const phot = gettting.docs[0].data()?.photo || "https://njinga-worker.njinga.workers.dev/angola-flag-png.png" 
-                await updateProfile(login.user,{
-                    displayName:gettting.docs[0].data()?.nome,
-                    photoURL:phot
-                }) 
-            }else if(gettting.docs[0].data()?.role == "colaborator"){
-                const phot = gettting.docs[0].data()?.photo || "https://njinga-worker.njinga.workers.dev/angola-flag-png.png" 
-                await updateProfile(login.user,{
-                    displayName:gettting.docs[0].data()?.nome,
-                    photoURL:phot
-                }) 
-            }
-            console.log(gettting.docs[0].data())
-            return gettting.docs[0].data() 
-        } catch (error) {
-            console.log(error)
-        }
-            
-    },
-    logout:async()=>{
-        localStorage.removeItem('uip');
-        localStorage.removeItem('uipadmin')
-        auth.signOut();
+    try {
+      const me = await api.get('/api/v1/internal/me')
+      if (me?.data?.success) {
+        set({ user: me.data.user })
+      }
+    } catch {
+      // /me failed but we still have a token — not fatal
     }
+  } catch {
+    // No cookie or invalid cookie — user is not logged in, that's fine
+  } finally {
+    set({ isReady: true })  // ← ALWAYS unblock the UI
+  }
+},
+
+  // ── Login ─────────────────────────────────────────────────
+  login: async (identificacao: string, password: string) => {
+    try {
+      const data = await Login(identificacao, password)
+      // Cookie is set by the server automatically
+      return data.user.email
+    } catch (error: any) {
+      console.error(error.message)
+      return false
+    }
+  },
+
+  // ── After registration code verification ──────────────────
+  verificarCodigo: async (code: string) => {
+    try {
+      const { data } = await api.post('/api/v1/internal/activarcode', { code })
+      if (!data.success) return false
+
+
+      return data.user
+    } catch (error) {
+      console.error(error)
+      return false
+    }
+  },
+
+  createAccount: async ( full_name: string, email: string, password: string, idnumber: string, role: string, job: string, phone: string, moradia: string, tipoIdentificacao: Array<string>, nacionalidade: string , accountType: string , tipoVisto: string) => {
+    try {
+      const res = await Register( full_name, email, password, idnumber, role, job, phone, moradia, tipoIdentificacao, nacionalidade , accountType , tipoVisto)
+      if(res){
+        return true
+      }else{
+        return false
+      }
+    } catch {
+      return false
+    }
+  },
+
+  logout: async () => {
+    try {
+      await api.get('/api/v1/internal/logout')  // revokes cookie on server
+    } finally {
+      set({user: null, MyUIP: null })
+    }
+  },
+
+  resendEmail: async (user_id: string) => {
+    try {
+      const { data } = await api.post('/api/v1/internal/resendCode', { user_id })
+      return !!data.successo
+    } catch {
+      return false
+    }
+  },myuipget : async () => {
+    try {
+      const data = await api.get('/api/v1/internal/myUIP')
+      set({ MyUIP: data.data })
+      return data?.data ?? false
+    } catch {
+      return false
+    } 
+   }
 }))

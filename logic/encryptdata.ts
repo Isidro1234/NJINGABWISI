@@ -30,7 +30,7 @@ export const decryptdata = (data: string): any => {
         // ✅ Check bytes exist before converting
         if (!decrypt || decrypt.sigBytes <= 0) return null
 
-        const decryptstring = decrypt.toString(CryptoJS.enc.Utf8)
+        const decryptstring = decrypt?.toString(CryptoJS.enc.Utf8)
         
         // ✅ Check string is valid before parsing
         if (!decryptstring || decryptstring.trim() === '') return null

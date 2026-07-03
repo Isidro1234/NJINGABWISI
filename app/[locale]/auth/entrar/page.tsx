@@ -19,7 +19,7 @@ export default function Entrar() {
 
   const t = useTranslations('auth.entrar')
   const enviardados = useStateAuth((state: any) => state.login)
-  const { setUserdata, setLoading, isLoading }: any = useAuthContext()
+  const { setLoading, isLoading }: any = useAuthContext()
   const router = useRouter()
 
   function validate(): string | null {
@@ -38,13 +38,12 @@ export default function Entrar() {
     }
     setLoading(true)
     try {
-      const res = await enviardados(form.identificacao, form.password)
-      if (res?.uip?.email) {
-        const userdata: string = localStorage.getItem('uip') || ''
-        setUserdata(decryptdata(userdata))
+      const res = await enviardados( form.identificacao, form.password)
+      if (res) {
         router.push('/auth/codigo')
         return
       }
+      console.log("this is the response from login page", res)
       toaster.create({ title: t('errors.wrong_credentials'), duration: 5000, type: 'error' })
     } catch (_) {
       toaster.create({ title: t('errors.connection_error'), duration: 5000, type: 'error' })
@@ -61,13 +60,15 @@ export default function Entrar() {
           <Logo />
           <Text fontSize={20} fontWeight={700} marginTop={-4}>{t('title')}</Text>
         </VStack>
-
+          
+    
         <Text width={'100%'} textAlign={'center'} fontSize={12} color={'gray'}>
           {t('subtitle')}
         </Text>
+      
 
         <InputLabel
-          type='text'
+          type='password'
           onchange={(e: any) => setForm((p) => ({ ...p, identificacao: e }))}
           label={t('identificacao_label')}
           placeholder={t('identificacao_placeholder')}

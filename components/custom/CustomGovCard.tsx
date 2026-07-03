@@ -25,8 +25,8 @@ export default function CustomGovCard() {
     }, [])
     async function createchannel(userId:string){
         if(!pronto) return;
-        const uip = localStorage.getItem('uip');
-        const uipadmin = localStorage.getItem('uipadmin')
+        const uip = JSON.parse(localStorage.getItem('uip') || "") || ""
+        const uipadmin =JSON.parse(localStorage.getItem('uipadmin') || "") || ""
         const newuip = uip || uipadmin;
         if(!newuip) return;
         const currentID = await decryptdata(newuip)?.id?.slice(0,5);  
