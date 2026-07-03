@@ -388,7 +388,7 @@ export default function Portal() {
                     <Text fontSize={12} color={'gray'}>{eshareSearch?.full_name}</Text>
                   </Box>
          </Box>
-         <Box display={eshareSelected?.photo ? "flex" : "none"} gap={2} alignItems={'center'} display={'flex'}>
+         <Box display={eshareSelected?.photo ? "flex" : "none"} gap={2} alignItems={'center'}>
                     <Avatar.Root size={"2xs"}>
                       <Avatar.Fallback name={eshareSearch?.full_name}/>
                       <Avatar.Image src={eshareSearch?.photo}/>
