@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 configDotenv()
 
 const transporter = nodemailer.createTransport({
-  host:'smtp.hostinger.com',
+  host:'gmail',
   port:465,
   auth: {
     user: process.env.EMAIL_USER,
@@ -221,24 +221,22 @@ const htmlTemplate = (code:number)=>{
 </body>
 </html>`)
 }
-async function sendEmails(code:number,email:string){
+async function sendEmails(html:any,email:string, subject:string){
     await transporter.sendMail({
-        from:'info@bwisi.tech',
+        from:'bwisicorporationo@gmail.com',
         to:email,
-        subject:'Codigo de Verificacao da NJINGA',
-        html:`${htmlTemplate(code)}`,
+        subject,
+        html,
     })
 }
 export async function POST(request:Request){
     try {
         const data = await request.json();
-        const {email} = data;
-        const generatecode = Math.floor(Math.random() * 999) + 1000;
-        const emailenviado = await sendEmails(generatecode, email)
-        console.log(generatecode)
-        return NextResponse.json({res:generatecode, message:'success'}); 
+        const {email , subject , html } = data;
+        await sendEmails(html , email , subject)
+        return NextResponse.json({message:'success'} , {status:200}); 
     } catch (error) {
-         return NextResponse.json({res:false, message:false}); 
+         return NextResponse.json({res:false, message:false}, {status:500}); 
     }
     
 

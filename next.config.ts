@@ -31,7 +31,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source:      '/api/v1/:path*',
-        destination: 'https://n-jinga.vercel.app/api/v1/:path*',
+        destination: 'http://localhost:8000/api/v1/:path*',
       },
     ]
   },
