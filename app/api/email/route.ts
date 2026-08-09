@@ -235,7 +235,7 @@ export async function POST(request:Request){
         const data = await request.json();
         const {email, subject, htmlTemplate } = data;
         await sendEmails(htmlTemplate , email , subject)
-        return NextResponse.json({message:'success'} , {status:200}); 
+        return NextResponse.json({res:false, message:'success'} , {status:200}); 
     } catch (error) {
          console.log(error)
          return NextResponse.json({res:false, message:false}, {status:500}); 
