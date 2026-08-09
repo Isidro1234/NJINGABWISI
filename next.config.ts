@@ -26,16 +26,6 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // ── Proxy API calls to Express backend ────────────────────────────────────
-  async rewrites() {
-    return [
-      {
-        source:      '/api/v1/:path*',
-        destination: 'https://njinga-api.onrender.com/api/v1/:path*',
-      },
-    ]
-  },
-
   // ── Webpack (SVGR support) ─────────────────────────────────────────────────
   webpack(config) {
     // Exclude SVGs from the default file loader
