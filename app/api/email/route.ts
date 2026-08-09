@@ -4,9 +4,9 @@ import { NextResponse } from "next/server";
 configDotenv()
 
 const transporter = nodemailer.createTransport({
-  host:'gmail',
-  port:465,
-  secure:true,
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
