@@ -6,6 +6,7 @@ configDotenv()
 const transporter = nodemailer.createTransport({
   host:'gmail',
   port:465,
+  secure:true,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
@@ -232,8 +233,8 @@ async function sendEmails(html:any,email:string, subject:string){
 export async function POST(request:Request){
     try {
         const data = await request.json();
-        const {email , subject , html } = data;
-        await sendEmails(html , email , subject)
+        const {email, subject, htmlTemplate } = data;
+        await sendEmails(htmlTemplate , email , subject)
         return NextResponse.json({message:'success'} , {status:200}); 
     } catch (error) {
          return NextResponse.json({res:false, message:false}, {status:500}); 
