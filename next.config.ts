@@ -29,7 +29,7 @@ async rewrites() {
     return [
       {
         source: '/api/v1/:path*',
-        destination: `${process.env.API_ORIGIN}/api/v1/:path*`, // your Render URL, server-side only
+        destination: `${process.env.PUBLIC_API_URL}/api/v1/:path*`, // your Render URL, server-side only
       },
     ]
   },
