@@ -25,7 +25,14 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-
+async rewrites() {
+    return [
+      {
+        source: '/api/v1/:path*',
+        destination: `${process.env.API_ORIGIN}/api/v1/:path*`, // your Render URL, server-side only
+      },
+    ]
+  },
   // ── Webpack (SVGR support) ─────────────────────────────────────────────────
   webpack(config) {
     // Exclude SVGs from the default file loader
