@@ -106,12 +106,14 @@ export default function Portal() {
   async function downloadUIP() {
     setLoading(true)
     if(!uip_info?.data?.photo){
-      return toaster.create({
+     toaster.create({
         title:"adicione uma foto",
         description:"antes de baixar seu UIP adicione uma foto clicando no avatar ao lado",
         duration:5000,
         type:"error"
       })
+      setLoading(false)
+      return
     }
     const res = await downloaduip()
     if(res){
