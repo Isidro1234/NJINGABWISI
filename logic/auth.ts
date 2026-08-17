@@ -2,7 +2,7 @@ import axios from "axios"
 
 export const api = axios.create({
   // FIX: was hardcoded to localhost:8000, breaking any non-local deploy.
-  baseURL: process.env.PUBLIC_API_URL || "http://localhost:8000",
+  baseURL: "https://njinga-api.onrender.com",
   headers: {
     'Content-Type': 'application/json',
     // FIX: required by the backend's CSRF check — a plain cross-site form
